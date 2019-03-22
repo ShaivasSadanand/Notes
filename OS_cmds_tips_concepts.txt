@@ -311,3 +311,30 @@ Free resources and Used Resources ->
 - find directory_name_or_path -name *.txt           // this will search for the files with extension txt
 - find directory_name_or_path -name file_name*      // this will search for all files name file_name
 - find / -name file_name                            // here we r starting search from root directory by giving '/'
+- find location_to_search_in -mtime -1  // when u forgot the name of the file and the location of the file then use this cmd
+                                        // as it will look in the suggested location and -mtime flag is used to set the time
+                                        // period here we r using '-1' which means we r looking for file created 1 day ago to
+                                        // till now and if u input '1' then it will only look for files created 1 day ago
+                                        
+                                        
+- 'wc' cmd or wordcount prints a count of new lines, words and bytes for each input file
+- wc file_name  // o/p -> 1 6 42 file_name , here ist param '1' represents the no. of lines in file, 2nd param '6' represents
+                // the no. of words and 3rd param '42' represents the no. of characters in file and 4th is name of file
+- wc -c file_name   // this will give the no. of bytes or no. of characters in file
+- wc -l file_name   // this will give the no. of lines in file
+- wc -w file_name   // this will give the no. of words in file
+- wc -L file_name   // this will give the length of the longest line in file
+
+
+- 'cal' cmd is used to display conventionally formated calender on cmd line
+- cal       // it will display calender, we can also use cmd -> cal -1 // it will gave same output  
+- ncal      // this will display calender in different format
+- cal year_no       // it will display all the months for input year
+- cal month_no year_no      // to display monthly calender for the input month and year
+- cal -3            // this will o/p calender for current month, previous month and next month
+
+
+- 'date' cmd is used to print or change the value of system time and date information
+- date                  // it display current date and time
+- date -s "11/20/2003 12:48:00"     // this will set the input time as the system time
+- 
