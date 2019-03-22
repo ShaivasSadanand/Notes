@@ -1,0 +1,152 @@
+GIT Commands->
+ Youtube url -> https://www.youtube.com/watch?v=MnUd31TvBoU&list=PL4cUxeGkcC9goXbgTDQ0n_4TBzOO0ocPR&index=11
+
+- git --version
+
+- git config --global user.name sadanand (Make user)
+
+- git config --global user.email sadanand1993mtr@gmail.com
+
+- git config user.name (Check User)
+
+- mkdir gitRep
+
+- touch index.html (Make File)
+
+-  git init (Make the master branch)
+
+-  git status (Check the changed and newly creted files not present in staging level)
+
+- git add index.html (add file to staging level)
+
+- git rm --cached index.html (To remove from staging level)
+
+- git add . (add all files to staging level)
+
+- git commit -m "commit msg" (To commit)
+
+- git log (To show all commit history)
+
+- git log --oneline (To show commit history a better way)
+
+- git checkout logId (This does not change anything just only show the code the way it was at that commit)
+
+- git checkout master (To go back to current state of code)
+
+- git revert logId(this is used to revert state of code to particular commit but does not remove the commit history)
+
+- git reset logId(this will go back to that commit state and remove the commit history after it)
+
+Note -> But the changes in files after it would be in unstaged level
+
+- git reset logId --hard (using this will not let code to be in unstaged stage as mentioned in Note)
+
+- git branch name_of_branch(create a new branch)
+
+- git branch -a(show all the branches)
+
+- git checkout branchName(To switch to branch)
+
+- git branch -D branchName (delete the branch)
+
+- git checkout -b branchName(it creates a branch also checkout to that branch)
+
+- To merge other branhes to master brach go to master branch
+  -git checkout master
+  -git merge branchName
+
+- If after commit the conflict comes then change the file as you like and removes comments from file come due to conflict
+	- git add .
+	- git commit (No need to enter the message)
+
+- git push git_url branchName (to push code into remote or online repository)
+
+- git remote add origin git_url (to give alias to the url) 
+	then - git push origin branchName
+
+- git clone git_url (to copy repository from git)
+
+- git remote -v (to get the origin git_url)
+
+- For handling the bracnhes in git online repo See above mentioned Youtube url video 11
+
+- Forking is the git feature which allows the online developers to change the code and send it to the original repository
+	see youtube url video 12
+
+- If something is changed in the master branch of the online repository then we have to first pull then only we could push
+	- git remote add origin git_url (to give alias to the url) 
+	then - git pull origin branchName
+	then - git push origin branchName
+	
+- Github by git bash and SSH keys 
+	- To explore git in detail go to https://git-scm.com/ and read the book ProGit
+	
+	- on the git bash
+	  cmds -> ls -a
+	  
+	 *then use the above mentioned cmds on cmder to commit the code in your own machine
+	 
+	 SSH keys are designed to let comunicate securely between two computers
+	 
+	 Guide to and Documentation for SSH keys->
+	 https://help.github.com/enterprise/2.14/user/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/
+	 
+	 To check we have ssh keys availbale or not cmd -> ls -al ~/.ssh
+	 if their is no file ending with id_rsa or id_rsa.pub their their are no ssh keys
+	 
+	 To generate ssh key cmd -> ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+	 after the above cmd press enter as defualt select for all the questions 
+	 
+	 after the above cmd we have to start ssh agent program so type cmd -> eval "$(ssh-agent -s)"  
+	 if you get o/p as Agent pid any_number then it means its running
+	 
+	 then use cmd -> ssh-add ~/.ssh/id_rsa
+	 then will identify you key pair which could be used to communicate with third party services such as github
+	 
+	 then go to your github account and navigate to settings then navigate to SSH and GPG Keys then click New SSH key
+	 
+	 then enter the title for your SSH key and use the following cmds and git bash to copy ssh key to clipboard
+	 cmd -> clip < ~/.ssh/id_rsa.pub if this cmd doesn't work then go to place where you .ssh folder is present
+	 such as -> /c/Users/sadanand.sharma/.ssh/id_rsa
+	 
+	 after adding the ssh key test whether the ssh key is correctly added or not by using the cmd on git bash
+	 cmd -> ssh -T git@github.com and if you are not connected then it wil help you get connect
+	 
+	 then add the origin url just like in cmder
+	 such as cmd -> git push -u origin master
+	 
+- to test if heroku is installed cmd-> heroku --help  
+	this will install cli if it is first time
+	
+- then login in to your heroku account locally
+	cmd -> heroku login
+	
+- to add ssh keys to heroku, cmd-> heroku keys:add
+- to remove the ssh keys from heroku, cmd-> heroku keys:remove email_of_keys
+- to check keys associated with heroku, cmd-> heroku keys
+
+- to test the connection between heroku and our get , cmd-> ssh -v git@heroku.com
+
+- for heroku to work properly and deploy the code few things have to be setup do following
+	
+	- use of 'env' variable , env is to see your environment variables type env on cmd prmpt
+	
+ - For heroku to work we need to define port as  (this below code is for nodejs and express) 
+        const port = process.env.PORT || 3000;   // here the process.env.PORT is for the deployed app and for local run it is
+                                                 // 3000
+        // use above described port variable as for app.listen
+        app.listen(port,()=>{
+            console.log(`Server is running in Port ${port}`);
+        });
+
+- then specifiy things in package.json in the 'scripts' as
+"scripts": {
+    "start": "node server.js"	// this is let heroku know that which file to execute as heroku don't know which file to execute
+  }
+
+now we can use cmd 'npm start' to run app 
+
+- then use cmd-> heroku create // this is going to create a whole new application in heroku and also add new remote to git repository
+
+- then use cmd-> git push heroku // this will complete th deploying process and give the url which is generated
+	// we can copy that url or use cmd-> heroku open
