@@ -267,6 +267,9 @@ process has it's own ID, u can see CPU usage, Memory usage etc
 - We generally use .bashrc file for setting up the environment variables such as for JAVA, or for git etc
 
 
+Note -> If U get permission denied while listing of files with any command then use 'sudo' with that cmd
+
+
 Free resources and Used Resources ->
 - df        // this cmd reports the amount of Disk space being used and avilable by ur file system
 - df -h     // displays the data in more human readable format
@@ -307,3 +310,4 @@ Free resources and Used Resources ->
 - find directory_name_or_path -name file_name.*     // this will search for the file_name with all extensions
 - find directory_name_or_path -name *.txt           // this will search for the files with extension txt
 - find directory_name_or_path -name file_name*      // this will search for all files name file_name
+- find / -name file_name                            // here we r starting search from root directory by giving '/'
