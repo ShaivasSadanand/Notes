@@ -254,4 +254,56 @@ process has it's own ID, u can see CPU usage, Memory usage etc
 - sudo gpasswd -d user_name group_name // to remove user from the group
 
 
+- .bashrc file is a script that is executed whenever a new terminal session is started in interactive mode
+- when u do -> ls -a , in ur root directory u can see a file .bashrc in the list, whenever u open a new terminal this .bashrc
+  file is executed
+- nano .bashrc          // to see the contents of the file
+- gedit .bashrc         // this will also open the file, gedit is also an notepad kind of editor
+- In some linux systems this .bashrc file exists and in some not, if it is present then it is OK otherwise u can create ur own
+- whatever u add in to the script of the bashrc file it will we executed first whenever u open a new terminal session
+- Ex -> edit and add -> echo "This is test code" in the .bashrc file and the text will we displayed when ever u open terminal 
+- or try adding code -> alias ls='ls --color=auto -l' in the .bashrc file and now when ever u will do 'ls' it will do 'ls -l'
+  with the auto color. So here we changed the functionality of 'ls' cmd with 'ls -l'
+- We generally use .bashrc file for setting up the environment variables such as for JAVA, or for git etc
 
+
+Free resources and Used Resources ->
+- df        // this cmd reports the amount of Disk space being used and avilable by ur file system
+- df -h     // displays the data in more human readable format
+- du        // this cmd is used to estimate and display disk space used by files, navigate into the directory on which u wants
+            // to use this cmd and in the last of all listing it will shoe u the size of the folder
+- du -h     // displays the data in more human readable format
+- du -sh    // '-s' is for summary , 'h' is for human redable, this will calculate the disk space and all of it used
+- du -sh foler_name     // to know the details for the following folder
+- free      // dispalys the total amount of free and used physical and swap memory in the system as well as the buffer used by
+            // the kernel, the data associated by the title-> -/+ buffers/cache // displays the whole memory used by ur machine
+- free -b   // 'b' is for byte we can also use 'k' in place of 'b', k is for kilobyte , 'm' is for megabyte, 'g' for gigbyte and
+            // 't' for terabyte
+            
+            
+- 'watch' cmd can run scripts or cmds at a regular interval or repeatedly 
+- watch free -m         // and u will free after every 2 seconds the command is executed again and data is refreshed
+- press ctrl + c        // to come come out of watch cmd
+- watch -n no_of_seconds free -m    // u can enter the no of seconds to tell after what time interval the watch has to repeat
+                                    // the cmd
+
+
+- 'head' and 'tail' cmds generally we use them with files, So 'head' cmd could be used to output the first part of the file and  
+  the 'tail' cmd could be used to output the last part of the file
+- Bydefault 'head' will print first 10 lines and 'tail' will print last 10 cmds
+- head file_name        // syntax for head
+- tail file_name        // syntax for tail
+- head -nNumber_of_lines file_name  // to give limit for the no. of lines to display, no space between -n and Number_of_lines
+- tail -nNumber_of_lines file_name  // to give limit for the no. of lines to display
+- head -Number_of_lines file_name   // works same as cmd -> head -nNumber_of_lines file_name 
+- tail -f file_name         // this will print the last 10 lines but the terminal session for 'tail' would not be ended ,-f flag
+                            // stands for follow, this would be helpfull when u input or output things   - (Not Clear)
+- head file1 file2          // to see first 10 lines of multiple files
+- head -Number_of_lines file1 file2     // to see first desired number of lines for multiple files
+
+
+- find cmd is to search for files in the directory hierachy
+- find directory_name_or_path -name file_name       // syntax for find cmd
+- find directory_name_or_path -name file_name.*     // this will search for the file_name with all extensions
+- find directory_name_or_path -name *.txt           // this will search for the files with extension txt
+- find directory_name_or_path -name file_name*      // this will search for all files name file_name
