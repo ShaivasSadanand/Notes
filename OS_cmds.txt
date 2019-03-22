@@ -1,0 +1,85 @@
+- All Kali linux cmds -> https://techlog360.com/a-z-kali-linux-commands/
+
+- Linux -> Shell is a program that takes cmds from the keyboard and gives them to the OS to perform.
+Terminal is a tool that is used to pass your shell cmds,This is a program that opens window and lets u interact with the shell.
+
+- Every Linux OS has root folder underwhich all the files resides such as Downloads, Documents etc
+
+
+- pwd       // This cmd shows the current working directory
+
+
+- cd        // To navigate to root directory which contains Documents, Downloads etc)
+- cd /      // To go back to first directory which contains folders like root, home, opt , sys, var, tmp etc
+- cd ~      // To navigate to root directory which contains Documents, Downloads etc)
+- Directories or Folders which have space in them such as "My Folder" cannot be directly navigated by 'cd' So we can do
+    - cd My\ Folder (to go in "My Folder" directory)
+    - cd "My Folder"
+    - cd 'My Folder'
+
+
+- ls        // To list the files present in directory)
+- ls option_cmd directory_name      // syntax for ls cmd
+- ls Documents          // this will list all the files which r in Documents directory
+- ls /                  // to list all the things in first directory
+- ls ~                  // to list all the things in root directory
+- ls ..                 // to list things one step or directory which was previously
+- ls ../..              // to list things two directories back
+- ls -l                 //to show the more info and detailed things about directories of files present)
+- ls -a                 // this will list the hidden files also
+- ls -al                // this will show the hidden files and the details about all files
+- ls -R                 // to see the whole directory structure with files in them hierchial wise
+- ls -ld directory_name // to show full details of the directory
+- ls /home/             // to know the users and their directory
+
+
+- if u do cmd -> ls -l     // then u will see as o/p -> -rw-rw-r-- 1 sadanand sadanand 22 Jul 23 18:55 test
+- Here in the 1st '-' means it's a normal file, if it would be 'd' then it means it is a directory and if it is 'c' then it is
+  character special file, if it is 'b' then it is binary special file
+- First -rw here is for the owner of the file
+- Second -rw means read and write for the group of the file and
+- 3rd r-- is the permission for everybody else
+- 4th '1' represents the symbolic links of the file
+- 5th sadanand it is the name for the owner of the file
+- 6th sadanand it is the name for the group of the file
+- 7th '22' it is the size of the file
+- 8th 'Jul 23 18:55' is the date on which it's created
+- 9th 'test' is the file name
+- rwx means the read, write and execute
+- To change the permissions -> chmod o+x file_name  // Here 'o' stands for others '+' is for adding the permission and '-' is 
+  for subtracting the permission and x is for executable, So permission for others has now executable permission
+- same way -> chmod o+w file_name    // to set permissions for the others as writeable
+- chmod g+x file_name    //  to set the executable permission for group
+- chmod g-wx file_name   // to set the permissions for executable and write for the group
+- chmod ug=rwx file_name // this will change the permissions for the owner and the group of the file together to read, write 
+  and execute, '=rwx' and '+rwx' works same way
+- chmod a-rwx file_name // we can use 'a' for all to set permissions for read, write and execute we could also use 
+  'chmod ugo-rwx file_name' cmd
+- chmod u+rw,g=rw,o+r file_name // this is for the setting seperate permissions for owner,group and others together
+- chmod u-w directory_name   // to set the permissions for the owner for write in directory and lock symbol will appear on the
+  directory on visual(graphical view) folder
+- Note -> we can also revoke the permissions for executable from the directory, in which case the user cannot 'cd' into the
+  directory
+
+- Octal and Numerical Permissions -> Octal Permission is the numerical representation of the file permission,
+ the octal representation for -> -rw-rw-r-- 1 sadanand sadanand 22 Jul 23 18:55 test as
+
+ Users          Groups          Others
+ r w x          r w x           r w x   // provide 1 for providing the permissions and 0 for not providing permissions
+ 1 1 1          1 0 1           0 0 0   // taking 1 1 1 for all if we r providing permissions for all which is binary value 
+ 4 2 1          4 0 1                   // 4 2 1 came in group as we take 1 for 'x' in Users then 'w' become 2 bcz as go from
+                                        // right to left in binary the values doubles and for the same reason 'r' is 4
+// now 4+2+1 = 7 so now if u wants the owner to read, write and execute the file then u need to give the no. notation 7
+// now in groups if we doesn't wants to give the write permission to the group the denote 'w' as 0 as for the negative 
+   permissions, 'r' and 'x' as 1 as for the positive permissions
+// hence for groups the value notation will be 4+0+1 = 5, So when ever u wants to give only read and execute permission we can
+use '5', So this way we can calculate the notations
+// Hence to change permissions -> chmod 000 file_name  // so here we r saying that we r providing no permission for owner hence
+0,no permission for group hence 0, no permission for others hence 0 So it becomes 000
+// For owner to read,write,execute and for group it is only read and execute hence cmd -> chmod 750 file_name
+
+- If the tab is not completing the script then check the permissions for the file whether it is read only by cmd->'ls -al'
+  then do cmd -> 'chmod +x file_name' to do the executable permissions for owner, group and others all together
+- To revert the permissions use cmd -> 'chmod -x file_name'
+
+
