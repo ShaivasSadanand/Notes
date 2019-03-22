@@ -1,5 +1,6 @@
 - All Kali linux cmds -> https://techlog360.com/a-z-kali-linux-commands/
-- Udemy Tutorial For below cmds -> https://www.udemy.com/linux-command-line-tutorial-for-beginners/learn/v4/t/lecture/6347292?start=0
+- Udemy Tutorial For below cmds -> 
+  https://www.udemy.com/linux-command-line-tutorial-for-beginners/learn/v4/t/lecture/6347292?start=0
 
 - Linux -> Shell is a program that takes cmds from the keyboard and gives them to the OS to perform.
 Terminal is a tool that is used to pass your shell cmds,This is a program that opens window and lets u interact with the shell.
