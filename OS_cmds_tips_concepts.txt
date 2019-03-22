@@ -1,4 +1,5 @@
 - All Kali linux cmds -> https://techlog360.com/a-z-kali-linux-commands/
+- Udemy Tutorial For below cmds -> https://www.udemy.com/linux-command-line-tutorial-for-beginners/learn/v4/t/lecture/6347292?start=0
 
 - Linux -> Shell is a program that takes cmds from the keyboard and gives them to the OS to perform.
 Terminal is a tool that is used to pass your shell cmds,This is a program that opens window and lets u interact with the shell.
@@ -337,4 +338,55 @@ Free resources and Used Resources ->
 - 'date' cmd is used to print or change the value of system time and date information
 - date                  // it display current date and time
 - date -s "11/20/2003 12:48:00"     // this will set the input time as the system time
-- 
+- date +%d%h%y                      // this will specify the at current day,month and year, we can use them seperately also
+                                    // like this date +%h, o/p -> 04Jan17
+- date "+%d-%h-%y"                  // o/p -> 04-Jan-17
+- man date                          // for more flags to be used with 'date' cmd
+
+
+Run multiple cmds together -> we can use ';' for combining cmds
+- ls ; pwd          // now the o/p would be combination of both cmds and they will be executed from left to right
+- date ; CAL ; pwd  // here 'CAL' is a wrong cmd but still other cmds will be executed it will just gave the error for 2nd cmd
+- ls && pwd         // we can use '&&' in place of ';' and gives the same output
+- the only difference between ';' and '&&' is that the ';' will execute every cmd regardless of other cmds have been executed
+  successfully of not but with '&&' if the previously executed cmd is failed it will not execute the other left cmds
+- ls || pwd         // here it will give output for 'ls' only bcz here logical OR is applied as if any of the cmd is successful
+                    // it will not execute other cmds
+
+
+- apt-get is a cmd line tool used to work with apt(Advanced Packaging Tool) software packages
+- sudo apt-get update       // it will resynchronize ur local package file and these package files r save in the location
+                            // as -> /etc/apt/sources.list and all the repositories for package list r mentioned their
+- sudo apt-get install package_name         // to install the package
+- sudo apt-get remove package_name         // to uninstall the package but will not remove all the configuration from system
+                                           // means the dependencies of the package
+- sudo apt-get remove --purge package_name  // this will remove all the dependencies and files related to the package and
+                                            // package itself
+- sudo apt-get autoremove                   // when u wants to remove files and softwares which r not going to be used by their
+                                            // parent software anymore, Use this cmd carefully and check the things getting
+                                            // removed before executing it completely
+                                            
+                                            
+- ifconfig              // to show ethernet settings and other internet config things, if 'eth0' is their in o/p then it means
+                        // their is wired connection , if u see 'wlan0' then it is wireless connected, additional ethernet
+                        // connections would be shown as 'eth1' and so on
+                        // 'lo' is a loop back interface which is a special interface which system uses to communicate with
+                        // itself, 'inet addr' is the local are LAN address, 'RX packets' is the received packet
+                        // 'TX packet' is the transmitted packet
+- ifconfig eth1         // it will now show details for 'eth1' interface only
+- ifconfig eth0 up      // this will enable the internet connection
+- ifconfig eth0 down    // this will disable the internet connection
+
+
+- 'tar' cmd is used to create, maintain, modify and extract files which r archived in the tar(Tape Archive) format, tar is an
+  archiving file format just like zip file
+- tar -cvf        // 'c' for creating an archive, 'v' for verbose, 'f' allows u to specify the file name if it not used then
+                  // linux is going to create a Zip file which is going to be system dependent and it's name is not defined
+                  // by u
+- tar -cvf  name_of_file_u_wants_to_give.tar file_name_which_has_to_be_compresed  // this will compress the file to tar, it's
+                                                                                  // better to give .tar extension in the name
+                                                                                  // for the file u r going to create
+- tar -xvf  name_of_tar_file        // to will decompress the file
+- tar -czvf name_of_file_u_wants_to_give.tar.gz file_name_which_has_to_be_compresed //here 'z' will create the file with gz
+                                                                                    // format
+- tar -xzvf file_name.tar.gz        // to decompress gz format file
