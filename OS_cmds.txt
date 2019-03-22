@@ -31,6 +31,12 @@ Terminal is a tool that is used to pass your shell cmds,This is a program that o
 - ls -R                 // to see the whole directory structure with files in them hierchial wise
 - ls -ld directory_name // to show full details of the directory
 - ls /home/             // to know the users and their directory
+- ls -lS                // to list and sort directories and files by size
+- ls Documents/*.html   // this is to list all the files which have extension of html
+- ls Documents/*.*      // this is to list all the files with all extension
+- ls -lS > out.txt      // to overwrite all the contents to a file, here we r saving it in out.txt file which would be
+                        // created if not present and if it is present it will overwrite all the previous data
+- ls -d */              // to list all the directories
 
 
 - if u do cmd -> ls -l     // then u will see as o/p -> -rw-rw-r-- 1 sadanand sadanand 22 Jul 23 18:55 test
@@ -81,5 +87,171 @@ use '5', So this way we can calculate the notations
 - If the tab is not completing the script then check the permissions for the file whether it is read only by cmd->'ls -al'
   then do cmd -> 'chmod +x file_name' to do the executable permissions for owner, group and others all together
 - To revert the permissions use cmd -> 'chmod -x file_name'
+
+
+- cat options_cmd filename1 filename2 .... // syntax for cat
+- cat               // this will allow u to write something on terminal and echo things u enter
+- use ctrl+d to come out of 'cat' cmd
+- cat file_name // to display contents of the file
+- cat filename1 filename2 // this will combine and display the contents of two files
+- cat -b filename // this will show contents with line no.'s except the blank lines they won't we numbered
+- cat -n filename // this will show contents with line no.'s and also for the the blank lines
+- cat -s filename // this squeses the extra blank line and only show data with one blank line between the contents
+- cat -E filename // this adds a $ symbol at the end of each line
+
+- I/O Redirection -> to capture output from one file or program and send it to another file and program
+- output_cmd > file_name // syntax for redirection
+- cat > file_name // to write something in the file, it will also create file if not created and data will we overwritten if it                
+                  // already contains some data in it
+- cat >> file_name // this will append the data with the previous data in the file not overwrite it
+- cat filename1 filename2 > filename3 // this will add the data of filename1 and filename2 and store it in filename3
+- cat filename1 >> filename2 // this will add the data of filename1 to filename2
+
+
+- mkdir directory_name // to create the directory
+- mkdir folder1/folder2  // this will create folder2 directory inside the existing directory folder1, folder1 should exists
+                         // otherwise it give error     
+- mkdir -p folder1/folder2 // to create the whole directory structure means for the all direcories and sub directories which
+                           // does not exists will be created
+- mkdir -p folder1/{folder2,folder3} // this will create two folders folder2 and folder3 inside folder1
+
+
+- rmdir options directory_name      // syntax for rmdir
+- rmdir directory_name              // to remove the directory
+- rmdir folder1/folder2/folder3     // this will remove only folder3 from the directory structure
+- rmdir -p folder1/folder2/folder3  // this will remove all the folders only their should not be any file present in any folder
+- rmdir -pv folder1/folder2/folder3 // v is for verbose mode which dispalys extended information and this will remove all the
+                                    // folders and show process step by step
+- rm filename                       // to remove a file
+- rm -r parent_directory_name       // this will remove the file and the directory's also
+
+
+- cp options_cmd src des        // 'cp'is used as copy command 'src' is the source from which we wants to copy and 'des' is the
+                                // destination where we wants to copy
+- cp file1 file2                // this will copy data of file1 to file2 and create file2 if it does not exist
+- cp file1 dir1                 // this will copy file1 to dir1 directory
+- cp file1 file2 dir1           // this will copy file1 and file2 both to dir1 directory and if suppose file1 is already present
+                                // in the directory then it will be overwritten by the new file
+- cp -i file1 file2 dir1    // this will not let file1 to be overwritten in dir1 if it exists as it asks before overwritting
+- cp ../file1 ../file2 .    // '.' here represents the destination directory which is current directory and the file1 and file
+                            // will be copied to current directory, So use '.' if u r in that directory otherwise use some else
+                            // path as u desrire for destination
+- EX -> cp file1_path file2_path destination_directory_path
+- cp dir1 dir2              // if dir2 doesn't exists then it will give error
+- cp -R dir1 dir2           // using -R flag will now create dir2 directory and then copy the data of dir1 to dir2 but if dir2
+                            // and files exists then it will copy the dir1 directory to dir2 also
+
+
+- mv options_cmd src des // syntax for mv
+- mv file1 file2 // this will move data and rename file and directories so here file1 will be renamed as file2 and if file2
+                 //  doesn't exist it will be created
+- mv file1 dir1 // this will move file1 to dir1 directory and if file1 exists then the data in it will be overwritten
+- mv -i file1 dir1      // this will ask before overwriting file1 if it already exists in dir1
+- mv dir1 dir2          // this will move dir1 to dir2 and if dir2 doesn't exist then dir2 will be created but in the case of
+                        // non existing of the directory the dir1 will not be move to dir2 instead the contents of dir1 will be
+                        // moved to dir2
+- mv -v file1 dir1      // for the verbose mode
+
+
+- 'less' cmd is used for reading the file or to search something inside the file,'less' is better then the cat cmd to read the 
+  file contents as the size of the opened terminal window will not create any hurdle to display the data which was too big and
+  we were not able to scroll further in terminal
+- less filename     // to read the data form the file and scroll the content of file as u proceed by scrolling
+    - press space after executing above cmd will dispaly the data on terminal page by page
+    - press shift + B to go up the pages
+    - press shift + G to go at end of the file
+    - press g       // this go at the top of the file
+    - /book         // this is search for the 'book' keyword in file and to go to next 'book' in file press 'n'
+    - ?book         // to search for 'book' in file from down to up
+    - press 'q' to quit from less
+    
+    
+- 'touch' cmd is a way to create files in linux it is also used to change the timestamps on existing files and directories, u 
+  cannot use 'touch' cmd to create directories
+- touch filename                        //syntax to create a new file
+- touch hello.sh  //.sh extention is not necessary but for editor it is usefull, it is also best practice to provide extension
+- touch file1     // file1 should be already exist now the timestamp of the file would be the current time
+
+
+- nano filename // this will create the file if not exists
+- ctrl+o // to save the data in file and then press enter
+- other common cmds which will be used in nano editor will be already listed at bottom of the editor
+
+
+- 'sudo' cmd allows extra privilages as administrator or more then normal user
+- 'sudo' infront of any cmd will enhance the privilage creteria for that cmd
+- sudo -s       // this will give u the root user privilages which is super user mode
+
+
+- 'top' cmd provides dynamic real time view of ur system, Suppose u wants to know which process in ur computer is taking most
+of the CPU etc then use cmd -> top // a window will appear with data, Here PID -> Process ID, in linux every program and 
+process has it's own ID, u can see CPU usage, Memory usage etc
+- 'top' refreshes the data of process usage table in every 3 seconds bydeafult
+- U can change the delay time from 3 seconds to other interval also by pressing 's' after 'top' cmd is executed
+- To filter out ideal processes(processes u need not to know as they will always we running) press 'i'
+- To kill any process press 'k' and then enter the 'pid' of the process
+
+
+- pidof process_name // to find the pid of process
+
+
+- kill -flags pid_of_process        // syntax for kill cmd
+- kill pid_no                       // to kill the process
+- kill -KILL pid_no                 // this will force kill only use when needed
+- kill -9 pid_no                    // this also a kind of force kill but not as powerfull as -KILL
+
+
+- ps -ux            // to get the long list of all running processes this is usefull in knowing the name of process or the
+                    // process id of some process
+- ps -aux           // the 'ps -ux' gives processes list for the current user only, to know all the processes by all users use
+                    // 'ps -aux' cmd
+- ps -U user_name   // this will give all the processes of the entered user
+- ps -C name_of_process     // this will list out all the instances or processes which r related to process entered
+
+
+- echo string or echo "string"          // to display the string it is best practice to use "" with string
+- myvar="Sadanand"                      // This is variable initialization, don't provide space before and after '='
+  echo $myvar                           // to display the value of 'myvar' variable
+- echo "My name is $myvar"              // to use variable to display string
+- echo -e 'Some \text'                  // here 't' of word 'text' will be escaped bcz we use -e, O/P -> Some ext
+- echo -e 'Some \n text'  // o/p -> Some
+                                    text
+                                    
+                                    
+- which cmd is used to return the path name of a file or a command which we use with this 'which' cmd
+- which ls //to know the location of the ls cmd
+- In bash scripting it is gud practice to use the full path name as we should use -> '/bin/ls' instead of just 'ls' , bcz some
+  OS recognize the 'ls' cmd and some will require u to enter the full path for the 'ls' cmd
+
+
+- 'whatis' cmd will display short manual page discription for cmd -> whatis ls
+
+
+- 'useradd' cmd is used to create a user
+- sudo useradd user_name -m -s /bin/bash -g users -c "Coments"      // -m is going to create a default home directory for this
+                                                                    // user, -s is used for allowing the user to use the shell
+                                                                    // which we provide and here it is bash 
+                                                                    // -g is the default user flag and user will be assigned to 
+                                                                    // the group u mention , always use -g flag with the 'users'
+                                                                    // group , -c flag is used for providing the comments
+- ls /home/                 // to know the users
+- 'passwd' cmd allows u to change the password for the user
+- sudo passwd user_name // now u can change the password for the entered user
+
+
+- 'userdel' cmd is used to delete the user
+- sudo userdel user_name // it will delete the user but it will not delete the directory of the user which u can see by using          
+  cmd -> ls /home/, Hence the user will be deleted but his data will not
+- sudo userdel -r user_name   // this will delete the home directory also with the user
+- sudo rm -r /home/mark/      // this will remove all the data of the user, So use it carefully
+
+
+- groups                 // this will show u that to which groups ur current user is connected too.
+- cat /etc/group         // to list all the groups which r available on ur OS
+- sudo groupadd name_of_group           // to add the new group
+- sudo groupdel name_of_group           // to delete the group
+- sudo gpasswd -a user_name group_name  // assign user to a group
+- sudo gpasswd -d user_name group_name // to remove user from the group
+
 
 
