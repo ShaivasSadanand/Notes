@@ -391,3 +391,56 @@ Run multiple cmds together -> we can use ';' for combining cmds
 - tar -czvf name_of_file_u_wants_to_give.tar.gz file_name_which_has_to_be_compresed //here 'z' will create the file with gz
                                                                                     // format
 - tar -xzvf file_name.tar.gz        // to decompress gz format file
+
+
+- 'grep'(global regural expression print), 'grep' cmd processes text line by line and print any line which matches the 
+  specified pattern, So 'grep' cmd could be used to search some kind of pattern or word or sentence in a text file or
+  no. of text file
+- grep "word_or_text_to_search" file_name // this cmd will search the entered word from the input file, and the 'grep' cmd is     
+                                         // sensitive case hence the exact word or text would be searched 
+- grep -i "word_or_text_to_search" file_name  // to make the search not case-sensitive
+- grep -n "word_or_text_to_search" file_name  // to print the line no. with output 
+- grep -n "word_or_text_to_search" file1 file2 file3  // to search in multiple files 
+- grep -n "word_or_text_to_search" *      // to search from all the files
+- grep -nv "word_or_text_to_search" file_name    // this will o/p all the lines which doesn't contain the input text
+
+
+- 'netstat' it is a cmd line tool that is used to display network connections, routing tables and network interfaces, it can
+be used to see network protocol statics
+- netstat -a  // it show all the connections and status which r available on ur system, whether it is TCP, UDP or unix
+              // conncetions and press 'q' to quit from the cmd
+- netstat -a | less // it gives the o/p in more readble and viewable form
+- netstat -at | less  // this will show only tcp connections
+- netstat -au | less  // this will show only udp connections
+- netstat -l | less   // this show the programs which r in listening state
+- netstat -lt | less   // this will show u listening tcp connection
+- netstat -lu | less   // this will show u listening udp connection
+- netstat -s | less   // this will show u the statictics such as the ip packets received and delivered
+- netstat -st | less  // to see statistics for the packets recived and delivered packets in tcp connection
+- netstat -su | less  // to see statistics for the packets recived and delivered packets in udp connection
+- netstat -p | less  // to see the pid of all connection which r available
+- netstat -n | less  // to see the numberic ports which r being used by different interfaces in ur system
+- netstat -c | less // this will show the network statistics continously
+- netstat -ie       // here 'i' is for interface and 'e' is for extended interface and it will give u the same output which
+                    // would be given to u by 'ifconfig' cmd
+- netstat -an | grep  ':80'// now it will show the output for the connections with the grep entered pattern of text
+
+
+Enable ssh ->
+  - ssh     // to check if 'ssh' is avialable on system or not
+  - ssh user_name_of_remote_server@ip_address_of_Server -p port_no    // syntax for the ssh connection
+  - ssh localhost // to check if 'ssh' server is installed on the system, here we r trying to connect to our localhost via ssh
+                  // if the output is like this -> 'ssh : connect to host localhost port 22:Connection refused' then that means
+                  // the open ssh server is not installed on ur system
+  - sudo apt-get install openssh-server   // to install the open ssh server
+  - sudo service ssh status // if in output it is sying somewhere 'active running' then that means the open ssh server is 
+                            // running on ur system
+  - sudo nano /etc/ssh/sshd_config    //then search for text 'What ports' and under it here u can change the default ssh port
+  
+  
+- 'scp' cmd is used to copy files and directories from ur local machine to a remote server ur vice versa
+- scp file_name username_of_Remote_server@ip_of_Remote_Server:location_on_remote_Server // then enter the remote server
+                              // password and then the file would be send securely to remote server
+- scp -r directory_name username_of_Remote_server@ip_of_Remote_Server:location_on_remote_Server // to send the directory 
+- scp username_of_Remote_server@ip_of_Remote_Server:location_on_file_from_remote_Server location_on_system_to_copy_file    
+    // to copy file from remote server to own system
