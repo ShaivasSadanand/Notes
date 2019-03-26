@@ -444,3 +444,41 @@ Enable ssh ->
 - scp -r directory_name username_of_Remote_server@ip_of_Remote_Server:location_on_remote_Server // to send the directory 
 - scp username_of_Remote_server@ip_of_Remote_Server:location_on_file_from_remote_Server location_on_system_to_copy_file    
     // to copy file from remote server to own system
+    
+    
+- ctrl + alt + up arrow (to swith between the workspaces of the linux(kali linux))
+
+- sudo ifconfig eth0 192.168.0.1 netmask 255.255.255.0 // to change IP4 address
+
+- sudo init 6 // to restart the machine
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+Fedora and Centos ->
+
+- apt-get replaced by yum or dn
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+Ubuntu ->
+
+- Open terminal -> ctrl + alt + t
+
+- ctrl + shift + t -> to open multiple tabs of the terminal
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+@ -> https://www.youtube.com/watch?v=V8EUdia_kOE  - Pending
+
+- sudo !! // if u write a cmd but the shell tells u that u need to use sudo for that then instead of writing whole cmd again and 
+             then typing sudo in front on it we can use this cmd here '!!' represents the last entered cmd
+
+- ctrl + k // place the cursor in between the characters u want in a string and then press 'ctrl + k' the characters after the
+              cursor would be cut
+  Ex -> aaa bbb ccc ddd // now if we put the cursor after 'bbb' and press 'ctrl + k' then the 'ccc' and 'ddd' will be removed
+
+- ctrl + y // to get back the characters removed by the 'ctrl + k'
+
+- ctrl + u // removes the text before the cursor it works in opposite direction of 'ctrl + k'
+
+- ctrl + w // it deletes the words backward on the basis of the spaces
