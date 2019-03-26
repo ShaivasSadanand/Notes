@@ -7,6 +7,13 @@ Terminal is a tool that is used to pass your shell cmds,This is a program that o
 
 - Every Linux OS has root folder underwhich all the files resides such as Downloads, Documents etc
 
+- man any_cmd (this gives the manual of the cmd) // we can also use --help in the place of 'man' Ex -> any_cmd --help
+
+
+- To go to the files entering tab in Files -> ctrl + l
+- Workspaces in kali Linux could be used a new windows same like in chrome for opening or doing multiple tasks in mulitple
+  workspaces
+
 
 - pwd       // This cmd shows the current working directory
 
@@ -183,6 +190,7 @@ use '5', So this way we can calculate the notations
 - 'sudo' cmd allows extra privilages as administrator or more then normal user
 - 'sudo' infront of any cmd will enhance the privilage creteria for that cmd
 - sudo -s       // this will give u the root user privilages which is super user mode
+- sudo su    // To go to the root user and give root permissions)
 
 
 - 'top' cmd provides dynamic real time view of ur system, Suppose u wants to know which process in ur computer is taking most
@@ -424,6 +432,24 @@ be used to see network protocol statics
 - netstat -ie       // here 'i' is for interface and 'e' is for extended interface and it will give u the same output which
                     // would be given to u by 'ifconfig' cmd
 - netstat -an | grep  ':80'// now it will show the output for the connections with the grep entered pattern of text
+- netstat -r // to display current routing table
+
+
+Note - if u get the .part on doing the ls while the downloading is going on then it means the download is only partially
+        complete
+
+
+VIM Editor ->
+- sudo apt-get install vim // to install vim
+- vim name_of_file_to_edit // open the editor with file open
+- vim file.txt // to create a file
+      - press i // to insert
+      - press esc to exit the insert mode
+      - :w // to save
+      - :q // to exit
+      - :wq // to save and close the file or we can also use ZZ for the same task
+      - :q! // to exit file without saving
+      - press o // to get into the next line , don't press it in the insert mode
 
 
 Enable ssh ->
@@ -465,6 +491,17 @@ Ubuntu ->
 - Open terminal -> ctrl + alt + t
 
 - ctrl + shift + t -> to open multiple tabs of the terminal
+
+- lsb_release -a  //to know the version of ubuntu 
+
+- shutdown // to shutdown
+
+- sudo shutdown -P now  // to shutdown immediately
+
+- shutdown -r // to restart
+
+- sudo pm-suspend   // to sleep
+
 
 -------------------------------------------------------------------------------------------------------------------------------
 
