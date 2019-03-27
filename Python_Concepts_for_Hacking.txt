@@ -100,7 +100,7 @@ Note -> better to use '+' instead of ',' in 'print' as the single quotes not app
     this is called typecasting
 
 - Python Prgm for MAC changer ->
-#! usr/bin/env python
+#! usr/bin/env python3
 
 # subprocess module contains a number of functions, these functions allow us to execute any system commands not just
 # only linux cmds, cmds depend on the OS which executes the script
