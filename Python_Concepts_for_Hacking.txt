@@ -1,1 +1,6 @@
+- Udemy Tutorial For below Concepts -> 
+  https://www.udemy.com/learn-python-and-ethical-hacking-from-scratch/learn/v4/t/lecture/9194564?start=0
+  
+ - print("String to Print on Console") and print "String to Print"   // both gives same output 
+ 
 
