@@ -163,6 +163,13 @@ Note -> Use 'ctrl + d' for copying the line to next line by placing the cursor a
       
       value = greet(2)
       
+      - to return multiple values from function
+      
+      def greet(a):                
+         return a * a, a         # returning the o/p
+      
+      value, input = greet(2)
+      
       - passing functions into functions as parameter
       
       def area(radius):
@@ -190,24 +197,32 @@ Note -> Use 'ctrl + d' for copying the line to next line by placing the cursor a
 import subprocess
 import optparse
 
-parser = optparse.OptionParser()  # here we r creating the instance of the class OptionParser
-parser.add_option("-i", "--interface", dest="interface", help="Interface to change MAC address")
-parser.add_option("-m", "--mac", dest="new_mac", help="New MAC address")
-# 1st arg to be expected by the user here we r saying that the user can enter value with '-i' or '--interface' and
-# it will be stored in the variable 'instance' and we r also giving the 'help' msg for the argument
-(options, arguments) = parser.parse_args()     # to see the arguments to be used in prgm on the terminal with --help
-# and it is also taking the input from cmd line into two sets of options and arguments and hence we r taking returned
-# response in two variables 'options' and 'arguments' by -> (options, arguments) = parser.parse_args()
-# Hence in the 'options' variables it will contained the inputs and in the 'arguments' varaible it will contain args
-# such as --interface and --mac
+def get_arguments():
+    parser = optparse.OptionParser()  # here we r creating the instance of the class OptionParser
+    parser.add_option("-i", "--interface", dest="interface", help="Interface to change MAC address")
+    parser.add_option("-m", "--mac", dest="new_mac", help="New MAC address")
+    # 1st arg to be expected by the user here we r saying that the user can enter value with '-i' or '--interface' and
+    # it will be stored in the variable 'instance' and we r also giving the 'help' msg for the argument
+    (options, arguments) = parser.parse_args()  # to see the arguments to be used in prgm on the terminal with --help
+    # and it is also taking the input from cmd line into two sets of options and arguments and hence we r taking returned
+    # response in two variables 'options' and 'arguments' by -> (options, arguments) = parser.parse_args()
+    # Hence in the 'options' variables it will contained the inputs and in the 'arguments' varaible it will contain args
+    # such as --interface and --mac
 
-# interface = input("Enter the interface > ")    # we replace this code with below line code now
-interface = options.interface       # we r taking the value entered through cmd line
-# new_mac = input("Enter the new MAC address > ")   # we replace this code with below line code now
-new_mac = options.new_mac       # we r taking the value entered through cmd line
-print("[+] Changing MAC address for " + interface + " to " + new_mac)
+    # interface = input("Enter the interface > ")    # we replace this code with below line code now
+    interface = options.interface  # we r taking the value entered through cmd line
+    # new_mac = input("Enter the new MAC address > ")   # we replace this code with below line code now
+    new_mac = options.new_mac  # we r taking the value entered through cmd line
+    return interface, new_mac
 
-subprocess.call(["ifconfig",interface,"down"])
-subprocess.call(["ifconfig",interface,"hw","ether",new_mac])
-subprocess.call(["ifconfig",interface,"up"])
-subprocess.call("ifconfig", shell=True)         # to list all the interfaces
+
+def change_mac(interface, new_mac):
+    print("[+] Changing MAC address for " + interface + " to " + new_mac)
+
+    subprocess.call(["ifconfig", interface, "down"])
+    subprocess.call(["ifconfig", interface, "hw", "ether", new_mac])
+    subprocess.call(["ifconfig", interface, "up"])
+    subprocess.call("ifconfig", shell=True)  # to list all the interfaces
+
+interface, new_mac = get_arguments()
+change_mac(interface, new_mac)
