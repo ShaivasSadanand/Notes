@@ -112,6 +112,13 @@ Note -> It is easy to exploit the inputs such as in following code ->
   // subprocess.call(["ifconfig",interface,"down"])   // now the input -> eth0;ls; will give an error and not allow the
   // attacker to hijack the flow of the prgm and our subprocess.call() become more safe
 
+- Command Line Arguments ->
+
+
+
+Note ->  methods or things which start with capital letters in python means that it is a Class
+  
+
 - Python Prgm for MAC changer ->
 #! usr/bin/env python3
 
