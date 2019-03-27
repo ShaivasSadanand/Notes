@@ -9,6 +9,8 @@ Terminal is a tool that is used to pass your shell cmds,This is a program that o
 
 - man any_cmd (this gives the manual of the cmd) // we can also use --help in the place of 'man' Ex -> any_cmd --help
 
+- In the 'opt' directory of linux machine u r supposed to put all ur optional programs such as pycharm editor could be put in
+  this directory
 
 - cd /root // this nagivates to root directory 
 
