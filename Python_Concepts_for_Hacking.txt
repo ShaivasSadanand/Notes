@@ -135,6 +135,45 @@ Note ->  methods or things which start with capital letters in python means that
   
 Note -> Use 'ctrl + d' for copying the line to next line by placing the cursor at the end of line which u wants to copy
 
+- Functions ->
+      def greet():                # here def is for define
+         print('hello world')
+      
+      greet()
+      
+      - pass arguments
+      
+      def greet(name):                
+         print('hello',name)
+      
+      greet('Sadanand')
+      
+      - default parmaters
+      
+      def greet(name='Sadanand'):     # this is default parameter now even if the argument is not passed the in greet() the name
+                                      # will get a default value but if we had passed an argument it would take the passed value  
+         print('hello',name)
+      
+      greet()
+      
+      - returning a value from function
+        
+      def greet(a):                
+         return a * a         # returning the o/p
+      
+      value = greet(2)
+      
+      - passing functions into functions as parameter
+      
+      def area(radius):
+        return 3.14 * radius * radius
+        
+      def vol(area, length):
+        print(area, length)
+        
+      vol(area(5),3)        # passing the area() into vol()
+
+
 - Python Prgm for MAC changer ->
 #! usr/bin/env python3
 
