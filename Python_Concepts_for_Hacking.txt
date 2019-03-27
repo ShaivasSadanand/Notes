@@ -180,6 +180,14 @@ Note -> Use 'ctrl + d' for copying the line to next line by placing the cursor a
         
       vol(area(5),3)        # passing the area() into vol()
 
+- If statements
+      Ex- if age < 10:      # here : at the end of 10 is representing end of expression
+            # ur code
+          elif age < 40:    # it is same like else if
+            # ur code
+            break           # use of break keyword
+          else:
+            # ur code
 
 - Python Prgm for MAC changer ->
 #! usr/bin/env python3
