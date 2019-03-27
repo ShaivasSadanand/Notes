@@ -188,7 +188,12 @@ Note -> Use 'ctrl + d' for copying the line to next line by placing the cursor a
             break           # use of break keyword
           else:
             # ur code
-
+            
+ - Reading output returned by System commands
+  Syntax for cmd -> subprocess.check_output(args,*,stdin=None,stderr=None,shell=False,universal_newlines=False)
+  ifconfig_result = subprocess.check_output(["ifconfig",interface])   # it returns the output of system cmds 
+  print('ifconfig_Result > ',ifconfig_result)
+  
 - Python Prgm for MAC changer ->
 #! usr/bin/env python3
 
@@ -201,7 +206,6 @@ Note -> Use 'ctrl + d' for copying the line to next line by placing the cursor a
 # cmds but runs the cmd in the foreground not in the background, doesn't run it in different thread and wait for the cmd
 # to finish executing before moving to the next line
 # Foreground contains the application the user is working on
-
 import subprocess
 import optparse
 
@@ -221,7 +225,12 @@ def get_arguments():
     interface = options.interface  # we r taking the value entered through cmd line
     # new_mac = input("Enter the new MAC address > ")   # we replace this code with below line code now
     new_mac = options.new_mac  # we r taking the value entered through cmd line
-    return interface, new_mac
+    
+    if not interface:
+        parser.error("[-] Plz specify the interface use --help for info")  # this will display the msg and exit the prgm
+    elif not new_mac:
+        parser.error("[-] Plz specify the NEW MAC use --help for info")
+    return interface, new_mac   # If above two conditions doesn't execute then this code will 
 
 
 def change_mac(interface, new_mac):
