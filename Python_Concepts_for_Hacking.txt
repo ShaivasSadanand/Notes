@@ -192,6 +192,10 @@ Note -> Use 'ctrl + d' for copying the line to next line by placing the cursor a
 - Regex -> Go the website -> https://pythex.org/ , here in the "Your test String" textbox paste all the string for which u
            wants to make regex logic and with the help of "Regular expression cheatsheet" in the website try to make ur regex
            expression
+       Syntax -> import re
+                 result = re.search(r"regex_pattern_string", variable_having_the_text)
+                 print(result.group(0))  // group(0) here repesents the first output as their could be multiple strings
+                                         // which could match the regex pattern, '0' denotes the first match
             
  - Reading output returned by System commands
   Syntax for cmd -> subprocess.check_output(args,*,stdin=None,stderr=None,shell=False,universal_newlines=False)
@@ -199,6 +203,7 @@ Note -> Use 'ctrl + d' for copying the line to next line by placing the cursor a
   print('ifconfig_Result > ',ifconfig_result)
   
 - Python Prgm for MAC changer ->
+
 #! usr/bin/env python3
 
 # subprocess module contains a number of functions, these functions allow us to execute any system commands not just
@@ -210,6 +215,7 @@ Note -> Use 'ctrl + d' for copying the line to next line by placing the cursor a
 # cmds but runs the cmd in the foreground not in the background, doesn't run it in different thread and wait for the cmd
 # to finish executing before moving to the next line
 # Foreground contains the application the user is working on
+
 import subprocess
 import optparse
 
@@ -247,3 +253,73 @@ def change_mac(interface, new_mac):
 
 interface, new_mac = get_arguments()
 change_mac(interface, new_mac)
+#! usr/bin/env python3
+
+# subprocess module contains a number of functions, these functions allow us to execute any system commands not just
+# only linux cmds, cmds depend on the OS which executes the script
+# Syntax -> import subprocess
+#           subprocess.call("COMMAND",Shell=True)
+
+# subprocess.call(args, *, stdin=None, stdout=None, stderr=None, shell=False) // this function allows us to run system
+# cmds but runs the cmd in the foreground not in the background, doesn't run it in different thread and wait for the cmd
+# to finish executing before moving to the next line
+# Foreground contains the application the user is working on
+
+import subprocess
+import optparse
+import re
+
+def get_arguments():
+    parser = optparse.OptionParser()  # here we r creating the instance of the class OptionParser
+    parser.add_option("-i", "--interface", dest="interface", help="Interface to change MAC address")
+    parser.add_option("-m", "--mac", dest="new_mac", help="New MAC address")
+    # 1st arg to be expected by the user here we r saying that the user can enter value with '-i' or '--interface' and
+    # it will be stored in the variable 'instance' and we r also giving the 'help' msg for the argument
+    (options, arguments) = parser.parse_args()  # to see the arguments to be used in prgm on the terminal with --help
+    # and it is also taking the input from cmd line into two sets of options and arguments and hence we r taking returned
+    # response in two variables 'options' and 'arguments' by -> (options, arguments) = parser.parse_args()
+    # Hence in the 'options' variables it will contained the inputs and in the 'arguments' varaible it will contain args
+    # such as --interface and --mac
+
+    # interface = input("Enter the interface > ")    # we replace this code with below line code now
+    interface = options.interface  # we r taking the value entered through cmd line
+    # new_mac = input("Enter the new MAC address > ")   # we replace this code with below line code now
+    new_mac = options.new_mac  # we r taking the value entered through cmd line
+
+    if not interface:
+        parser.error("[-] Plz specify the interface use --help for info")  # this will display the msg and exit the prgm
+    elif not new_mac:
+        parser.error("[-] Plz specify the NEW MAC use --help for info")
+    return interface, new_mac   # If above two conditions doesn't execute then this code will
+
+
+def change_mac(interface, new_mac):
+    print("[+] Changing MAC address for " + interface + " to " + new_mac)
+
+    subprocess.call(["ifconfig", interface, "down"])
+    subprocess.call(["ifconfig", interface, "hw", "ether", new_mac])
+    subprocess.call(["ifconfig", interface, "up"])
+    subprocess.call("ifconfig", shell=True)  # to list all the interfaces
+    
+    
+def get_current_mac(interface):
+    ifconfig_result = subprocess.check_output(["ifconfig", interface])
+    print('ifconfig_Result > ', ifconfig_result)
+
+    mac_address_search_result = re.search(r"\w\w:\w\w:\w\w:\w\w:\w\w:\w\w", ifconfig_result)
+    if mac_address_search_result:
+        return mac_address_search_result.group(0)
+    else:
+        print("[-] Could not read MAC address")     # this will return 'None' as we r not returning anything
+        
+
+interface, new_mac = get_arguments()
+current_mac = get_current_mac(interface)
+print("Current MAC = ",str(current_mac))
+change_mac(interface, new_mac)
+
+current_mac = get_current_mac(interface)        # this is to get the new current MAC
+if current_mac == new_mac:
+    print("[+] MAC address was successfully changed to ", current_mac)
+else:
+    print("[-] MAC address didnot get changed")
