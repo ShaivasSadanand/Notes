@@ -112,12 +112,28 @@ Note -> It is easy to exploit the inputs such as in following code ->
   // subprocess.call(["ifconfig",interface,"down"])   // now the input -> eth0;ls; will give an error and not allow the
   // attacker to hijack the flow of the prgm and our subprocess.call() become more safe
 
-- Command Line Arguments ->
+- Command Line Arguments -> To get the input from cmd line 
 
+Syntax ->
+import optparse
 
+parser = optparse.OptionParser()  # here we r creating the instance of the class OptionParser
+parser.add_option("-i", "--interface", dest="interface", help="Interface to change MAC address")     
+# 1st arg to be expected by the user here we r saying that the user can enter value with '-i' or '--interface' and
+# it will be stored in the variable 'instance' and we r also giving the 'help' msg for the argument
+(options, arguments) = parser.parse_args()     # to see the arguments to be used in prgm on the terminal with --help
+# and it is also taking the input from cmd line into two sets of options and arguments and hence we r taking returned
+# response in two variables 'options' and 'arguments' by -> (options, arguments) = parser.parse_args()
+# Hence in the 'options' variables it will contained the inputs and in the 'arguments' varaible it will contain args
+# such as --interface and --mac
+
+Now on Doing -> python file_name.py --help  // it will show the arguments could be used and display options or arguments could
+                                            // be used with prgm
+Now on Doing -> python file_name.py --interface eth0 // now we r giving the input through cmd line
 
 Note ->  methods or things which start with capital letters in python means that it is a Class
   
+Note -> Use 'ctrl + d' for copying the line to next line by placing the cursor at the end of line which u wants to copy
 
 - Python Prgm for MAC changer ->
 #! usr/bin/env python3
@@ -133,12 +149,26 @@ Note ->  methods or things which start with capital letters in python means that
 # Foreground contains the application the user is working on
 
 import subprocess
+import optparse
 
-interface = input("Enter the interface > ")
-new_mac = input("Enter the new MAC address > ")
+parser = optparse.OptionParser()  # here we r creating the instance of the class OptionParser
+parser.add_option("-i", "--interface", dest="interface", help="Interface to change MAC address")
+parser.add_option("-m", "--mac", dest="new_mac", help="New MAC address")
+# 1st arg to be expected by the user here we r saying that the user can enter value with '-i' or '--interface' and
+# it will be stored in the variable 'instance' and we r also giving the 'help' msg for the argument
+(options, arguments) = parser.parse_args()     # to see the arguments to be used in prgm on the terminal with --help
+# and it is also taking the input from cmd line into two sets of options and arguments and hence we r taking returned
+# response in two variables 'options' and 'arguments' by -> (options, arguments) = parser.parse_args()
+# Hence in the 'options' variables it will contained the inputs and in the 'arguments' varaible it will contain args
+# such as --interface and --mac
+
+# interface = input("Enter the interface > ")    # we replace this code with below line code now
+interface = options.interface       # we r taking the value entered through cmd line
+# new_mac = input("Enter the new MAC address > ")   # we replace this code with below line code now
+new_mac = options.new_mac       # we r taking the value entered through cmd line
 print("[+] Changing MAC address for " + interface + " to " + new_mac)
 
-subprocess.call("ifconfig " + interface + " down", shell=True)
-subprocess.call("ifconfig " + interface + " hw ether " + new_mac, shell=True)
-subprocess.call("ifconfig " + interface + " up", shell=True)
+subprocess.call(["ifconfig",interface,"down"])
+subprocess.call(["ifconfig",interface,"hw","ether",new_mac])
+subprocess.call(["ifconfig",interface,"up"])
 subprocess.call("ifconfig", shell=True)         # to list all the interfaces
