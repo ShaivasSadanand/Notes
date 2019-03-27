@@ -189,6 +189,10 @@ Note -> Use 'ctrl + d' for copying the line to next line by placing the cursor a
           else:
             # ur code
             
+- Regex -> Go the website -> https://pythex.org/ , here in the "Your test String" textbox paste all the string for which u
+           wants to make regex logic and with the help of "Regular expression cheatsheet" in the website try to make ur regex
+           expression
+            
  - Reading output returned by System commands
   Syntax for cmd -> subprocess.check_output(args,*,stdin=None,stderr=None,shell=False,universal_newlines=False)
   ifconfig_result = subprocess.check_output(["ifconfig",interface])   # it returns the output of system cmds 
