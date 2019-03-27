@@ -17,3 +17,36 @@
   - Bypass filters
   - or connect to network which only specific devices and specific MAC addresses r allowed to connect
   
+- use cmd -> ifconfig // to list interfaces on the current computer, interface here means a network card
+- The interfaces created in virtual machines r virtual interfaces bcz we set this machine to use NAT network
+  'lo' is the virtual interface created by linux, 'wlan0' is the external USB wireless adapter, 'ether' in the 'eth0' here
+  represents the MAC address
+  
+- ifconfig eth0 down // to disable the interface
+- ifconfig eth0 hw ether 00:11:22:33:44:55    // To change the MAC address to address -> 00:11:22:33:44:55
+- ifconfig eth0 up    // to enable the interface
+
+- always check the main python documentation for the module such as subprocess to know more functionalities of the module
+
+- 
+
+- Python Prgm for MAC changer ->
+#! usr/bin/env python
+
+# subprocess module contains a number of functions, these functions allow us to execute any system commands not just
+# only linux cmds, cmds depend on the OS which executes the script
+# Syntax -> import subprocess
+#           subprocess.call("COMMAND",Shell=True)
+
+# subprocess.call(args, *, stdin=None, stdout=None, stderr=None, shell=False) // this function allows us to run system
+# cmds but runs the cmd in the foreground not in the background, doesn't run it in different thread and wait for the cmd
+# to finish executing before moving to the next line
+# Foreground contains the application the user is working on
+
+import subprocess
+
+subprocess.call("ifconfig eth0 down", shell=True)
+subprocess.call("ifconfig eth0 hw ether 00:55:44:33:22:11", shell=True)
+subprocess.call("ifconfig eth0 up", shell=True)
+subprocess.call("ifconfig", shell=True)         # to list all the interfaces
+
