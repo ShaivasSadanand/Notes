@@ -91,6 +91,13 @@ Note -> this format() could be used only with 'print' not with others such as 's
 
 Note -> better to use '+' instead of ',' in 'print' as the single quotes not appear in the output with '+'
         Ex -> print("Changing MAC address from " + interface + " to ")
+        
+- Standard Inputs ->
+  - we use # for comments
+  - input('Enter the name ?') and when we run the prgm then the python ask me for input by displaying msg as 'Enter the name ?'
+  - print('Sadanand') // this will give output as Sadanand on the console
+  - radius = input('Enter the radius') o/p would be a string not a number we can convert it into integer by method int(radius)
+    this is called typecasting
 
 - Python Prgm for MAC changer ->
 #! usr/bin/env python
