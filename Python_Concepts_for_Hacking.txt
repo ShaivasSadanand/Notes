@@ -28,7 +28,39 @@
 
 - always check the main python documentation for the module such as subprocess to know more functionalities of the module
 
-- 
+- Variable Scopes ->
+      
+      my_name = 'ryu'       # Global Scope Variable
+      
+      def print_name():
+        my_age = 8          # local scope variable
+        print('Name is',my_name,my_age)   # here my_name and my_age both r accessible
+        
+      print_name()
+      print('Name is',my_name,my_age) # here my_name is accessible but my_age is not accessible
+      
+      - Overwriting Variable
+      
+      my_name = 'ryu'       # Global Scope Variable
+      
+      def print_name():
+        my_name = 'abc'          # overwriting global scope variable
+        print('Name is',my_name)   # here o/p is abc
+        
+      print_name()
+      print('Name is',my_name) # here o/p is ryu
+      
+      - to override variables globally
+      
+      my_name = 'ryu'       # Global Scope Variable
+      
+      def print_name():
+        global my_name        # use global if u wants the variable to be override globally
+        my_name = 'abc'          
+        print('Name is',my_name)   # here o/p is abc
+        
+      print_name()
+      print('Name is',my_name) # here o/p is abc
 
 - Python Prgm for MAC changer ->
 #! usr/bin/env python
