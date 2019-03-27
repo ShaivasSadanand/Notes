@@ -10,7 +10,7 @@ Terminal is a tool that is used to pass your shell cmds,This is a program that o
 - man any_cmd (this gives the manual of the cmd) // we can also use --help in the place of 'man' Ex -> any_cmd --help
 
 
-- To go to the files entering tab in Files -> ctrl + l
+- To open the path bar in the file manager of linux machine -> ctrl + l
 - Workspaces in kali Linux could be used a new windows same like in chrome for opening or doing multiple tasks in mulitple
   workspaces
 
