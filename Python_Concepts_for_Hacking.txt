@@ -95,6 +95,7 @@ Note -> better to use '+' instead of ',' in 'print' as the single quotes not app
 - Standard Inputs ->
   - we use # for comments
   - input('Enter the name ?') and when we run the prgm then the python ask me for input by displaying msg as 'Enter the name ?'
+  - in python 3 use input() and in python 2 use raw_input()
   - print('Sadanand') // this will give output as Sadanand on the console
   - radius = input('Enter the radius') o/p would be a string not a number we can convert it into integer by method int(radius)
     this is called typecasting
