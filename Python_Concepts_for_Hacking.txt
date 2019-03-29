@@ -323,3 +323,51 @@ if current_mac == new_mac:
     print("[+] MAC address was successfully changed to ", current_mac)
 else:
     print("[-] MAC address didnot get changed")
+    
+
+- Netwrok Scanner Objectives ->
+  - Discover all devices on the netwrok
+  - Display their IP address
+  - Display their MAC address
+  
+- Using netdiscover in kali linux to discover all devices connected to the netwrok ->
+  - netdiscover -r ip_range_to_search_for  // syntax for netdiscover , it works same for the virtual netwrok and real wifi
+    netwrok, here we need to provide the ip_range that is accessed by me and here the subnet range is-> 10.0.2.0 - 10.0.2.254
+    hence cmd is -> netdiscover -r 10.0.2.1/24  // here the range is from 10.0.2.1 to 10.0.2.254
+    
+Note -> U cannot access the virtual netwrok wireless card from a virtual machine, here we r going to use the virtual wireless
+adapter but for the real attacks on the network u need real wireless adapter
+
+Note -> Wireless adapter is a device that is connected to ur computer through a USB port and it allows u to communicate with
+other devices of a wifi, the wireless apadtors r built in laptops(Wireless Cards) now days but their r 2 problems to it ->
+  1-> U cann't access wireless built in adaptors(Wireless cards) through kali if it is installed as virtual machine
+  2-> Most built-in wireless cards r not good for hacking bcz they doesn't support monitor mode or packet injection
+  
+Wireless chipset -> it is used inside the wireless adaptor, chipset is kind of the brains inside the wireless adaptor and does
+all the processing and calculations and this chipset determines whether this adaptor is gud or not
+
+the "Atheros AR9271 2.4 Ghz USB WiFi Wireless Adapter" is a gud adaptor but it supports only 2.4ghz, so if ur target network 
+uses the 5ghz or some the devices r connected over 5ghz then u won't be able to communicate with these devices
+  
+- Some routers have the band of 2.4ghz and 5 ghz both bcz Exlained -> A frequency band is how a wireless data is transmitted
+between devices, these bands r radio waves that carry the data and these bands r their 2.4ghz and 5ghz, 2.4ghz is the common
+frequency and these r single band routers and the routers with both 2.4ghz and 5ghz are known as dual band routers
+the 2.4ghz is the standard band but it is not just only used in routers it is used in bluetooth devices, wireless cameras
+, cordless phones and this bcz problem as other devices uses the same band the signal became over crowded and causes lot of
+interference with wifi signals and it then slows down the wifi netwrok speed and sometimes loses connection
+
+Another reason why 2.4 ghz is vulnerable to interference is bcz of the difference in wireless channel, a wireless channel is
+just a way to fine tune and alter a frequency, sometimes u need switch to different channel if u r experiencing interference
+from different wireless devices
+The 2.4ghz band has 11 channels but all these 11 channels only 3 r non overlapping and 5ghz band has 25 non overlapping
+channels
+The 2.4 ghz band is slower then the 5ghz but it has longer range then the 5ghz, bcz 5ghz has higher frequency has difficulty
+in pentrating objects such as floors and walls etc
+
+ARP -> To communicate with another machine on another network we need to know it's MAC address, So the attacker device will use
+a protocol ARP which allows us to link IP addresses to MAC addresses, So it sends a broadcast msg which is an ARP request to a
+specific known MAC address in the whole netwrok and it is known as the broadcast MAC address, when a packet is set to be sent to
+broadcast MAC address all clients in the same network recives this packet now all the devices will ignore this packet except
+the one device who as the IP address which is sent in the request, now this device will respond by sending the ARP response to
+the attacker with his MAC address and now the communication is setup among both the devices, So all this communication is done
+using ARP protocol.
