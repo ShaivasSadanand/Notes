@@ -1,79 +1,89 @@
 NAT (Network Address Translation)->
 NAT is used in routers, it's purpose is to translate a set of IP addresses to a another set of IP addresses
 NAT helps in preserve the limited amount of IP4 public IP addresses
-Routers provide the private IP addresses to the devices in network and when devices wants to interact with the internet, then our private IP
-address for the device will be translated by NAT to the public IP address
-So NAT translates from private to public and also from public to private, as if the internet wants to interact with the computer on private
-network then the public IP address needs to translated by NAT to private IP address of that computer
-In the future we won't need NAT or private IP address bcz of IP6, bcz with IP6 every device in the world will have it's own public IP address
+Routers provide the private IP addresses to the devices in network and when devices wants to interact with the internet, then
+our private IP address for the device will be translated by NAT to the public IP address
+So NAT translates from private to public and also from public to private, as if the internet wants to interact with the
+computer on private network then the public IP address needs to translated by NAT to private IP address of that computer
+In the future we won't need NAT or private IP address bcz of IP6, bcz with IP6 every device in the world will have it's own
+public IP address
 
 Protocol -> a define set of standards that computer must follow in order to communicate properly
 
 TCP/IP 5 layer Model->
 1) Physical Layer -> It represents the physical devices that interconnect computers
-2) Data Link Layer(Network Interface or Network Access Layer) -> at this layer we introduce our 1st protocols, It is responsible for defining a
-common way of interpreting signals so network devices can communicate
-The Ethernet standards also define a protocol responsible for getting data to nodes on the same network or link
-3) Network Layer (Internet layer) -> this layer allows different networks to communicate with each other through devices known as routers
-- A collection of networks connected together through routers, the most famous of these being the internet
-The Data link layer is responsible for getting data across a single link while a network layer is responsible for getting data deliver across
-a collection of networks
-- Most common Protocol for Network layer is IP
-Network software is usually divided among the client and server categories, with the client application initiating the request for data and the
-server software answering for the request across the network
-A single node may be running multiple client and server applications
-So u might run an email program and a web browser both client application on ur PC at the same time, and ur email and web server might both
-run on the same server even so emails end up in ur email applications and web pages end up in ur web browser that's bcz of transport layer
-4) Transport layer -> while the network layer delivers data between 2 individual nodes the transport layer sorts out that which client and
-server programs r supposed to get that data
-Protocol most commonly used in the 4th layer is TCP(Transmission control Protocol)
-Other transport Protocols also use IP to get around, including a Protocol known as UDP(User Datagram Protocol)
-TCP provides mechanisms that data reliably deliver while UDP does not
-Network layer is in this case is IP which is responsible to get data from one node to another
-Transport layer mostly TCP and UDP is responsible for ensuring that data gets to the right application running on those nodes
-5) Application Layer -> Protocols used to allow u to browse the web, or send or receive email are come common ones used in this layer
+2) Data Link Layer(Network Interface or Network Access Layer) -> at this layer we introduce our 1st protocols, It is
+   responsible for defining a common way of interpreting signals so network devices can communicate
+   The Ethernet standards also define a protocol responsible for getting data to nodes on the same network or link
+3) Network Layer (Internet layer) -> this layer allows different networks to communicate with each other through devices
+   known as routers
+   - A collection of networks connected together through routers, the most famous of these being the internet
+   The Data link layer is responsible for getting data across a single link while a network layer is responsible for getting
+   data deliver across a collection of networks
+   - Most common Protocol for Network layer is IP
+   Network software is usually divided among the client and server categories, with the client application initiating the
+   request for data and the server software answering for the request across the network
+   A single node may be running multiple client and server applications
+   So u might run an email program and a web browser both client application on ur PC at the same time, and ur email and web
+   server might both run on the same server even so emails end up in ur email applications and web pages end up in ur web
+   browser that's bcz of transport layer
+4) Transport layer -> while the network layer delivers data between 2 individual nodes the transport layer sorts out that
+   which client and server programs r supposed to get that data
+   Protocol most commonly used in the 4th layer is TCP(Transmission control Protocol)
+   Other transport Protocols also use IP to get around, including a Protocol known as UDP(User Datagram Protocol)
+   TCP provides mechanisms that data reliably deliver while UDP does not
+   Network layer is in this case is IP which is responsible to get data from one node to another
+   Transport layer mostly TCP and UDP is responsible for ensuring that data gets to the right application running on those
+   nodes.
+5) Application Layer -> Protocols used to allow u to browse the web, or send or receive email are come common ones used in
+   this layer
 
 We can think of 5 layers like this
-Physical layer is the delivery truck and the roads ,data link layer is how the delivery truck gets from one intersection of road to another,
-the network layer identifies which roads to be taken to get from address A to address B, transport layer tells that the delivery driver knows
-how to knock on ur door for ur package and the application layer is the contents of the package it self
+Physical layer is the delivery truck and the roads ,data link layer is how the delivery truck gets from one intersection of
+road to another, the network layer identifies which roads to be taken to get from address A to address B, transport layer
+tells that the delivery driver knows how to knock on ur door for ur package and the application layer is the contents of the
+package itself
 
 The basis of Networking devices cables ->
-Cables -> they connect different devices to each other, allowing data to be transmitted over them, most network cables can be split in two
- categories copper and fibre , Copper cables r most common, the sending device communicates binary data across these copper wires by changing
- the voltage between two ranges, the system at the receiving end interpret these voltage changes as binary 1's and 0's
- The most common forms of copper twisted pair cables used in networking are Cat5, Cat5e and Cat6 cables, these category twisted pairs are
-  arranged to define the types of usable links and transfer rates
-Cat 5e is better then cat 5 bcz it's internals reduce crosstalk(when an electrical pulse on one wire is accidentally detected on another wire)
-bcz of which the receiving end does not understand data causing a network error
+Cables -> they connect different devices to each other, allowing data to be transmitted over them, most network cables can be
+split in two categories copper and fibre, Copper cables r most common, the sending device communicates binary data across 
+these copper wires by changing the voltage between two ranges, the system at the receiving end interpret these voltage
+changes as binary 1's and 0's
+The most common forms of copper twisted pair cables used in networking are Cat5, Cat5e and Cat6 cables, these category
+twisted pairs are arranged to define the types of usable links and transfer rates
+Cat 5e is better then cat 5 bcz it's internals reduce crosstalk(when an electrical pulse on one wire is accidentally detected
+on another wire) bcz of which the receiving end does not understand data causing a network error
 
-Their are higher level protocols which have methods for detecting missing data and asking for the data second time
-cat 6 is better then cat 5e in many aspects except they have a shorter maximum distance when used at higher speed
+Their are higher level protocols which have methods for detecting missing data and asking for the data second time.
+cat 6 is better then cat 5e in many aspects except they have a shorter maximum distance when used at higher speed.
 
 Fibre -> contains individual optical fibres which r tiny tubes made out of glass about the width of human hair
 Fibre cables uses pulses of light to represent the 1's and 0's of the underlying data
-Fibres r used in areas where r many elector magnetic disturbances and they r also more faster at more distances with out potential data loss
- then cables
+Fibres r used in areas where r many elector magnetic disturbances and they r also more faster at more distances with out
+potential data loss then cables
 
- Hubs and Switches ->
- cables allow u to form point ot point network connections, these r networks where only single device at each end exists.
+Hubs and Switches ->
+cables allow u to form point to point network connections, these r networks where only single device at each end exists.
 
- Hub -> it is a physical layer device that allows for connections from many computers at once
- all the devices connected to Hub will end up talking to all other devices at the same time, it's upto each system connected to the Hub to
- determine that the incoming data is meant for them or to ignore it this cases lots of noise create on the network and called collision domain
+Hub -> it is a physical layer device that allows for connections from many computers at once
+All the devices connected to Hub will end up talking to all other devices at the same time, it's upto each system connected 
+to the Hub to determine that the incoming data is meant for them or to ignore it, in this cases lots of noise create on the
+network and called collision domain
 
-  Collision domain -> a network segment where only one device can communicate at a time, if multiple systems try sending data at the same time
-  , the electrical pulses sent across the cable can interfere with each other, this makes the system to wait for the required period and this
-  leads to slow down of network communications and this is the primary reasons why the Hubs r rare and historical artifact today
+Collision domain -> a network segment where only one device can communicate at a time, if multiple systems try sending data
+at the same time, the electrical pulses sent across the cable can interfere with each other, this makes the system to wait
+for the required period and this leads to slow down of network communications and this is the primary reasons why the Hubs
+r rare and historical artifact today
 
-  In Switch u can connect many devices to it so that they can communicate, the difference in the Hub is that it is a physical layer device while a
-  switch is a layer 2(Data Link) device, this means the switch can actually inspect the contents of the ethernet protocol data being sent around the
-  network determine which system the data is intended for and then only send that data to that one system, these reduces the size of collision
-  domain on the network which leads to less re-transmissions and high through put
+In Switch u can connect many devices to it so that they can communicate, the difference in the Hub is that it is a physical
+layer device while a switch is a layer 2(Data Link) device, this means the switch can actually inspect the contents of the
+ethernet protocol data being sent around the network determine which system the data is intended for and then only send that
+data to that one system, these reduces the size of collision domain on the network which leads to less re-transmissions and
+high through put
 
-  Routers ->
-  The hubs and switches are the primary devices used to connect computers on a single network, usually referred to as LAN but we often wanna
-  send the data to other networks here routers come in.
+Routers ->
+The hubs and switches are the primary devices used to connect computers on a single network, usually referred to as LAN but 
+we often wanna send the data to other networks here routers come in.
   Router is a device that knows how to forward data between independent networks
   Router operates at layer 3 (Network layer)
   Just like a switch can inspect ethernet data to determine where to send it a router can inspect IP data to determine where to send things
