@@ -44,7 +44,7 @@ Cables -> they connect different devices to each other, allowing data to be tran
  the voltage between two ranges, the system at the receiving end interpret these voltage changes as binary 1's and 0's
  The most common forms of copper twisted pair cables used in networking are Cat5, Cat5e and Cat6 cables, these category twisted pairs are
   arranged to define the types of usable links and transfer rates
-Car 5e is better then cat 5 bcz it's internals reduce crosstalk(when an electrical pulse on one wire is accidentally detected on another wire)
+Cat 5e is better then cat 5 bcz it's internals reduce crosstalk(when an electrical pulse on one wire is accidentally detected on another wire)
 bcz of which the receiving end does not understand data causing a network error
 
 Their are higher level protocols which have methods for detecting missing data and asking for the data second time
@@ -59,14 +59,14 @@ Fibres r used in areas where r many elector magnetic disturbances and they r als
  cables allow u to form point ot point network connections, these r networks where only single device at each end exists.
 
  Hub -> it is a physical layer device that allows for connections from many computers at once
- all the devices connected to Hub will end up taking to all other devices at the same time, it's upto each system connected to the Hub to
-  determine that the incoming data is meant for them or to ignore it this cases lots of noise create on the network and called collision domain
+ all the devices connected to Hub will end up talking to all other devices at the same time, it's upto each system connected to the Hub to
+ determine that the incoming data is meant for them or to ignore it this cases lots of noise create on the network and called collision domain
 
   Collision domain -> a network segment where only one device can communicate at a time, if multiple systems try sending data at the same time
   , the electrical pulses sent across the cable can interfere with each other, this makes the system to wait for the required period and this
   leads to slow down of network communications and this is the primary reasons why the Hubs r rare and historical artifact today
 
-  In Switch u can connect many devices to it so that they can communicate, the difference in the the Hub is a physical layer device while a
+  In Switch u can connect many devices to it so that they can communicate, the difference in the Hub is that it is a physical layer device while a
   switch is a layer 2(Data Link) device, this means the switch can actually inspect the contents of the ethernet protocol data being sent around the
   network determine which system the data is intended for and then only send that data to that one system, these reduces the size of collision
   domain on the network which leads to less re-transmissions and high through put
@@ -199,7 +199,7 @@ Fibres r used in areas where r many elector magnetic disturbances and they r als
   VLAN's r usually used to segregate different forms of traffic
   So u might see a companies IP phones operatic on one VLAN while all desktops operating on another
 
-    The Fifth Part is Ethernet Type , it is 2 bytes long, it is used to describe the protocol of the contents of the frame
+  The Fifth Part is Ethernet Type , it is 2 bytes long, it is used to describe the protocol of the contents of the frame
 
   The Sixth part is Data Payload, it ranges from 0-1500 bytes
   A Payload in networking term which is the actual data being transported, which is everything that isn't a header
@@ -248,22 +248,22 @@ Fibres r used in areas where r many elector magnetic disturbances and they r als
   An IP datagram is a highly structured series of fields that r strictly defined
   The two primary sections of a IP datagram r the Header and the Payload, IP datagram header contains a lot more data then ethernet data frame
   does
-  1st field (Version) is 4 bits and indeicates what version of internet protocol is used, The most common version of IP is version 4(IPv4)
+  1st field (Version) is 4 bits and indicates what version of internet protocol is used, The most common version of IP is version 4(IPv4)
   2nd field (Header Length) is 4 bits and declares how long the header is, it is almost always 20 bytes in length when dealing with IP4 infact
-  20 bytes is the minimum length of IP header u couldn't fit all the data u need for a properly formatted IP header in any less space
+  20 bytes is the minimum length of IP header, u couldn't fit all the data u need for a properly formatted IP header in any less space
   3rd field (Service TypeField) these 8 bits can be used to specify details about quality of service or QoS technologies
   Their r services that allow routers to make decisions about which IP datagram may be more important then others
   4th field (Total Length) is 16 bit field, it indicates the total length of the IP datagram it's attached to
-  5 th field (Identification Field) it is 16 bit number used to group msgs together
-  The maximum size of a simgle datagram is the largest datagram u can represent with 16 bits:65,535, If the total amount of data that needs to
+  5th field (Identification Field) it is 16 bit number used to group msgs together
+  The maximum size of a single datagram is the largest datagram u can represent with 16 bits:65,535, If the total amount of data that needs to
   be sent is larger than what can fit in a single datagram, the IP layer needs to split this data up into many individual packets and when this
   happens the Identification field is used so that the receiving end understands that every packet with the same value in that field is part of
   the same transmission
-  6 th and 7th fields r Flags Field and Fragment Offset Field, the Flag field is used to indeicate if a datagram is allowed to be fragmented,
+  6 th and 7th fields r Flags Field and Fragment Offset Field, the Flag field is used to indicate if a datagram is allowed to be fragmented,
   or to indicate that the datagram is already been fragmented
   Fragmentation is the process of taking a single IP datagram and splitting it up into several smaller datagrams
-  Well most netwroks operate with similar settings in terms of what size an IP datagram is allowed to be sometimes this could be configured
-  differently, if a datagram has to cross from a netwrok allowing a larger datagram size to one with a smaller datagram size, the datagram have
+  Well most networks operate with similar settings in terms of what size an IP datagram is allowed to be sometimes this could be configured
+  differently, if a datagram has to cross from a network allowing a larger datagram size to one with a smaller datagram size, the datagram have
   to be fragmented into smaller ones
   the Fragment offset field contains values used by the receiving end to take all the parts from a fragmented packet and put them back together
   in a correct order
@@ -272,7 +272,7 @@ Fibres r used in areas where r many elector magnetic disturbances and they r als
   have to forward datagram any further
   The main purpose of this field is to make sure that when their is misconfiguration in routing that causes and endless loop, datagrams don't
   spend all iternity trying to reach the destination.
-  THis endless loop could be when router 'a' thinks router 'b' is the next hop and router 'b' thinks router 'a' is the next hop
+  This endless loop could be when router 'a' thinks router 'b' is the next hop and router 'b' thinks router 'a' is the next hop
   9th field (Protocol) it is an 8 bit field that contains data about what transport layer protocol is being used
   THe most common transport layer protocols are TCP and UDP
   10th field (Header checksum) this field is the checksum of the contents of the entire IP datagram header, it functions very much like the
@@ -283,65 +283,65 @@ Fibres r used in areas where r many elector magnetic disturbances and they r als
   the Options field is usally followed by Padding field, Since the options field is both optional and variable in length, the Padding field is
   a series of zeros used to ensure the header is the correct total size
   Ip datagram is the Data Payload section and this process is known as Encapsulation
-  THe entire contents of the IP datagram r encapsulated as the payload of ethernet frame
-  THe IP datagram also has a payload section, the contents of this payload r entirity of TCP or UDP packet
-  Ech layer in Netwroking is needed by the one above it
+  The entire contents of the IP datagram r encapsulated as the payload of ethernet frame
+  The IP datagram also has a payload section, the contents of this payload r entirity of TCP or UDP packet
+  Each layer in Networking is needed by the one above it
 
   The IP Address Classes ->
-  The IP addresses can be spit into two sections the netwrok ID and the host ID
+  The IP addresses can be spit into two sections the network ID and the host ID
   Ex -> 9.100.100.100 , the network id will be the first octect '9' here and other 3 octets will come in Host ID
   Address Class System -> A way of defining how the global IP address space is split up
   their r 3 primary types of address classes ->
-  - Class A -> these r those where the 1st octet is used for the netwrok ID and the last 3 r used for the Host ID
-  - Class B -> these r where 1st two octets r used for the netwrok ID and the last 2 used for the host ID
-  - Class C -> these r where 1st three octets r used for the netwrok ID and the last one used for the host ID
+  - Class A -> these r those where the 1st octet is used for the network ID and the last 3 r used for the Host ID
+  - Class B -> these r where 1st two octets r used for the network ID and the last 2 used for the host ID
+  - Class C -> these r where 1st three octets r used for the network ID and the last one used for the host ID
 
-  Each Address class represent netwrok of vastly different size, range and max hosts no.'s .
+  Each Address class represent network of vastly different size, range and max hosts no.'s .
   We can identify the class of IP by looking at the range chart for each class
-  the chart also translate ncely how these addresses r represented in dotted decimal notation, as u remember each octet in IP address is 8 bits
+  the chart also translate nicely how these addresses r represented in dotted decimal notation, as u remember each octet in IP address is 8 bits
   which means each octet can take value between 0 and 255, If 1st bit has to be a 0 as it is with class A address, the possible values for the
   first octet is from 0-127 and go on for other class types of IP
   Class D addresses always begin bit the bites 1110 and r used for multicasting which is how a single IP datagram can be sent to an entire netwrok
   a once, these addresses began with decimal values between 224-239
-  Class E addresses make up all of the remaining IP addresses but they r unassigned and only used for testing putposes
-  This class system has mostly being replaced by an sytem known as CIDR(Classless inter-domain routing)
+  Class E addresses make up all of the remaining IP addresses but they r unassigned and only used for testing purposes
+  This class system has mostly being replaced by an system known as CIDR(Classless inter-domain routing)
 
   Address Resolution Protocol -> It is a protocol used to discover the hardware address of a node with a certain IP address, Once an IP datagram
   has being fully formed it needs to be encapsulated inside the ethernet frame, this means the transmission device needs a destination MAC
   address to complete the ethernet frame header
-  Almost all netwrok connected devicecs will retain a local ARP table
+  Almost all network connected devices will retain a local ARP table
   ARP table -> it is just a list of IP addresses and the MAC addresses associated with them
 
   lets say we wants to send some data from Host 'A' to IP address 10.20.30.40, their might we the case that this destination doesn't have an entry
   in the ARP table when this happens the node that wants to send data, sends a broadcast(FF:FF:FF:FF:FF:FF) ARP msg to the MAC broadcast address
-  which is all FF's, these ARP msgs will be delivered to all computers on the local Netwrok when the netwrok interface that has been assigned
-  10.20.30.40 receives this ARP broadcast it sends back an ARP response this response msg will contain the MAC address for the Netwrok interfacing
+  which is all FF's, these ARP msgs will be delivered to all computers on the local Network when the network interface that has been assigned
+  10.20.30.40 receives this ARP broadcast it sends back an ARP response this response msg will contain the MAC address for the Network interfacing
   . Now the transmitting computer knows what MAC address to put in the destination hardware address field and the ethernet frame is ready
-  for delivery, It will also likey store this IP address in it's local ARP table so it won't have to send that local ARP broadcast next time it
+  for delivery, It will also likely store this IP address in it's local ARP table so it won't have to send that local ARP broadcast next time it
   needs to communicate with this IP
 
-  ARP table entries generally expire after a short amount of time to ensure changes in the netwrok r accounted for
+  ARP table entries generally expire after a short amount of time to ensure changes in the network r accounted for
 
   Subnetting ->
-  It is the process of taking a large netwrok and splitting it up into many individual and smaller subnetworks, or subnets
+  It is the process of taking a large network and splitting it up into many individual and smaller subnetworks, or subnets
 
   Incorrect subnetting setups are a common problem u might run into as an IT support Specialist, so it's important to have a strong
   understanding of how it works
 
-  Address classes give us a way to break a total global IP space into discreat netwroks, If u wanna communicate with IP address 9.100.100.100
-  core routers on the internet will know that this IP belongs to the 9.0.0.0 class A netwrok, they then route the msg to the gateway router
-  responsible for the netwrok by looking at the netwrok ID
-  A gateway router specifically serves as the entry and the exit path to a certain netwrok, once ur packet gets to the gateway router to the
-  9.0.0.0 class A netwrok that router is now respinsible for getting that data to the proper system by looking at the host ID
-  With Subnets u can spilt ur large netwroks up into many smaller one's, these individual subnets will have their own gateway routers serving as
+  Address classes give us a way to break a total global IP space into discreat networks, If u wanna communicate with IP address 9.100.100.100
+  core routers on the internet will know that this IP belongs to the 9.0.0.0 class A network, they then route the msg to the gateway router
+  responsible for the network by looking at the network ID
+  A gateway router specifically serves as the entry and the exit path to a certain network, once ur packet gets to the gateway router to the
+  9.0.0.0 class A network that router is now responsible for getting that data to the proper system by looking at the host ID
+  With Subnets u can spilt ur large networks up into many smaller one's, these individual subnets will have their own gateway routers serving as
   the ingress and egress point for each subnet
 
   Subnet masks ->
-  In subnetting some bits that will normally comprise the Host ID r actually used for the subet ID with all 3 of these ID's(Subnet, Host , Netwrok)
-  reperesentable by single IP address, will know have a single 32 bit no. that can be acuratly delivered across many different netwroks.
+  In subnetting some bits that will normally comprise the Host ID r actually used for the subnet ID with all 3 of these ID's(Subnet, Host , Netwrok)
+  reperesentable by single IP address, will know have a single 32 bit no. that can be accurately delivered across many different networks.
 
-  At the internet level core routers only care about the network ID and use this to send the Datagram along to the appropriate gateway router
-  of that neterok, that gateway router then has some additional inforamtion that it can use to send the datagram along to the destination
+  At the internet level core routers only care about the network ID and use this to send the Datagram along to the appropriate gateway drouter
+  of that network, that gateway router then has some additional information that it can use to send the datagram along to the destination
   machine or the next router in the path to get their, Finally the host ID is used by that last router to deliver the datagram to the intented
   receipent machine. Subnet ID's r calculated via known as subnet mask
 
