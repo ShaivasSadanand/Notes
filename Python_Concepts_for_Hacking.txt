@@ -1,6 +1,10 @@
 - Udemy Tutorial For below Concepts -> 
   https://www.udemy.com/learn-python-and-ethical-hacking-from-scratch/learn/v4/t/lecture/9194564?start=0
   
+- Snapshots allow u to save the state of the virtual machine, So we can use it asbookmarks to go back and forward to different 
+  configurations in future
+  To create a snapshot in oracle VM Virtual Manager right click on the machine and select the option snapshot
+  
 - print("String to Print on Console") and print "String to Print"   // both gives same output 
  
 - In the 'opt' directory of linux machine u r supposed to put all ur optional programs such as pycharm editor could be put in
