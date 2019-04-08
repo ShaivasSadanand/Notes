@@ -35,7 +35,7 @@ TCP/IP 5 layer Model->
    Network layer is in this case is IP which is responsible to get data from one node to another
    Transport layer mostly TCP and UDP is responsible for ensuring that data gets to the right application running on those
    nodes.
-5) Application Layer -> Protocols used to allow u to browse the web, or send or receive email are come common ones used in
+5) Application Layer -> Protocols used to allow u to browse the web, or send or receive email are some common ones used in
    this layer
 
 We can think of 5 layers like this
@@ -84,151 +84,168 @@ high through put
 Routers ->
 The hubs and switches are the primary devices used to connect computers on a single network, usually referred to as LAN but 
 we often wanna send the data to other networks here routers come in.
-  Router is a device that knows how to forward data between independent networks
-  Router operates at layer 3 (Network layer)
-  Just like a switch can inspect ethernet data to determine where to send it a router can inspect IP data to determine where to send things
+Router is a device that knows how to forward data between independent networks
+Router operates at layer 3 (Network layer)
+Just like a switch can inspect ethernet data to determine where to send it a router can inspect IP data to determine where
+to send things
 
-  Router store internal tables containing information about how to route traffic between lots of different networks all over the world
-  The most common type of routers u see r in home network or small office these devices generally don't have detailed routing tables, the
-  purpose of these routers is generally to take traffic originating from inside the home or office to LAN is to forward it to ISP
-  Once traffic is at the ISP more sophisticated router takes over and these core routers form the backbone of the internet
+Router store internal tables containing information about how to route traffic between lots of different networks all over
+the world.
+The most common type of routers u see r in home network or small office these devices generally don't have detailed routing
+tables, the purpose of these routers is generally to take traffic originating from inside the home or office to LAN is to 
+forward it to ISP
+Once traffic is at the ISP more sophisticated router takes over and these core routers form the backbone of the internet
 
-  Core routers usually have many different connections to many other routers
+Core routers usually have many different connections to many other routers
 
-  BGP(Border Gateway Protocol) -> Routers share data with each other via this protocol, which lets them learn about the most optimal paths to
-  forward traffic
-  - Routers are kind of global guides to get to right places
+BGP(Border Gateway Protocol) -> Routers share data with each other via this protocol, which lets them learn about the most
+optimal paths to forward traffic
+- Routers are kind of global guides to get to right places
 
-  Servers and Clients ->
-  All the network devices exists to communicate with each other, we call these devices 'nodes'
-  Servers could be understand simply as the something will provides data to something which requests those data and the thing receiving that
-  data is referred to as Clients, we referer something in above definition bcz it's not just nodes which can be servers or clients, individual
-  computer programs running on the same node can be servers and clients to each other
-  So most devices are not servers and clients, almost all nodes are both at the some time
-  In most network topologies each node is primarily is server or a client , sometimes we refer email server as an email server even though it
-  itself is a client of a DNS server bcz its primary reason for existing is to server data to it's client likewise if a desktop machine
-  occasionally access a server and sends that to another computer it's primary reason for existing is to fetch data from servers so that the
-  user at the computer can do the work
-  So server is anything that provide a data to a client
+Servers and Clients ->
+All the network devices exists to communicate with each other, we call these devices 'nodes'
+Servers could be understand simply as the something will provides data to something which requests those data and the thing
+receiving that data is referred to as Clients, we referer something in above definition bcz it's not just nodes which can be
+servers or clients, individual computer programs running on the same node can be servers and clients to each other.
+So most devices are not servers and clients, almost all nodes are both at the some time
+In most network topologies each node is primarily is server or a client, sometimes we refer email server as an email server
+even though it itself is a client of a DNS server bcz its primary reason for existing is to serve data to it's client 
+likewise if a desktop machine occasionally access a server and sends that to another computer it's primary reason for 
+existing is to fetch data from servers so that the user at the computer can do the work
+So server is anything that provide a data to a client
 
-  Physical Layer ->
-  It's main focus is to move 1's and 0's from one end of the link to the next
-  The physical layer consist of devices and means of transmitting bits across computer networks
-  A bit is the smallest representation of data that a computer can understand, it's a one or a zero
-  Modulation is a way of varying the voltage of this charge moving across the copper cable
-  In Computer Networks this kinds of modulation is commonly called Line Coding, it allows devices on either end of the link to understand the
-  electrical charge in certain state is 0 and in another state is 1
+Physical Layer ->
+It's main focus is to move 1's and 0's from one end of the link to the next
+The physical layer consist of devices and means of transmitting bits across computer networks
+A bit is the smallest representation of data that a computer can understand, it's a one or a zero
+Modulation is a way of varying the voltage of this charge moving across the copper cable
+In Computer Networks this kinds of modulation is commonly called Line Coding, it allows devices on either end of the link to
+understand the electrical charge in certain state is 0 and in another state is 1
 
-  Twisted Pair Cabling and Duplexing -> these twisted pair of copper cables allow for Duplex communication
-  Duplex communication is the concept that information can flow in both the directions across the cable
-  Simplex communication is unidirectional
-  The Duplexing communication is possible by reserving one or two pairs for communicating in one direction they then use the other pairs for
-  communicating in other direction
-  If their is something wrong with the connection u might see network link degrade and reporting it self as Half duplex, means the communication
-  is possible in each direction but only one device can be communicating at a time
+Twisted Pair Cabling and Duplexing -> these twisted pair of copper cables allow for Duplex communication
+Duplex communication is the concept that information can flow in both the directions across the cable
+Simplex communication is unidirectional
+The Duplexing communication is possible by reserving one or two pairs for communicating in one direction they then use the 
+other pairs for communicating in other direction
+If their is something wrong with the connection u might see network link degrade and reporting it self as Half duplex, means
+the communication is possible in each direction but only one device can be communicating at a time
 
-  Network Ports and Patch Panels ->
-  the final steps of how the physical layer works takes place is at the endpoints of our network links , the twisted pair of the cables end up
-  with a plug , the most common plug is the "RJ45", So RJ45 plug can connect to RJ45 network port
-  Network ports r generally directly attached to the devices that make up a computer network
-  Switches would have many network ports bcz their purpose is to connect many network devices, but servers and desktops have usually one or two
-  Sometimes ur computer will not directly linked to ports as they as first connected to patch panels, Patch Panel is a device containing many
-  network ports that's it, it's just a container for the end points or many cables additional cables r generally run from patch panel to
-  switches and routers to provide network access to the computers to the other ends of those links
+Network Ports and Patch Panels ->
+the final steps of how the physical layer works takes place is at the endpoints of our network links, the twisted pair of the
+cables end up with a plug , the most common plug is the "RJ45", So RJ45 plug can connect to RJ45 network port
+Network ports r generally directly attached to the devices that make up a computer network
+Switches would have many network ports bcz their purpose is to connect many network devices, but servers and desktops have 
+usually one or two
+Sometimes ur computer will not directly linked to ports as they as first connected to patch panels, Patch Panel is a device
+containing many network ports that's it, it's just a container for the end points or many cables, additional cables r generally
+run from patch panel to switches and routers to provide network access to the computers to the other ends of those links
 
-  The Data Link Layer ->
-  Ethernet and Mac addresses -> The Protocol most widely used to send data across individual links is Ethernet, Ethernet and Data link layer
-  provides means for software at the higher level stack to send and receive data, one of the primary purposes of this layer is to abstract away
-  the need for any other layers to care about the physical layers and what hardware is in use, by dumping this responsibility on the Data link
-  layer the Network, Transport and Application layers can all operate the same no matter how the device they r running on is connected
-  Such as ur Web browser doesn't need to know it is running on twisted pair or fibre etc, it just needs the underlying layer to send and receive
-  data for it
+The Data Link Layer ->
+Ethernet and Mac addresses -> The Protocol most widely used to send data across individual links is Ethernet, Ethernet and 
+Data link layer provides means for software at the higher level stack to send and receive data, one of the primary purposes
+of this layer is to abstract away the need for any other layers to care about the physical layers and what hardware is in 
+use, by dumping this responsibility on the Data link layer the Network, Transport and Application layers can all operate the 
+same way no matter how the device they r running on is connected
+Such as ur Web browser doesn't need to know it is running on twisted pair or fibre etc, it just needs the underlying layer to
+send and receive data for it
 
-  CSMA/CD -> Used to determine when the communication channels are clear and when the device is free to transmit data, it works like this
-  if their is no data currently being transmitted on the network segment a node will feel free to send data, if it turns out that the two or
-  more computers end up transmitting data at the same time, the computers detect this collision and stop sending data, each device involved in
-  the collision then will be waiting random interval of time before trying to send data again, this random interval will help all the computers
-  involved in the collision from colliding again next time when they try to transmit any thing
-  When a network segment is a collision domain it means that all devices on that segment receive all communication across the entire segment
-  this means we need a way to determine which node the transmission was actually meant for, this is known as Media access control address or
-  MAC address
-  MAC Address -> it is globally unique identifier attached to an individual network interface, it's a 48bit no. normally represented by 6
-  groupings of two hexadecimal numbers
-  A MAC address is split in two sections
-  the first 3 octets of MAC address r known a OUI(Organizationally Unique Identifier) these r assigned to individual hardware manufactures by
-  the IEEE, the last three octes of the MAC address can be assigned in any way the manufacturer would like with the condition that they only
-  assign each possible address once to keep all MAC addresses globally unique
+CSMA/CD -> Used to determine when the communication channels are clear and when the device is free to transmit data, it works
+like this if their is no data currently being transmitted on the network segment a node will feel free to send data, if it 
+turns out that the two or more computers end up transmitting data at the same time, the computers detect this collision and
+stop sending data, each device involved in the collision then will be waiting random interval of time before trying to send
+data again, this random interval will help all the computers involved in the collision from colliding again next time when
+they try to transmit any thing
+When a network segment is a collision domain it means that all devices on that segment receive all communication across the
+entire segment this means we need a way to determine which node the transmission was actually meant for, this is known as
+Media access control address or MAC address
 
-  Ethernet uses MAC addresses to ensure that the data it sends has both an address for the machine that sent the transmission as well as the
-  one the transmission was intended for
-  This way even the network segment acting as a single collision domain, each node on that network knows when traffic is intended for it
+MAC Address -> it is globally unique identifier attached to an individual network interface, it's a 48bit no. normally 
+represented by 6 groupings of two hexadecimal numbers
+A MAC address is split in two sections
+The first 3 octets of MAC address r known a OUI(Organizationally Unique Identifier) these r assigned to individual hardware
+manufactures by the IEEE, the last three octes of the MAC address can be assigned in any way the manufacturer would like with
+the condition that they only assign each possible address once to keep all MAC addresses globally unique
 
-  Unicast, Multicast and Broadcast ->
-  Transmit data from one device to another device is known as Unicast, A unicast transmission is always meant for just one receiving address
-  At the ethernet level this done by looking at special bit in the destination MAC address
-  If the least significant bit in the first octet of a destination address is set to zero, it means that ethernet frame is intended for only
-  the destination address
-  This means it will send to all devices on the collision domain but actually received and process by the intended destination
-  If the least significant bit in the first octet of a destination address is set to one, it means u r dealing with multicast frame
-  in multicast frame is similarly set to all devices on the local network segment and it will be accepted and discarded by each device depending
-  on criteria aside from their own hardware mac address
+Ethernet uses MAC addresses to ensure that the data it sends has both an address for the machine that sent the transmission as
+well as the one the transmission was intended for
+This way even the network segment acting as a single collision domain, each node on that network knows when traffic is 
+intended for it
 
-  Network interfaces can be configured to accept lists of configured multicast addresses for these sorts of communication
+Unicast, Multicast and Broadcast ->
+Transmit data from one device to another device is known as Unicast, A unicast transmission is always meant for just one 
+receiving address
+At the ethernet level this done by looking at special bit in the destination MAC address
+If the least significant bit in the first octet of a destination address is set to zero, it means that ethernet frame is 
+intended for only the destination address
+This means it will send to all devices on the collision domain but actually received and process by the intended destination
+If the least significant bit in the first octet of a destination address is set to one, it means u r dealing with multicast
+frame in multicast frame is similarly set to all devices on the local network segment and it will be accepted and discarded
+by each device depending on criteria aside from their own hardware mac address
 
-  the third type of ethernet transmissions is known as broadcast, in ethernet broadcast it sends it to every single device on a LAN, this is
-  accomplished by using a special destination known as Broadcast address
+Network interfaces can be configured to accept lists of configured multicast addresses for these sorts of communication
 
-  the Ethernet broadcast address is all FF:FF:FF:FF:FF:FF
+The third type of ethernet transmissions is known as broadcast, in ethernet broadcast it sends it to every single device on a
+LAN, this is accomplished by using a special destination known as Broadcast address
 
-  Ethernet broadcast r used so that the devices can learn more about each other
+The Ethernet broadcast address is all FF:FF:FF:FF:FF:FF
 
-  Dissecting an Ethernet Frame ->
-  Data Packet -> is an all-encompassing term that represents any single set of binary data being sent across a network link
-  The term Data-packet isn't tied up with any layer or technology, it just represents a concept as one set of Data sent from point a to point b
+Ethernet broadcast r used so that the devices can learn more about each other
 
-  Data-Packets at the ethernet level r known as Ethernet Frames
-  Ethernet Frame is a highly structured collection of information presented in specific order, this way the network interfaces at the physical
-  layer can convert a stream of bits travelling across a link into meaning full data or vice-versa
-  Almost all sections of a ethernet frame are mandatory and most of them have a fix size
+Dissecting an Ethernet Frame ->
+Data Packet -> is an all-encompassing term that represents any single set of binary data being sent across a network link
+The term Data-packet isn't tied up with any layer or technology, it just represents a concept as one set of Data sent from 
+point a to point b
 
-  The First part of Ethernet Frame is known as Preamble, it is 8 bytes long and can itself be split into two sections, the 1st 7 bytes r
-  alternating series if 1's and 0's, these act partially as buffer between frames and can also be used by the network interfaces to synchronize
-  internal clocks they use to regulate the speed at which they send data and the last byte in Preamble is known as SFD
-  SFD(Start Frame Delimiter) -> It signals to a receiving device that the preamble is over and the actual frame contents will now follow
+Data-Packets at the ethernet level r known as Ethernet Frames
+Ethernet Frame is a highly structured collection of information presented in specific order, this way the network interfaces
+at the physical layer can convert a stream of bits travelling across a link into meaning full data or vice-versa
+Almost all sections of a ethernet frame are mandatory and most of them have a fix size
 
-  The Second part is the Destination Mac Address, this is the hardware address of the intended recipient, it is 6 bytes long
+The First part of Ethernet Frame is known as Preamble, it is 8 bytes long and can itself be split into two sections, the 1st 
+7 bytes r alternating series if 1's and 0's, these act partially as buffer between frames and can also be used by the network
+interfaces to synchronize internal clocks they use to regulate the speed at which they send data and the last byte in Preamble
+is known as SFD
+SFD(Start Frame Delimiter) -> It signals to a receiving device that the preamble is over and the actual frame contents will 
+                              now follow
 
-  The Third part is Source Address, it is 6 bytes long, it is the place from where the frame is originated from
+The Second part is the Destination Mac Address, this is the hardware address of the intended recipient, it is 6 bytes long
 
-  The Fourth Part is VLAN header , it is 4 bytes long, it indicates that the frame itself is called VLAN's frame, If a VLAN header is present
-  the ethertype field follows it
-  VLAN(Virtual LAN) -> It's a technique that lets u have multiple logical LAN's operating on the same physical equipment
+The Third part is Source Address, it is 6 bytes long, it is the place from where the frame is originated from
 
-  Any frame with the VLAN tag will only be delivered out of a switch interface configured to relay that specific tag, this way u can have a
-  single physical network that operates like it's multiple LAN's
-  VLAN's r usually used to segregate different forms of traffic
-  So u might see a companies IP phones operatic on one VLAN while all desktops operating on another
+The Fourth Part is VLAN header , it is 4 bytes long, it indicates that the frame itself is called VLAN's frame, If a VLAN 
+header is present the ethertype field follows it
+VLAN(Virtual LAN) -> It's a technique that lets u have multiple logical LAN's operating on the same physical equipment
 
-  The Fifth Part is Ethernet Type , it is 2 bytes long, it is used to describe the protocol of the contents of the frame
+Any frame with the VLAN tag will only be delivered out of a switch interface configured to relay that specific tag, this way u
+can have a single physical network that operates like it's multiple LAN's
+VLAN's r usually used to segregate different forms of traffic
+So u might see a companies IP phones operatic on one VLAN while all desktops operating on another
 
-  The Sixth part is Data Payload, it ranges from 0-1500 bytes
-  A Payload in networking term which is the actual data being transported, which is everything that isn't a header
-  The data payload of a traditional ethernet frame can be any where from 46 - 1500 bytes long, this contains all of the data from higher layers
-  such as the Network, transport and application layers that actually being transmitted
+The Fifth Part is Ethernet Type , it is 2 bytes long, it is used to describe the protocol of the contents of the frame
 
-  The Seventh and last part is the FCS(Frame Check Sequence), it is 4 bytes long, it represents the checksum value for entire frame
-  This checksum value is calculated by performing what's known as a cyclical redundancy check against the frame
-  cyclical redundancy check(CRC) is an important concept for data integrity and is used all over computing, not just network transmissions
-  CRC is a mathematical transformation to create a no. that is larger set of data, any time u perform a CRC against a set of data u should end
-  up with the same checksum no.
-  The reason it is included in the ethernet frame is so the receiving network interface can conform that if it receives uncorrupted data
-  When a device gets ready for the sending the ethernet frame, it collects all the information like the destination and originating MAC address
-  ,the data payload and so on. then it performs a CRC against that data and attach's the resulting checksum no. as the Frame check Sequence
-  at the end of the frame this data is then send across a link and received at the other end
-  Here all the various fields of the ethernet frame r collected and now the receiving side performs a CRC against that data, if the checksum
-  computed by the receiving end doesn't match the checksum in FCS field the data is thrown out, this is bcz some amount of data must have been
-  lost or corrupted during transmission, it's then out to a protocol of a higher layer to decide that data should be retransmitted
-  Ethernet itself only reports on the data integrity, it doesn't perform data recovery
+The Sixth part is Data Payload, it ranges from 0-1500 bytes
+A Payload in networking term which is the actual data being transported, which is everything that isn't a header
+The data payload of a traditional ethernet frame can be any where from 46-1500 bytes long, this contains all of the data from
+higher layers such as the Network, transport and application layers that actually being transmitted
+
+The Seventh and last part is the FCS(Frame Check Sequence), it is 4 bytes long, it represents the checksum value for entire 
+frame, This checksum value is calculated by performing what's known as a cyclical redundancy check against the frame
+
+Cyclical Redundancy Check(CRC) is an important concept for data integrity and is used all over computing, not just network 
+transmissions.
+CRC is a mathematical transformation to create a no. that is larger set of data, any time u perform a CRC against a set of data
+u should end up with the same checksum no.
+The reason it is included in the ethernet frame is so the receiving network interface can conform that if it receives the 
+uncorrupted data
+When a device gets ready for the sending the ethernet frame, it collects all the information like the destination and the 
+originating MAC address ,the data payload and so on. then it performs a CRC against that data and attach's the resulting 
+checksum no. as the Frame check Sequence
+At the end of the frame this data is then send across a link and received at the other end
+Here all the various fields of the ethernet frame r collected and now the receiving side performs a CRC against that data, if 
+the checksum computed by the receiving end doesn't match the checksum in FCS field the data is thrown out, this is bcz some 
+amount of data must have been lost or corrupted during transmission, it's then out to a protocol of a higher layer to decide 
+that data should be retransmitted
+Ethernet itself only reports on the data integrity, it doesn't perform data recovery
 
   Network Layer ->
   On a LAN nodes can communicate with each other through their physical MAC addresses, this is suitable for small scale bcz switches can learn
