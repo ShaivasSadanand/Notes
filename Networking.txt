@@ -360,67 +360,79 @@ It is the process of taking a large network and splitting it up into many indivi
 Incorrect subnetting setups are a common problem u might run into as an IT support Specialist, so it's important to have a strong
 understanding of how it works
 
-  Address classes give us a way to break a total global IP space into discreat networks, If u wanna communicate with IP address 9.100.100.100
-  core routers on the internet will know that this IP belongs to the 9.0.0.0 class A network, they then route the msg to the gateway router
-  responsible for the network by looking at the network ID
-  A gateway router specifically serves as the entry and the exit path to a certain network, once ur packet gets to the gateway router to the
-  9.0.0.0 class A network that router is now responsible for getting that data to the proper system by looking at the host ID
-  With Subnets u can spilt ur large networks up into many smaller one's, these individual subnets will have their own gateway routers serving as
-  the ingress and egress point for each subnet
+Address classes give us a way to break a total global IP space into discreat networks, If u wanna communicate with IP address 
+9.100.100.100 core routers on the internet will know that this IP belongs to the 9.0.0.0 class A network, they then route the 
+msg to the gateway router responsible for the network by looking at the network ID
+A gateway router specifically serves as the entry and the exit path to a certain network, once ur packet gets to the gateway 
+router to the 9.0.0.0 class A network that router is now responsible for getting that data to the proper system by looking at
+the host ID
 
-  Subnet masks ->
-  In subnetting some bits that will normally comprise the Host ID r actually used for the subnet ID with all 3 of these ID's(Subnet, Host , Netwrok)
-  reperesentable by single IP address, will know have a single 32 bit no. that can be accurately delivered across many different networks.
+With Subnets u can spilt ur large networks up into many smaller one's, these individual subnets will have their own gateway routers 
+serving as the ingress and outgress point for each subnet
 
-  At the internet level core routers only care about the network ID and use this to send the Datagram along to the appropriate gateway drouter
-  of that network, that gateway router then has some additional information that it can use to send the datagram along to the destination
-  machine or the next router in the path to get their, Finally the host ID is used by that last router to deliver the datagram to the intented
-  receipent machine. Subnet ID's r calculated via known as subnet mask
+Subnet masks ->
+In subnetting some bits that will normally comprise the Host ID r actually used for the subnet ID with all 3 of these ID's(Subnet
+,Host, Netwrok) reperesentable by single IP address, will know have a single 32 bit no. that can be accurately delivered across
+many different networks.
 
-  Subnet masks r 32 bit numbers that r normally written out as 4 octets in decimal
-  We can compare one subnet mask to an IP address to understand
+At the internet level core routers only care about the network ID and use this to send the Datagram along to the appropriate
+gateway router of that network, that gateway router then has some additional information that it can use to send the datagram 
+along to the destination machine or the next router in the path to get their, Finally the host ID is used by that last router to
+deliver the datagram to the intented receipent machine. Subnet ID's r calculated via known as subnet mask
 
-  We have IP address as -> 9    .    100    .     100   .     100
-  IP in binary ->     0000 1001 . 0110 0100 . 0110 0100 . 0110 0100
-  Subnet Mask  ->     1111 1111 . 1111 1111 . 1111 1111 . 0000 0000 // subnet mask is a binary no. that has 2 sections just the last octet contains 0's
+Subnet masks r 32 bit numbers that r normally written out as 4 octets in decimal
+We can compare one subnet mask to an IP address to understand
 
+We have IP address as -> 9    .    100    .     100   .     100
+IP in binary ->     0000 1001 . 0110 0100 . 0110 0100 . 0110 0100
+Subnet Mask  ->     1111 1111 . 1111 1111 . 1111 1111 . 0000 0000 // subnet mask is a binary no. that has 2 sections just the
+                                                                  // last octet contains 0's
 
-subnet mask which has part of the no. all the 1's tells us what we can ignore when computing a host ID and the part with 0's tells us what to keep
+Subnet mask which has part of the no. all the 1's tells us what we can ignore when computing a host ID and the part with 0's
+tells us what to keep
 
-we here r using the common subnet mask 255.255.255.0 the part that all 1's is to tell a router what part of an IP address is the subnet ID
+we here r using the common subnet mask 255.255.255.0 the part that all 1's is to tell a router what part of an IP address is the
+subnet ID
 
-we know that 9.100.100.100 is a class A netwrok so 9 is the first octect and we will here use last 3 octets, the no's which have corresponding
-1's in the subnet mask are the subnet ID the no.'s in the remaing octet which has corresponding 0's r the host ID, the size of the subnet is
-entirely decided by it's subnet mask
-So for Example with a subnet mask of 255.255.255.0 here we know the last octet with 0 is remaing for host ID's regardless of what netwrok or
-subnet ID's are
+we know that 9.100.100.100 is a class A network so 9 is the first octect and we will here use last 3 octets, the no's which have 
+corresponding 1's in the subnet mask are the subnet ID the no.'s in the remaing octet which has corresponding 0's r the host ID,
+the size of the subnet is entirely decided by it's subnet mask
+So for Example with a subnet mask of 255.255.255.0 here we know the last octet with 0 is remaining for host ID's regardless of 
+what network or subnet ID's are
 
-A single 8 bit no. can represent 256 different numbers, or more specifically the numbers 0-255, but 0 is normally not used and 255 is normally
-reserved as a broadcast address for the subnet this means that only the no.'s form 1 to 254  r available for assignment to a host
-Genrally speaking ur referred to the no. of host available in a subnet is the entire no.
+A single 8 bit no. can represent 256 different numbers, or more specifically the numbers 0-255, but 0 is normally not used and 255
+is normally reserved as a broadcast address for the subnet this means that only the no.'s form 1 to 254  r available for assignment
+to a host
+Generally speaking ur referred to the no. of host available in a subnet is the entire no.
 
-So even if that is understood  two addresses with 0 and 255 r not available for assignmnet u still say that 8 bits host ID space has 256 address
-available not 254 this is bcz those other IP's r still IP addresses even if they r not assigned directly to a node on that subnet
+So even if that is understood two addresses with 0 and 255 r not available for assignmnet u still say that 8 bits host ID space has
+256 address available not 254 this is bcz those other IP's r still IP addresses even if they r not assigned directly to a node on 
+that subnet
 
-The subnet mask 255.255.255.224 will translate to 1111 1111.1111 1111.1111 1111.1110 0000 this means that we have 5 bit's of host ID space or a
-total of 32 addresses
+The subnet mask 255.255.255.224 will translate to 1111 1111.1111 1111.1111 1111.1110 0000 this means that we have 5 bit's of 
+host ID space or a total of 32 addresses
 
-Now if we r dealing with 9.100.100.100 with subnet mask of 255.255.255.224 now this subnet mask represents 27 of 1's followed by 5 of 0's a
-quicker way of referrencing this is with the notation /27 the entire IP and subnet mask could be written now as -> 9.100.100.100/27
+Now if we r dealing with 9.100.100.100 with subnet mask of 255.255.255.224 now this subnet mask represents 27 of 1's followed by
+5 of 0's a quicker way of referrencing this is with the notation /27 the entire IP and subnet mask could be written now as -> 
+9.100.100.100/27
 
 In general a subnet can usually only contain 2 less then the total no. of Host ID's available
 
 Basic Binary Math ->
 Binary and Base two r same
 
-If u have 8 bit no. u can perform as 2**8(2 to the power 8) = 256, So it shows that a 8 bit no. can represent 256 decimal no. or from 0 to 255
-in the same way If u have 4 bit no. u can perform as 2**4 = 16, So it shows that a 4 bit no. can represent 16 decimal no. as it goes on with
+If u have 8 bit no. u can perform as 2**8(2 to the power 8) = 256, So it shows that a 8 bit no. can represent 256 decimal no. or
+from 0 to 255
+in the same way If u have 4 bit no. u can perform as 2**4 = 16, So it shows that a 4 bit no. can represent 16 decimal no. as it
+goes on with
 If u have 16 bit no. u can perform as 2**16 = 65536, So it shows that a 16 bit no. can represent 65536 decimal no.
 
 So we represent binary as base 2 and decimal as base 10
 
-Ex -> lets take a base 10 no. with two columns of digits -> 00 00 and this will translate to 10**2 =100 which makes it now -> 99 99
-Similarly for base 10 no. with 3 columns of digits -> 00 00 00 and this will translate to 10**3=1000 which makes it now -> 999 999 999
+Ex -> lets take a base 10 no. with two columns of digits -> 00 00 and this will translate to 10**2 =100 which makes it 
+now -> 99 99
+Similarly for base 10 no. with 3 columns of digits -> 00 00 00 and this will translate to 10**3=1000 which makes it now -> 
+999 999 999
 
 0+0 -> 0
 0+1 -> 1
@@ -429,93 +441,98 @@ Similarly for base 10 no. with 3 columns of digits -> 00 00 00 and this will tra
 
 Two most important operators r AND & OR and 1 represents true and 0 represents false
 
-Subnet Mask is a way for a computer to use AND operators to determine if an IP address exists on the same Network, this means the host id portion
-is also known since their will be anything leftout
+Subnet Mask is a way for a computer to use AND operators to determine if an IP address exists on the same Network, this means the
+host id portion is also known since their will be anything leftout
 
 We have IP address as -> 9    .    100    .     100   .     100
   IP in binary ->     0000 1001 . 0110 0100 . 0110 0100 . 0110 0100
   Operation to Perform  AND         AND         AND         AND
   Subnet Mask  ->     1111 1111 . 1111 1111 . 1111 1111 . 0000 0000 // this is binary for 255.255.255.0
-  Result       ->     0000 1001 . 0110 0100 . 0110 0100 . 0000 0000 // the Result would be the Netwrok ID and subnet ID of our portion which is
+  Result       ->     0000 1001 . 0110 0100 . 0110 0100 . 0000 0000 // the Result would be the Network ID and subnet ID of our
+                                                                    // portion which is
                         9       .   100    .    100    .    0
-  The computer that just performed this operation can now compare the results with it's own Netwrok ID to determine that is the address is on
-  the same netwrok or different one
+The computer that just performed this operation can now compare the results with it's own Network ID to determine that is the
+address is on the same network or different one
 
-CIDR -> Address classes were the first attempt in splitting up the global internet IP space, subnetting was introduced when it was realized
-that the address classes r not an efficient way for keeping classes organized but as the internet grows the traditional sunetting just couldn't
-keep up
-With Trational subnetting and address classes the Network ID is always either 8 bit for class A netwroks, 16 bit for class B netwroks ,24 bits
-for class C networks
-This means that their might only be 254 class A netwroks in existance but it also means that their r around 297 million potential class C netwroks
+CIDR -> Address classes were the first attempt in splitting up the global internet IP space, subnetting was introduced when it
+was realized that the address classes r not an efficient way for keeping classes organized but as the internet grows the
+traditional sunetting just couldn't keep up
+With Trational subnetting and address classes the Network ID is always either 8 bit for class A networks, 16 bit for class B
+networks ,24 bits for class C networks
+This means that their might only be 254 class A netwroks in existance but it also means that their r around 297 million potential
+class C networks
 
 The Sizing of these networks are not always appropriate for the needs of most buissness
 
-So 254 hosts for class C is too small and 65534 of class B is too large , so many companies ended up with various adjoining class c netwroks to
-meat their needs that means the rounting table ended up with bunch of entries for bunch of class c netwroks that r all actually being routed
-with the same place this is where CIDR comes into play
+So 254 hosts for class C is too small and 65534 of class B is too large , so many companies ended up with various adjoining 
+class c networks to meat their needs that means the rounting table ended up with bunch of entries for bunch of class c networks
+that r all actually being routed with the same place this is where CIDR comes into play
 
-CIDR is more approriate approach for descibing blocks of IP addresses, it expands on the conecpt of subnetting by using subnet masks to demarcate
-netwroks
+CIDR is more approriate approach for descibing blocks of IP addresses, it expands on the conecpt of subnetting by using subnet 
+masks to demarcate netwroks
 
 To Demarcate something means to set something off
 Demarcation point -> To describe where one netwrok or system ends and another one begins
 
-In previuos model we relied on Network ID, Subnet ID and Host ID to deliver an IP datagram to the correct location with CIDR the Netrok ID and
-subnet ID r combined into one CIDR is where we get this '/27' kind of notation which is also known as CIDR notation
+In previuos model we relied on Network ID, Subnet ID and Host ID to deliver an IP datagram to the correct location with CIDR the 
+Network ID and subnet ID r combined into one CIDR where we get this '/27' kind of notation which is also known as CIDR notation
 CIDR basically abondans the conecpt of address classes entirely allowing an address to be defined by only two individual ID's
 
 Lets take IP address as -> 9    .    100    .     100   .     100
            Subnet Mask  ->255   .    255    .     255   .       0   // this can also be written as 9.100.100.10/24
-  In the world in which we donot care about the address class of IP all we need is what the Netwrok mask tells to determine the network ID in this
-  case that would be 9.100.100 as the Host ID remains the same
+In the world in which we donot care about the address class of IP all we need is what the Network mask tells to determine the
+network ID in this case that would be 9.100.100 as the Host ID remains the same
 
-  Before this netwrok sizes were static based on class A, B, C and only subnets can be of different sizes while CIDR allows for netwroks themselves
-  to be in different sizes before this if a company needed more addresses then a single class c can provide they need an entire 2nd class c but
-  with CIDR they can combine that address space into one contigous chunk with a netmask of /23 or 255.255.254.0 this means that the router now
-  only need to know one entry in the routing table to deliver traffic to these address instead of two
+Before this network sizes were static based on class A, B, C and only subnets can be of different sizes while CIDR allows for 
+networks themselves to be in different sizes before this if a company needed more addresses then a single class c can provide they
+need an entire 2nd class c but with CIDR they can combine that address space into one contigous chunk with a netmask of /23 or 
+255.255.254.0 this means that the router now only need to know one entry in the routing table to deliver traffic to these address 
+instead of two
 
-  It also important that u get additional available host ID's out of this practice, rember that u always lose 2 host ID's per netwrok So if a
-  /24 network is 8 host bits means 2**8 = 256 then u only have 256 - 2 = 254 available IP's to assign
-  If u need 2 netwroks of this size then u have 254+254 = 508 hosts
-  a single /23 netwrok is 9 host bits means 2**9 = 512 and hten 512 - 2 =510 hosts
+It also important that u get additional available host ID's out of this practice, remember that u always lose 2 host ID's per 
+network So if a /24 network is 8 host bits means 2**8 = 256 then u only have 256 - 2 = 254 available IP's to assign
+If u need 2 networks of this size then u have 254+254 = 508 hosts
+a single /23 netwrok is 9 host bits means 2**9 = 512 and then 512 - 2 =510 hosts
 
-  Basic Routing Concepts ->
-  A router is network device that forwards traffic depending on the destination address of that traffic, Router is device that has atleast two
-  netwrok interfaces since it has to be connected to 2 netwoks to do it's job
+Basic Routing Concepts ->
+A router is network device that forwards traffic depending on the destination address of that traffic, Router is device that has
+atleast two network interfaces since it has to be connected to 2 networks to do it's job
 
   Basic Routing Steps ->
   1) A router receives a packet of data on one of it's interfaces
   2) Router examins the destination IP of this packet
-  3) THe router then Looks up the IP destination netwrok in it's routing table
-  4) the router forwards that out through the interface that's closest to the remote netwrok as determined by the additional info in the
-     routing table
-  5) these steps r repeated often until traffic reaches it's destination
+  3) The router then Looks up the IP destination network in it's routing table
+  4) The router forwards that out through the interface that's closest to the remote network as determined by the additional info
+     in the routing table
+  5) These steps r repeated often until traffic reaches it's destination
 
-  Let's assume that the router is connected to two networks 1st Netwrok 'A' have an address space of 192.168.1.0/24 and 2nd netwrok 'B' which has
-  an address space of 10.0.0.0/24 and the router has interface on each network, on netwrok A it has IP of 192.168.1.1 and on netwrok B it has
-  an IP of 10.0.0.254 remember IP address belongs to netroks not individual nodes on the netwrok a computer on Netwrok A with IP address of
-  192.168.1.100 sends a packet to the address 10.0.0.10 and this computer knows that 10.0.0.10 is it in it's local subnet, So it sends this
-  packet to the MAC address of it's gateway the router.
+Let's assume that the router is connected to two networks 1st Netwrok 'A' have an address space of 192.168.1.0/24 and 2nd network
+'B' which has an address space of 10.0.0.0/24 and the router has interface on each network, on network A it has IP of 192.168.1.1
+and on network B it has an IP of 10.0.0.254 remember IP address belongs to networks not individual nodes on the network a computer
+on Network A with IP address of 192.168.1.100 sends a packet to the address 10.0.0.10 and this computer knows that 10.0.0.10 is it
+in it's local subnet, So it sends this packet to the MAC address of it's gateway the router.
 
-  The Routers Interface On Netwrok A recives the packet bcz it sees that destination MAC address belongs to it, the rooter strips away the data
-  link layer encapsulation by removing ethernet header and ethernet footer and leaving only the netwrok layer contents the IP datagram, now the
-  router can directly Inspect the IP datagram Header for the destination IP field, it finds the destination IP as 10.0.0.10 then router looks
-  at it's routing table and sees that netwrok B or 10.0.0.0/24 network is the correct netwrok for the destination IP, it also sees that this
-  netwrok is only one HOP away infect since it's directly connected the router even has the MAC address for this IP in it's ARP table.
-  Next a router needs to form a new packet to forward along to netwrok B, it takes all of the data from it's 1st IP datagram and duplicates it
-  but it decrements the TTL field by and claculates a new checksum then it encapsulates this new IP datagram inside of a new ethernet frame
-  this time it sets it's own MAC adress on the inerface of Network B as the source MAC address, Since it has the MAC address of 10.0.0.10 in
-  it's ARP table it sets that as the destination MAC address and lastly the packet is send to it's destination netwrok (Netwrok B) and the
-  data finally gets delivered to the node living at 10.0.0.10
+The Routers Interface On Network A recives the packet bcz it sees that destination MAC address belongs to it, the rooter strips
+away the Data link layer encapsulation by removing ethernet header and ethernet footer and leaving only the network layer contents
+the IP datagram, now the router can directly Inspect the IP datagram Header for the destination IP field, it finds the destination
+IP as 10.0.0.10 then router looks at it's routing table and sees that network B or 10.0.0.0/24 network is the correct network for 
+the destination IP, it also sees that this network is only one HOP away infect since it's directly connected the router even has 
+the MAC address for this IP in it's ARP table.
+Next a router needs to form a new packet to forward along to network B, it takes all of the data from it's 1st IP datagram and 
+duplicates it but it decrements the TTL field by and calculates a new checksum then it encapsulates this new IP datagram inside 
+of a new ethernet frame this time it sets it's own MAC adress on the interface of Network B as the source MAC address, Since it 
+has the MAC address of 10.0.0.10 in it's ARP table it sets that as the destination MAC address and lastly the packet is send to
+it's destination network (Netwrok B) and the data finally gets delivered to the node living at 10.0.0.10
 
-  Now lets introduce a New netwrok in above scenerio
+Now lets introduce a New network in above scenerio
 
-  The third netwrok with the address apace of 172.16.1.0/23 and a second router connected netwrok B and new netwrok C it's interface on netwrok B
-  has IP 10.0.0.1 and it's interface on netwrok C has an IP of 171.16.1.1 this time around our computer at 192.168.1.100 wants to send some
-  data that has an IP of 172.16.1.100 here we r skipping the Data link layer process like above but remember it is still happening the computer
-  at 192.168.1.100 knows that computer 172.16.1.100 is not on it's local netwrok, So it sends the packet to it's gateway the Router between
-  netwrok A and netwrok B , again the Router inspects yhe content of this packet it sees the destination address of 172.16.1.100 and then
-  lookup through it's routing table, it knows that quickest way to 172.16.1.0 /23 netwrok is being at another router
+The third network with the address apace of 172.16.1.0/23 and a second router connected netwrok B and new network C it's interface
+on network B has IP 10.0.0.1 and it's interface on network C has an IP of 171.16.1.1 this time around our computer at 192.168.1.100 
+wants to send some data that has an IP of 172.16.1.100 here we r skipping the Data link layer process like above but remember it is 
+still happening the computer at 192.168.1.100 knows that computer 172.16.1.100 is not on it's local network, So it sends the packet
+to it's gateway the Router between network A and network B, again the Router inspects the content of this packet it sees the 
+destination address of 172.16.1.100 and then lookup through it's routing table, it knows that quickest way to 172.16.1.0 /23 network
+is being at another router
 
 
 Python Networking ->
@@ -692,46 +709,51 @@ for multiple clients, So here r two tasks to do
 
 For above mentioned tasks we need to use Threads specifically two threads here one for each task
 
--------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------
 Ip address has 4 octets and each octet has 8 bits
 
 2**m // m is the no. of bits
 
-the last bit at position 0 in the octet is known as Least Significant Bit and the First bit at position 7 is known as the Most Significant Bit
+the last bit at position 0 in the octet is known as Least Significant Bit and the First bit at position 7 is known as the Most 
+Significant Bit
 So on the basis of that at position 0 the decimal value would be 2**0 = 1 and at position 7 the decimal will be 2**7 = 128
 Hence -> x  x  x  x  x  x  x  x // x could be 0 or 1
         128 64 32 16 8  4  2  1 // Decimal value of bits by 2**m formula
 
-        Now these above calculated decimal values for each position in octet will be count only when a bit is set to 1 bcz when a bit is set to
-        0 it will always have the decimal value of 0
+Now these above calculated decimal values for each position in octet will be count only when a bit is set to 1 bcz when a bit is
+set to 0 it will always have the decimal value of 0
 
  Ex ->  1   0   1   0   1   1   1   1 // 8 bits data
        128  0   32  0   8   4   2   1 // Decimal values
 
        Now the decimal no. which corresponds to those 8 bits -> 128 + 0 + 32 + 0 + 8 + 4+ 2+ 1 = 175
 
-       IP address -> Host(device) Identifier + Netwrok(Subnet) to which a given host belongs to
+       IP address -> Host(device) Identifier + Network(Subnet) to which a given host belongs to
 
- Netwrok mask is used to identify the Network Portion of an IP address, network mask is a 32 bit long continous number of 1's followed by 0's
- netwrok mask can be also represented in a dotted decimal format like 255.255.255.0 or /24 so here the Netwrok Id is represented by the
- address bit's set to 1 and host identifier is represented by 0 from a Netwrok mask
- Host ID with a numerically highest no. makes a broadcast address
- Netwrok and broadcast IP addresses r reserved and cannot be allocated for nodes
- EX -> an Ip address sent with netwrok mask
+Network mask is used to identify the Network Portion of an IP address, network mask is a 32 bit long continous number of 1's 
+followed by 0's network mask can be also represented in a dotted decimal format like 255.255.255.0 or /24 so here the Network Id is 
+represented by the address bit's set to 1 and host identifier is represented by 0 from a Network mask
+Host ID with a numerically highest no. makes a broadcast address
+Network and broadcast IP addresses r reserved and cannot be allocated for nodes
+ EX -> an IP address sent with network mask
  IP address ->  192.168.255.2
  Netwrok mask ->255.255.255.0
 
  IP address in Binary ->    11000000 10101000 11111111 00000010
- Netwrok mask in Binary->   11111111 11111111 11111111 00000000   // here all 1's r for the netwrok and all 0's is for the host so this means that
- End Result using the AND-> 11000000 10101000 11111111 00000000      the netwrok address then would be 192.168.255 in the IP address and 2 will be
-                                                                     the Host portion and this Host portion r the bits which we can allocate for
-                                                                     the addresses of our devices
+ Netwrok mask in Binary->   11111111 11111111 11111111 00000000   // here all 1's r for the network and all 0's is for the host 
+                                                                  // so this means that the netwrok address then would be 192.168.255
+                                                                  // in the IP address and 2 will be the Host portion and this Host
+                                                                  // portion r the bits which we can allocate for the addresses of
+                                                                  // our devices
+ End Result using the AND-> 11000000 10101000 11111111 00000000  
+      
 On converting result 11000000 10101000 11111111 00000000 to decimal -> 192.168.255.0
-the actual identifier of the above netwrok is -> 192.168.255.0 // this is netwrok identifier
+the actual identifier of the above netwrok is -> 192.168.255.0 // this is network identifier
 
-Actual Rnage of Host addresses from above output that we can allocate to hosts from this netwrok is -> 192.168.255.1 to 192.168.255.254
-and the netwrok identifier 192.168.255.0 could also be said as the lowest host IP and the higest is 192.168.255.255 and this is known as broadcast asddress
-
+Actual Range of Host addresses from above output that we can allocate to hosts from this network is ->
+192.168.255.1 to 192.168.255.254
+and the network identifier 192.168.255.0 could also be said as the lowest host IP and the higest is 192.168.255.255 and this is
+known as broadcast asddress
 
  Ex 2 ->
  IP address ->  10.15.4.2
@@ -742,9 +764,9 @@ and the netwrok identifier 192.168.255.0 could also be said as the lowest host I
  End Result using the AND-> 00001010 00000000 00000000 00000000
 
 On converting result 00001010 00000000 00000000 00000000 to decimal -> 10.0.0.0
-the actual identifier of the above netwrok is -> 10.0.0.0 // this is netwrok identifier
+the actual identifier of the above network is -> 10.0.0.0 // this is network identifier
 
-Actual Rnage of Host addresses from above output that we can allocate to hosts from this netwrok is -> 10.0.0.1 to 10.255.255.254
+Actual Range of Host addresses from above output that we can allocate to hosts from this network is -> 10.0.0.1 to 10.255.255.254
 
 Classfull Netwrok Architectuire ->
 First 3 classes A,B,C have designating netwrok mask or we can say netwrok masks were encoded in the 1st 3 bit's of an IP address
