@@ -363,12 +363,12 @@ understanding of how it works
 Address classes give us a way to break a total global IP space into discreat networks, If u wanna communicate with IP address 
 9.100.100.100 core routers on the internet will know that this IP belongs to the 9.0.0.0 class A network, they then route the 
 msg to the gateway router responsible for the network by looking at the network ID
-A gateway router specifically serves as the entry and the exit path to a certain network, once ur packet gets to the gateway 
-router to the 9.0.0.0 class A network that router is now responsible for getting that data to the proper system by looking at
-the host ID
+A gateway router(core router) specifically serves as the entry and the exit path to a certain network, once ur packet gets to
+the gateway router to the 9.0.0.0 class A network that router is now responsible for getting that data to the proper system by
+looking at the host ID
 
 With Subnets u can spilt ur large networks up into many smaller one's, these individual subnets will have their own gateway routers 
-serving as the ingress and outgress point for each subnet
+serving as the ingress and egress point for each subnet
 
 Subnet masks ->
 In subnetting some bits that will normally comprise the Host ID r actually used for the subnet ID with all 3 of these ID's(Subnet
@@ -401,7 +401,7 @@ So for Example with a subnet mask of 255.255.255.0 here we know the last octet w
 what network or subnet ID's are
 
 A single 8 bit no. can represent 256 different numbers, or more specifically the numbers 0-255, but 0 is normally not used and 255
-is normally reserved as a broadcast address for the subnet this means that only the no.'s form 1 to 254  r available for assignment
+is normally reserved as a broadcast address for the subnet this means that only the no.'s from 1 to 254  r available for assignment
 to a host
 Generally speaking ur referred to the no. of host available in a subnet is the entire no.
 
@@ -459,12 +459,12 @@ was realized that the address classes r not an efficient way for keeping classes
 traditional sunetting just couldn't keep up
 With Trational subnetting and address classes the Network ID is always either 8 bit for class A networks, 16 bit for class B
 networks ,24 bits for class C networks
-This means that their might only be 254 class A netwroks in existance but it also means that their r around 297 million potential
+This means that their might only be 254 class A networks in existance but it also means that their r around 297 million potential
 class C networks
 
 The Sizing of these networks are not always appropriate for the needs of most buissness
 
-So 254 hosts for class C is too small and 65534 of class B is too large , so many companies ended up with various adjoining 
+So 254 hosts for class C is too small and 65534 of class B is too large, so many companies ended up with various adjoining 
 class c networks to meat their needs that means the rounting table ended up with bunch of entries for bunch of class c networks
 that r all actually being routed with the same place this is where CIDR comes into play
 
@@ -472,11 +472,11 @@ CIDR is more approriate approach for descibing blocks of IP addresses, it expand
 masks to demarcate netwroks
 
 To Demarcate something means to set something off
-Demarcation point -> To describe where one netwrok or system ends and another one begins
+Demarcation point -> To describe where one network or system ends and another one begins
 
 In previuos model we relied on Network ID, Subnet ID and Host ID to deliver an IP datagram to the correct location with CIDR the 
 Network ID and subnet ID r combined into one CIDR where we get this '/27' kind of notation which is also known as CIDR notation
-CIDR basically abondans the conecpt of address classes entirely allowing an address to be defined by only two individual ID's
+CIDR basically abondans the concept of address classes entirely allowing an address to be defined by only two individual ID's
 
 Lets take IP address as -> 9    .    100    .     100   .     100
            Subnet Mask  ->255   .    255    .     255   .       0   // this can also be written as 9.100.100.10/24
@@ -490,8 +490,8 @@ need an entire 2nd class c but with CIDR they can combine that address space int
 instead of two
 
 It also important that u get additional available host ID's out of this practice, remember that u always lose 2 host ID's per 
-network So if a /24 network is 8 host bits means 2**8 = 256 then u only have 256 - 2 = 254 available IP's to assign
-If u need 2 networks of this size then u have 254+254 = 508 hosts
+network So if a /24 network is 8 host bits means 2**8 = 256 hosts then u only have 256 - 2 = 254 available IP's to assign
+If u need 2 networks of this size then u have 254+254 = 508 hosts on the otherhand 
 a single /23 netwrok is 9 host bits means 2**9 = 512 and then 512 - 2 =510 hosts
 
 Basic Routing Concepts ->
@@ -532,7 +532,86 @@ wants to send some data that has an IP of 172.16.1.100 here we r skipping the Da
 still happening the computer at 192.168.1.100 knows that computer 172.16.1.100 is not on it's local network, So it sends the packet
 to it's gateway the Router between network A and network B, again the Router inspects the content of this packet it sees the 
 destination address of 172.16.1.100 and then lookup through it's routing table, it knows that quickest way to 172.16.1.0 /23 network
-is being at another router
+is being at another router with an IP of 10.0.0.1 the router decrements the TTL field and sends it along to the router of 10.0.0.1,
+this router goes through the motions and knows that the destination IP of 172.16.1.100 is directly connected and forward the packet
+to it's final destination
+
+The difference in above example and real life scenerio is the scale as the routers r connected to many more routers, as ur traffic
+may have to cross a dozen routers before it reach it's final destination and in order to protect against breakages the core internet
+routers r typically connected in a Mesh, meaning their might be many different paths for a packet to take still the concept is same
+the router inspects the destination IP then look at the routing table that which path is the quickest and forward the packet along
+the path
+
+Routing Tables ->
+All major operating systems today have a routing table that they can saw before transmitting data, U can still build ur own router
+today if u had a computer with 2 network interfaces and a manually updated routing table, Routing tables varies on the class of
+Router but they all share few things in common as the most basic routing table will have 4 columns
+
+1)Destination network -> this column will contain a row for a each network that the router knows about, this is just the defination
+of the remote network as a netowrk ID and the net mask as ->
+   IP          -> 192.168.1.1
+ Subnet Mask   -> 255.255.255.0
+ CIDR          -> 192.168.1.1/24
+ these could be store in one column inside a notation or the network ID and the net mask in the seperate column either way it's the
+ same concept, the router has a defination of a network and theirfore knows what IP addresses might live on that network when the
+ router receives an incoming packet it examines the destination IP address and determines which network it belongs to a routing
+ table will genrally have a catch all entry that matches any IP address that it doesn't have a explict network list for
+ 
+2)Next HOP -> this is the IP address of the next router that should receive data intended for the destination network in question or
+this could just state the network directly connected and their aren't any additional hops needed
+
+3)Total Hops -> On any complex network their will be lots of different paths to get from point A to point B, Routers try to pick the
+shortest possible path to ensure timely delivery of data but a shortest possible path to a destination network is something that
+could change over time sometimes very rapidly as links could be disconnected, new routers can be introduced, traffic conjection or
+certain routes could become slow to use
+So for each next HOP and each destination network the router will have to keep track that how far away that destination currently is
+and that way when it receives updated information from neighbouring routers it will know if it currenlty knows about the best path or
+if they knew better path is available
+
+4) Interface -> The router also has to know which of it's interfaces it should forward traffic matching the destination network, In
+most cases routing tables r pretty simple as many core internet routers have millions of rows in the routing table, these must be
+consulted for every single packet that flows through a router on it's way to it's final destination
+
+Interior Gateway Protocols -> These protocols helps u identify routing problems on any network
+The routers use the Routing protocols these r special protocols that routers use to speack to each other in order to share what
+information they might have, this is how the router on the one side of the planet can learn about the best path to a network on
+the other side of the planet
+
+Routing protocols fall into two main categories: interior gateway protocols and exterior gateway protocols
+
+Interior gateway protocols r futher split into two categories: Link state routing protocols and distance-vector protocols
+
+Interior gateway protocols are used by routers to share information within a single autonomous system
+Autonomous System is a collection of networks that all fall under the control of a single network operator
+Ex -> A large coperation that needs to route data between many offices and each of which might have their own local area network
+another example is that the many routers employeed by ISP who's reaches r usally national in scale we can contrast thsi with exterior
+gateway protocols which r used for the exchange of information between independent autonoumous systems
+
+Distance vector Protocols r older standard, A router using a distance vector protocol basically just takes it's routing table which
+is a list of every network known to it and how far away these networks r in terms of HOP's then the router sends this list to every
+neighbouring router which is basically every router directly connected to it
+
+In computer science a 'list' is known as a 'vector'
+
+This is why a protocol that just sends a list of distances to networks is known as distance vector protocol
+With a Distance vector protocol routers don't really know much about the total state of an autonomous system they just have some
+information about their immediate neighbours
+
+Distance vector protocol working ->
+Router A and Router B influence each others routing tables, Router A has a routing table with bunch of entries and one of these
+entries is for 10.1.1.0/24 network which we currently refer to as network X, Router A beleives the quickest path to the Network X
+is through it's own interface '2' which is where router C is connected, Router A knows that sending data intended for Network X
+through interface '2' through router C means it will take 4 HOPs to get to the destination,
+Meanwhile router B is only 2 HOPs away from network X and this will reflect in it's routing table, Router B using the distance
+vector protocol sends the basic contents of it's routing table to Router A, now router A will see that network X is only 2 HOPs away
+from router B, even with the extra hop to get from router A to router B this means the network x is only 3 HOPs away from router A
+now if it forwards data to router B instead of router C So now the router A updates it's routing table to reflect this in order to
+reach network X it should forward traffic through it's own interface 1 to router B
+
+The Distance vector Protocols r pretty simple by they don't allow for a router to have much information about the state of the world
+outside of their own direct neoghbours bcz of this a router might be slow to react to a change in the network far away from it and
+this is why link state protocols where invented
+
 
 
 Python Networking ->
