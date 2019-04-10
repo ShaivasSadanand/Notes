@@ -375,3 +375,212 @@ broadcast MAC address all clients in the same network recives this packet now al
 the one device who as the IP address which is sent in the request, now this device will respond by sending the ARP response to
 the attacker with his MAC address and now the communication is setup among both the devices, So all this communication is done
 using ARP protocol.
+
+
+-------------------------------------------------------------------------------------------------------------------------
+
+1https://www.youtube.com/watch?v=Ozrduu2W9B8&list=PL4cUxeGkcC9idu6GZ8EU_5B6WpKTdYZbK
+
+- Every thing in python is considered objects, and objects r attributes of functions
+- Numbers->
+  - their r 2 two types of no. integer and float
+  - type(object) # to find the type of an object
+  - in python 5 / 5 = 1.0 # this is only for division
+  - to get the integer value at the time if division do: 5 // 5 = 1 # we use double forward slash
+  - power of operation is done as 5 ** 2 = 25
+  - in python we use the order of calculation as BIDMAS # I here stands for indeces which anything like power off such as **
+
+- Strings->
+  - 'he's a mad man' # this will give an error as if u start with single quote then it should end with single quote
+  - So "he's a mad man" # this is correct
+  - otherway 'he\'s a mad man' # we use \ to escape a character here we have used to escape ' after he
+  - greet = 'hello'
+    So greet[3] o/p is 'l' same as JavaScript
+    greet[-1] o/p is 'o' the python works backward also but Javascript does not 
+    So greet[-5] o/p is 'h'
+    but greet[-6] will give us IndexError: string index out of range
+  - Slicing : greet[0:3] o/p is 'hel'
+   greet[-1:2] o/p is empty string bcz we can only go forward not backward
+   So we can do greet[2:-1] o/p is 'll'
+  - repeating a string if we do: greet * 2 o/p is 'hellohello'
+  - greet.upper() # for upper case
+  - name = "aaa, bbb, ccc"
+     name.split(',') o/p is ['aaa', ' bbb', ' ccc'] it split the string when ever it find ',' and convert it into list
+  - len(greet) o/p is 5  # to find the length of string
+
+- Lists ->
+  - In python array is called List
+  - fib1 = [1,2,3]
+  -  fib1[1] o/p is 2
+  -  fib1[-1] o/p is 3
+  -  fib1[0:2] o/p is [1,2]
+  -  fib2 = [4,5,6]
+   - fib1 + fib2 o/p is [1,2,3,4,5,6]
+   - fib1.append(7) o/p is [1,2,3,7] # it works same as push() in JavaScript
+   - fib1.pop() o/p is 7 as it removed the last element and now if we do fib1 then o/p is [1,2,3]
+   - fib1.remove(2) o/p is [1,3] but their is problem suppose we have array as fib1 = [1,2,2,3] and  then we do fib1.remove(2) so it only 
+   remove one '2' and it removes the first '2' means the 2 of index 1.
+   - fib1 = [1,2,3] and we do del(fib1[2]) then o/p is [1,2]
+   - list of different datatypes is also allowed as fib1 = ['a','b',1,2] is ok to do
+   - nested lists ,so fib1 = [1,2,3] and we can do fib2 = ['a','b', fib1, [4,5]] is ok and this would be shown as
+      ['a', 'b', [1, 2, 3], [4, 5]]
+      So if we do fib2[0] o/p is 'a' and if we do fib2[2] o/p is [1,2,3]
+      if we do fib2[2][1] o/p is 2
+
+            
+   - For Loops
+      ninjas = ['ryu', 'crystal' ,'yoshi', 'ken']
+      
+      for ninja in ninjas:
+        print(ninja)        # prints all the elements
+        
+      for ninja in ninjas[1:3]:         # here we r slicing the array
+        print(ninja)        
+        # o/p will be 
+        crystal
+        yoshi
+      
+   - While Loops 
+        
+        age = 25
+        num = 0
+        
+        while num < age:        
+          # block of code    
+          # break           # to break the loop
+          # continue        # to go to he next iteration with proceeding further
+          num += 1
+          
+    - Range -> range just creates a list of no.s till the no.s defined in it
+        
+        for n in range(5):
+          print(n)      o/p -> 0 1 2 3 4
+          
+       we can define a starting point too such as
+       
+        for n in range(3,5):
+          print(n)      o/p -> 3 4
+          
+       we can define the values with it can increase such as in above ex's it is increasing by one be can it also increase by 2
+       
+       for n in range(0,20,4):      # here 3rd argument is telling the updation by value
+          print(n)      o/p -> 0 4 8 12 16
+          
+       we can use ranges with lists also
+       
+       alph = ['a','b','c','d','e']
+       
+       for n in range(len(alph)):
+        print(n, alph[n])    
+        
+        o/p -> 0 a
+              1 b
+              2 c
+              3 d
+              4 e
+              
+        we can go backwards through the list also
+        
+        
+       alph = ['a','b','c','d','e']
+       
+       for n in range(len(alph)-1,-1,-1):         # here in 3rd arg we put -1 bcz we need to go back and in 1st arg we r starting with 
+        print(n, alph[n])                         # last element 'e' and 2nd argument is referring to 'e' as index -1 but we have to 'a'
+                                                  # as the index their is not included that's why we are entering -1 which is index of 'e'        
+        o/p -> 4 e                                # and this way the 'a' will also be get included
+              3 d
+              2 c
+              1 b
+              0 a
+              
+
+    
+    - Dictionaries -> These r same as JSON objects in JavaScript and values r stored in them in key value pairs
+        Ex: ninja_belt = {
+          'crystal': 'red',
+          'ryu': 'black'
+        }
+        
+        ninja_belt['crystal']  o/p is red
+        
+        - to check if key is in dictionary or not:
+        
+        'crystal' in ninja_belt  o/p True
+        
+        - to know the keys in a dictionary
+        
+        ninja_belt.keys()  o/p is  dict_keys(['crystal','ryu']) # here dict_keys is a predefined variable containing all keys 
+      
+        - to only get above o/p in array format we can do type cast with 'list'
+        
+        list(ninja_belt.keys())   o/p is ['crystal','ryu']
+        
+        - now we wanna know all the values in a Dictionary then we can do
+        
+        ninja_belt.values()  o/p is  dict_values(['red','black']) # here dict_values is a predefined variable containing all values
+        
+        - we can do the same list type cast over on values
+        
+        list(ninja_belt.values())   o/p is ['red','black']
+
+        - we can check how many instances of a particular values is in dictionary
+        
+        vals = list(ninja_belt.values())   o/p is ['red','black']
+        
+        vals.count('black')   o/p 1
+        
+        - if we use a value which does not exit then we will get o/p 0
+        
+        vals.count('blue')   o/p 0
+        
+        - we can also add the key and value to a already defined dictionary as
+        
+        ninja_belt['yoshi'] = 'blue'
+        
+        ninja_belt   o/p  ninja_belt = {
+                            'crystal': 'red',
+                            'ryu': 'black',
+                            'yoshi': 'blue'
+                          }
+                          
+         - another way to define a dictionary
+         
+         person = dict(name='Sadanand',age=25,height='6ft')
+         
+         person o/p       person = {
+                            'name': 'Sadanand',
+                            'age': 25,
+                            'height': '6ft'
+                          }
+                          
+         - for loop for dictionary
+         
+         for key, val in dictionary.items():
+            print(key , val)
+            
+    - Sorting and Sets -> 
+      
+      nums = [1,4,2,3,3,2,4,5,5]
+      
+      to sort them we use sorted() as sorted(nums) 
+      we can use these of strings list too as alphs = [d,g,A,h,B,a]
+      sorted(alphs) o/p [A,B,a,d,g,h]  # here 'a' comes after 'B' bcz in python capital letters comes first
+      
+      set() is used to remove the duplicate data
+
+      as set(nums) o/p [1,4,2,3,5]  # and set does not preserve order in alphabets but order is preserved in numbers 
+      
+      - we can apply set on dictionary also
+      
+      ninja_belt = {
+                    'crystal': 'red',
+                    'ryu': 'black',
+                    'yoshi': 'black'
+                  }
+      
+      set(ninja_belt.values()) o/p is {'red','black'}
+      
+  ---------------------------------------------------------------------------------------------------------------
+
+    
+    
