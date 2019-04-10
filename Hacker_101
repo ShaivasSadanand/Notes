@@ -1,0 +1,198 @@
+Playlist -> https://www.youtube.com/watch?v=DWBUQiaN5ZM&list=PLxhvVyxYRviZsAKXZEbmfsVMZp3s0KaVE&index=2
+- Always see the whole website very thoroughly by pressing every button and checking every thing
+
+HTTP Request ->
+GET / HTTP/1.1
+Host: hackerone.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+Accept: text/html
+Accept-Language: en-GB,en-US;q=0.9,en;q=0.8
+Connection: keep-alive
+
+Request Headers ->
+Host -> Indicates the desired host handling the request
+Accept -> Indicates what MIME types r accepted by the client, often used to specify JSON or XML output for webservices
+Cookie -> Passes cookie data to the server
+Referer -> Page leading to this request(note: this is not passed to other servers when using HTTPS on the origin)
+Authorization -> Used for 'basic auth' pages(mainly).Takes the form "Basic<base64'd username:password>" // it does not do any form of encryption
+just a base64 blob of username and password
+
+Cookies r just key value pairs of data they r stored on the client for a fixed  period of time, they come from the server or added by JS and
+then r sent to each request to the domain that they're scoped for, each cookie has a domain pattern that actually matches sometimes it is specific
+and sometimes it is matching to root domain and it will fly to subdomain
+So if u can set cookies on domains u r not supposed to that would be a breach of security
+
+How r cookies secured?
+-  cookies added for .example.com can be read by any subdomain of example.com
+- cookies added for a subdomain can only be read in that subdomain and it's children subdomain
+- a subdomain can set cookies for it's own subdomains and it's parent but it can't set cookies for it's sibling domains
+Ex -> test.example.com can't set cookies for test2.example.com but can set cookie for example.com and it can also set cookie for
+foo.text.example.com which is it's child domain
+
+Their r 2 important flags that u can apply to cookies -> the user sent when the server actually sends a cookie down to a client and these r
+secure which means that the cookie will only work on HTTPS pages
+the HTTP only cookie -> it just only confirms that it only sends the cookies up with web requests, it won't allow u to read those cookies from
+Javascript and settings these cookies in JS will not actually set those values, So those r applied in the setCookie header that actually sets
+those
+Normally u can use the document.cookie variable in JS and get all the list of cookies that r applied or that r in scope and then u can also
+manipulate them that way
+
+HTML in security aspects ->
+What instance be parsed according to the relevant spec - this matters a lot, generally it is HTML 5 for most sites now, in reality HTML is not
+just parsed by browser it is actually also parsed by things like web application firewalls which sit in front of an application and look for things
+like Cross site scripting etc and if they r parsing in a different way ur browser is that will result in security vulnerability that u can exploit
+
+Ex ->
+<title>Vulnerable page named <script/xss src=http://evilsite.com/my.js></title>
+notice here instead of script tag we have script/xss // in the browser it will do nothing as u will end up with an empty XSS attribute on that
+tag but with a web app firewall that is improperly parsing HTML which is actually most of them it will see the script/xss tag and will let it
+straight through the filter // now days they got better but still they r pretty dumb
+
+Browser is supposed to be work with most of the web pages and the most web pages r broken in some way or another so their is lot of legacy
+parsing in browsers, and in html5 their r actually specifics on how that parsing should happen Ex-
+    - <script> tag on its own will automatically be closed at the end of the page, now suppose we r doing the XSS on the URL and their is the
+    filter for the slash but as it closes automatically it will just let it pass
+    - A tag missing its closing angle bracket will automatically be closed by the angle bracket of the next tag on the page
+    and these let to by pass firewall and parse properly in the web browser
+
+Content Sniffing -> it is when u can send data to the browser without giving it all the information about what it is u r sending it and all sorts
+of fill in the blanks
+Examples to this r mime type sniffing where it tries to figure out what type of file you r sending it , encoding sniffing where u r checking what
+sort of text encoding u r sending it such as ASCII, utf-8 etc it will sniff the content to see if it matches certain process and then it will
+use those behaviours inside of the browser
+
+Mime Sniffing -> it's not common anymore at least not as a security relevant issue but the browser just not look at the content-type header
+it will also look at what's on the page, if it has enough markers that make it look like HTML the browser will treat it as HTML
+- This lead to (internet explorer)ie 6/7 bugs where image and text files containing HTML tags would execute as HTML, it is still a big issue so u
+should look for that where u don't have proper mime types
+
+Ex -> Suppose u have a site with a file upload function for profile pictures, If that file contains enough HTML to trigger the sniffing process,
+an attacker could upload a picture and then link it to victims at this point they r able to execute anything that user can in the context of
+where that file was uploaded this is one of the reasons why sites use separate domains to host pictures and videos anything like that
+
+Encoding Sniffing -> the browser deals with it in a way that it will see a character that doesn't make sense in this encoding, so i am gonna
+try sniff in instead and u will end up in a page having mangled symbols which happen pretty often in modern browsers, if u don't specify
+encodings the browser will definitely apply these heuristics and if u can control the way that the browser decodes text u may be able to alter
+the parsing and u can also get around filters
+
+Ex -> putting a UTF-7(it is a 7 bit ascii with embedded base64 blocks) text into XSS payloads, So u basically have a base64 block that's blocked
+off with a plus and a minus and that will be the code to that character
+like this payload which is just a script tag with alert-> +ADw-script+AD4-alert(1);+ADw-/script+AD4- // this will go straight through HTML
+encoding, so it will by pass many sites when u throw it to them
+So their r no unsafe characters their what their are unsafe UTF-7 characters // so this can become a effective way to get around web app
+firewalls specifically bcz they will be looking for angle brackets and stuff like that they will not be looking for UTF-7,
+same way if they r expecting for ascii or utf-8 and u send utf-32 characters u r gonna by pass filter straight through
+// So u should be always specifying encoding and the encoding the browser should be parsing it in so the server and the client don't have a lack
+of compatibility same thing goes for mime types always specify mime types even if u r just sending an octet stream
+
+Same-origin policy(SOP) -> it is a kind of backbone of web security today, without it u wouldn't have the ability to move data between sub domains
+, u wouldn't have locks between separate domains etc, this is really what underpins browser security now.
+SOP can be understand as what domains u can contact via XML HTTP requests(Ajax requests as we normally call them), it also restricts access to
+DOM across frames and windows,
+So if u open up a new window with JavaScript u may or may not have access to the DOM in that new window which is determined by the same origin
+policy, this is what prevents u from making Ajax requests across domains with the exception of CORS requests
+SOP all prevents u from wreaking havoc on the web and any time a way around it is found bad things happen for everyone on the web
+
+Origin Matching Concept in SOP -> the way it works is like this-
+ - Protocols must match , u can never cross the http and https boundaries ever
+ - Port numbers must match
+ - Domain names must be an exact match, u can not go up and down subdomains any of that it must be an exact match
+
+SOP loosening -> U can change document.domain in JS and that will allow u to change which sub domain in essence u r able to communicate with
+and their r number of rules around this, u can also do msg posting with post message function for instance in JavaScript and u also have CORS
+these all open up a lot of different interesting avenues for attack, for instance u can always call postMessage into an iframe
+
+How many sites receiving msgs validate them properly ?
+Most of the times none of them , and when ever u do see msg handling in web app they almost handle it wrong in addition this was used to break
+lot of chrome extensions
+
+Chrome extensions r very limited in what they can do inside of their sandbox, so they use post message to move around and bcz u r always able
+to post to these extensions they were vulnerable to cross site scripting in lot of cases and this can be even used to jump from one web page
+or one tab to another through these extensions
+So generally if u don't have very good reason to do it u shouldn't use SOP and this leads to design problem if u try to do that
+
+CORS -> It allows u to make request to cross domains outside of SOP using XmlHttpRequests also comes into play with WebGL in that they can read
+textures across domains, CORS r still really new and then enable some kind of risky situation, as u can make it has received domains cookies,
+So if u make request from foo.com to bar.com and bar.com actually has the CORS headers u can make it send the proper cookies on bar.com upto
+that server and u can't access those urself but u can potentially compromise logged in users and this isn't even explored much
+
+CSRF Attacks -> it's simple and u find it everywhere and u will find their is kind of no prevention against it and this is a common thing
+it's most of the times that 1 app out of 5 to 6 apps test fall prey to sea surf attacks
+
+Cross Site Request Forgery -> it is basically when an attacker can get a victim to a page that they control and then it submits data to some
+target site as the victim, it's very common
+Ex -> Bank transfer site code
+<form action="/levels/0/" method="POST">                // this form allows transfer from one account to another and have POST
+    <h2>Transfer Funds</h2>
+    Destination account: <input type="input" name="to" value=""><br>    // variables for destination account and amount
+    Amount: <input type="input" name="amount" value="">
+    <br>
+    <br>
+    <input type="submit" value="transfer">  // submit button
+</form>
+
+So when the server gets such as request, how can it know it came from the real site and went to original form and entered that data, u have to
+referrer headers for HTTP requests but they r not that much reliable so they can be forged
+
+This is actual Exploit that will transfer money if the users r logged in Ex ->
+
+<body onload="document.forms[0].submit()">
+    <form action="https://victim.vulnerable/levels/0/" method="POST">
+        <input type="hidden" name="amount" value="10000000">
+        <input type="hidden" name="to" value="1625">        // here transfers from user account to account no. 1625 and this happens instantly
+    </form>                                                 // bcz when the body loads it automatically submits that form
+</body>
+
+So how does the server tells that this request is any different from a normal request the user would make and the answer is it can't
+
+The way for the server to do traditionally is to mitigate the bug through the use of CSRF tokens, so basically u have to generate a random token
+tie it to the user session and then embedded it in each form u generate every single form u generate is going to setup an additional input of
+that CSRF token
+
+Here u can see an example of Form that actually contains that CSRF token
+
+<form action="post" method="POST">
+    What's on ur mind?<br>
+    <textarea cols="40" row="3" name="status"></textarea><br>
+    <input type="hidden" name="crsf" value="4daada89daa7879dya87yda8yda8">
+    <input type="submit" value="transfer">
+</form>
+
+So when the server gets a post request any post request, it should always check to see that the CRSF token is present and matches the token
+associated with the user's session
+Note -> this will not help u with GET requests, and ur requests should only ever give u data they should never actually change data, and u might
+also have seen this that applications change state with GET all the time, So this leads to a vulnerability
+
+How not to mitigate?
+their r plenty of sites which implement "dynamic CSRF-proof forms". They had a csrf.js file that sends back code roughly roughly equivalent
+to: $csrf = 'session CSRF token';
+On each page, they had <script src="/csrf.js"> and then baked the CSRF tokens into the forms from there. So all i had to do was include that
+same tag in my own exploit. // because just instead of providing the CSRF token into every form u r providing it from a JS file which is
+kind of giving away the CSRF token.
+// So an attacker always look for a CSRF token.
+
+XSS and Authorization ->
+
+
+SQL Injection ->
+
+Directory Travesal -> it is almost a path injection attack, by controlling path construction, u r able to walk up the filesystem tree and control
+where files r being read/written
+In most operating systems their r two special directories-> . and ..
+. is always ur current directory and .. is always the parent directory
+
+Ex ->
+<?
+echo file get contents('/var/www/sandbox/uploads/' . $_GET['file']); //
+?>
+
+In this case we have the GET parameter file appended to a path '/var/www/sandbox/uploads/' then read that file and echo it to the page
+10..../dvwa/mutilldae/index.php?page=../../../../../etc/passwd // now here u can see how I can go easily from one directory to another just
+by changing the URL path for filesystem now this could lead to code execution also additionally database contents r often revealed when application
+shares a host with it's database, permissions should also be set so that database files aren't readable by the webserver but that even work
+always in real life
+
+Burp Proxy -> it sits between ur browser or other client and web server
+
+Cookie Tampering ->
+<script>alert(document.cookie)</script> in the input box and u will get the token
