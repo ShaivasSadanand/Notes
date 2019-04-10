@@ -612,6 +612,75 @@ The Distance vector Protocols r pretty simple by they don't allow for a router t
 outside of their own direct neoghbours bcz of this a router might be slow to react to a change in the network far away from it and
 this is why link state protocols where invented
 
+Routers using the link state protocol take more sophesticated approach to determine best path, In this each router advertise the 
+state of the link of each of it's interfaces, These interfaces could be connected to another routers or they could be direct
+connections to the networks, the information of each router is propogated to every other router on the autonomous system, This
+means that every router on the system knows every detail about every other router in the system, Each router then uses this much
+larger set of information and runs complicated algorithms against it to determine whats the best path to any destination network
+might be
+
+Link state protocols require both the more memory in order to hold all this data and also much more processing power this is bcz
+it has to run algorithms aginst this data in order to determine the quickest path to update the routing tables
+
+As computer hardware becomes more powerfull and cheaper over the years the link state protocols have made the distance vector 
+protocols outdated
+
+Exterior Gateway Protocols ->
+They r used to communicate data between the routers representing the edges of an autonomous system, since router sharing data using
+the interior gateway protocols are all under control of the same organization, routers use exterior gateway protocols when they need
+to share information across different organizations
+Exterior gateway protocols r really key to the internet operating how it does today
+
+The internet is an enourmous mesh of autonomous systems at the highest levels core internet routers need to know anout autonomous
+systems in order to properly forward traffic. Since autonoumous systems r known and defined collections of networks, getting data
+to the edge router of an autonoumous system is the first goal of the core internet routers
+
+Internet Assigned Numbers Authority(IANA) is a non-profit organization that helps manage things like IP address allocation, without
+it anyone can try and use any IP space they wanted which would cause total chaos
+
+Along with managing IP address allocation, the IANA is also responsible for ASN(Autonomous System Number) allocation.
+
+ASN r numbers assigned to individual autonomous systems, just like IP addresses ASN r 32 bit numbers but unlike IP addresses they
+normally referred to as just a single decimal number instead of split out into readable bits, their r 2 reasons for this
+1) IP addresses need to be able to represent a Network ID portion and a Host ID portion for each network this is more easily
+   accomplished by spliting the no. in 4 sections of 8 bits specially beack in the day when address classes were used, In ASN
+   network needs to change in order for it's represent more networks or hosts, it's just a core internet routing tables that need
+   to be updated to know what the ASN represents
+2) ASN is looked far less then often then IP addresses r, So bcz it can be usefull to be able to look at the IP -> 9.100.100.100
+   and know that 9.0.0.0/8 address space is own by IBM, ASN's represent entire autonomous systems just being able to look up the
+   fact that AS19604 belongs to IBM
+   
+Uderstanding how exterior gateway protocols work is out of scope for most peoples in IT but on ask being the basics of autonomous
+systems ASN's and how core internet routers route traffic between them is important to understand
+
+Non-Routable Address Space ->
+Even in 1996 internet was growing at rate that couldn't be sustain, when IP was first defined it define an IP address as a single
+32 bit no. a single 32 bit no. can represent around 4 billion unique no. which sounds like a lot but as of 2017 their r estimated
+7.5 billion humans on earth this means the IPv4 standard doesn't have enough IP addresses available for every person on planet
+
+It also can't account for entire data centers filled with thousands of computers required for large scale tachnolgy companies to
+operate, So in 1996 the RFC1918 was published, the RFC stands for Requests for Comments and it is a long standing way for those
+how r respinsible for keeping the internet running to agree upon the standard requirements to do so.
+RFC1918 outlined a no. of networks that would be defined as Non-routable address space, it is basically a ranges of IP's set aside
+for use by anyone that cannot be routed to as not every computer on internet needs to be able to communicate with every other 
+computer connected to the internet, Non-routable address space allows for nodes for such a network to communicate with each other
+but no gateway router attempt to forward traffic to this type of network.
+
+NAT allows for computers on Non routable address space to communcate with other devices in the internet
+
+RFC1918 defines 3 ranges of IP addresses that will never be routed any where by core routers, that means that they belong to no one
+and any one can use them, infact since they r seperated from the way traffic moves on the internet their is no limit that how many
+people might use these addresses for their internal networks
+
+The primary 3 ranges for Non-Routable Address Space r ->
+1) 10.0.0.0/8
+2) 172.16.0.0/12
+3) 192.168.0.0/16
+these ranges r free for anyone to use for their internal networks, the interior gateway protocols will route these address spaces,
+So they r appropriate for use with in an autonomus system but exterior gateway protocols will not
+
+Transport and Application Layers Intro ->
+
 
 
 Python Networking ->
