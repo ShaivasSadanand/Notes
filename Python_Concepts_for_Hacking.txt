@@ -12,7 +12,7 @@
 
 - MAC(Media Access Control) address is permanent, physical and unique address which is assigned to network interfaces by 
   manufacturer , IP address is used in the internet to identify computers and communicate between devices on the internet,
-  while the MAC address is used within the network to indentify devices and transfer data between devices.
+  while the MAC address is used within the network to identify devices and transfer data between devices.
   So each pack of data which is send within the network contains the source MAC and the destination MAC.
   
 - Changing MAC address provides us ->
