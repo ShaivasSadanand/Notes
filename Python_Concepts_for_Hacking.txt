@@ -1,7 +1,7 @@
 - Udemy Tutorial For below Concepts -> 
   https://www.udemy.com/learn-python-and-ethical-hacking-from-scratch/learn/v4/t/lecture/9194564?start=0
   
-- Snapshots allow u to save the state of the virtual machine, So we can use it asbookmarks to go back and forward to different 
+- Snapshots allow u to save the state of the virtual machine, So we can use it as bookmarks to go back and forward to different 
   configurations in future
   To create a snapshot in oracle VM Virtual Manager right click on the machine and select the option snapshot
   
