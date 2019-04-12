@@ -97,4 +97,44 @@ cmd -> airodump-ng --bssid target_network_bssid --channel channel_no --write fil
  // extension 'cap' and u will see that the data is encrypted except the device manufacture which was connected to the network so this
  // way u kind of guess what computers r their and what OS they use
  
- Deauthentication Attack ->
+ Deauthentication Attack -> This attack allow us to disconnect any device from any network before connecting to any of these networks,
+ and without the need to know the passowrd for the network
+ To do this we r going to pretend to be the client that we want to disconnect by changing our MAC address to the MAC address of that
+ client and tell router that I want to disconnect from u and then we r going to be pretend the router again by changing our MAC address
+ to the router's MAC address and tell the client that u requested to be disconnected, So I'm going to disconnect u 
+ This will aloow us to successfully disconnect or deauthenticate any clint from any network, for this task be use a tool aireplay-ng
+
+cmd in terminal 1 -> airodump-ng --bssid target_network_bssid --channel channel_no wlan0
+cmd in terminal 2 -> aireplay-ng --deauth 1000000000 -a router_MAC_address -c client_MAC_address wlan0
+// here we r going to keep sending large packets to both the router and the device, hence it willdisconnect the device for very 
+// long time and the only way is to quit from the aireplay-ng, this cmd will fail in the case the airodump-ng is running against
+// the target network
+// this is going to disconnect client form the network and only way to connect back is if u quit the running prgms from both terminals
+// this attack could be used in many ways just as in social engineering to ask client to install a backdoor or create another fake
+// access point and get them to connect to it and start spying on them from that access point
+
+Gaining Access ->
+WEP(Wired Equivalent Privacy) -> This is an old encryption but still used in some networks and it is easy to break, WEP uses algorithm
+RC4 to encrypt it's data,
+The way it works is that if a client wants to send something to the router then it will encrypt that data using a key then that data
+is sent in air then the access point or router will receive this encrypted packet and transform data back to it's unecrypted data\
+by using the same key and vice versa when router sends data to the client the problem is that in order to encrypt data while sending
+to the router WEP tries to generate a unique key for each packet to do this it generate 24bit initialization vector then the
+initialization vector is added with the password of the network and this generates a key stream and this key stream is used to encrypt
+the packet but at the time of sending the encrypted data it also append the initialization vector to the packet bcz once the router
+receives the packet it needs to be able to decrypt the packet and the router already has the network password so now it can generate
+the key stream to decrypt the data
+
+So the weakness in WEP ->
+- initialization vector size is too small
+- initialization vector is sent in plain text
+
+which means that the ->
+- initialization vector will repeat on buzy networks
+- this makes the WEP vulnerable to statistical attacks
+- repeated initialization vector can be used to determine the key stream
+- and so the encryption got break
+
+Hence to crack WEP we need to ->
+- capture a large number of packets/initialization vector
+- analyse the captured initialization vectors and crack the key
