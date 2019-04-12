@@ -1,0 +1,42 @@
+- To Connect the wireless adapter to kali virtual machine look here ->
+https://www.youtube.com/watch?v=zZG65GkWGdU&t=1s
+
+- MAC(Media Access Control) address is permanent, physical and unique address which is assigned to network interfaces by 
+  manufacturer , IP address is used in the internet to identify computers and communicate between devices on the internet,
+  while the MAC address is used within the network to identify devices and transfer data between devices.
+  So each pack of data which is send within the network contains the source MAC and the destination MAC.
+  
+- Changing MAC address provides us ->
+  - Anonymity
+  - Impersonate other devices
+  - Bypass filters
+  - or connect to network which only specific devices and specific MAC addresses r allowed to connect
+  
+- use cmd -> ifconfig // to list interfaces on the current computer, interface here means a network card
+- The interfaces created in virtual machines r virtual interfaces bcz we set this machine to use NAT network
+  'lo' is the virtual interface created by linux, 'wlan0' is the external USB wireless adapter, 'ether' in the 'eth0' here
+represents the MAC address
+- For 'lo' and 'wlan0' u will notice u don't have an IP address and this is bcz none of these interfaces r connected to a network
+- If u look into the right most corner of the kali and click a dropdown icon u will see the their is an option saying that the
+'Wifi Not Connected' and that's why the 'wlan0' currently does not have an IP address
+
+- ifconfig wlan0 down // to disable the interface
+- ifconfig wlan0 hw ether 00:11:22:33:44:55    // To change the MAC address to address -> 00:11:22:33:44:55
+- ifconfig wlan0 up // to enable the interface
+
+- Whether u r watching a video or doing chat etc all the data is send in packets, In the network devices ensure that these packets go
+th right direction using the MAC address So each packet has a source MAC and destination MAC, Now if we want to send the packet to the
+router from the machine then we need to enter the MAC address of the Router
+- We can capture the data packets which r in the air even if they do not contain the destination MAC address, for this we need to change
+the mode of operation of our wireless interface so that it operates in Monitor mode
+
+cmd -> iwconfig   // to see wireless interfaces only
+Here u will see the inteface data for wlan0 only and the mode in it would be Managed this means that this is the default mode of all
+wireless devices and this device will only capture packets that has the destination MAC as the MAC address of this device
+cmd -> ifconfig wlan0 down // before changing the mode
+cmd -> airmon-ng check kill // to kill the process which could interfer when using the interface in monitor mode, this is not
+                            // mandatory cmd, this cmd will kill the network manager and u will lose the internet connection and this is
+                            // ok as we do not require the internet connection to run any of the attaks reuired in monitor mode
+- Try using one of these cmds to start monitor mode
+cmd -> iwconfig wlan0 mode monitor // this will change the mode to monitor mode
+cmd -> airmon-ng start wlan0 // this will start monitor mode on the interface wlan0
