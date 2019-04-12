@@ -30,13 +30,71 @@ router from the machine then we need to enter the MAC address of the Router
 - We can capture the data packets which r in the air even if they do not contain the destination MAC address, for this we need to change
 the mode of operation of our wireless interface so that it operates in Monitor mode
 
-cmd -> iwconfig   // to see wireless interfaces only
+cmd -> iwconfig   // to see wireless interfaces only and to check the monitor mode
 Here u will see the inteface data for wlan0 only and the mode in it would be Managed this means that this is the default mode of all
 wireless devices and this device will only capture packets that has the destination MAC as the MAC address of this device
 cmd -> ifconfig wlan0 down // before changing the mode
 cmd -> airmon-ng check kill // to kill the process which could interfer when using the interface in monitor mode, this is not
                             // mandatory cmd, this cmd will kill the network manager and u will lose the internet connection and this is
                             // ok as we do not require the internet connection to run any of the attaks reuired in monitor mode
-- Try using one of these cmds to start monitor mode
-cmd -> iwconfig wlan0 mode monitor // this will change the mode to monitor mode
+
 cmd -> airmon-ng start wlan0 // this will start monitor mode on the interface wlan0
+
+- After enabling the monitor mode on our wireless interface we r able to capture all the wifi packets sent within our range even
+if the packet is not directed to our computer even if we r not connected to the target network and even without knowing the key
+or the password of the target network so we just only need a program that will capture these packets for us, prgm we r going to use
+is 'airodump-ng' it's part of the 'aircrack-ng' suit and it's a packet sniffer so it's basically a program designed to capture packets
+while u r in monitor mode
+So it will allow us to see all the wireless networks around us and show us detailed information about ->
+MAC address
+Channel
+Encryption
+Clients connected to this network etc
+
+cmd -> airodump-ng wlan0 //start the monitor mode and discover wireless networks
+press ctrl+c // to quit
+
+Now in monitor mode ->
+- ESSID // it shows the name of the wireless networks
+- BSSID // it shows the MAC address
+- PWR // it shows the signal strength, higher the number better the signal their is
+- Beacons // these r frames sent by the network in order to broadcast its existence, So every network even if its hidden sent these
+          // types of frames, So it basically tells all the devices around it that I exist
+- #Data // this the no. of data packets
+- CH // this is the channel
+- MB // this is the maximum speed supported by the network
+- ENC // this is the encryption used by the network, if it is 'OPEN' then it means their is no password protection even on the network
+- CIPHER // it is the cipher used in the network
+- AUTH // this is the autentication used on the network
+
+Wifi band of a network defines what frequency it can use to broadcast the signal, this means it also define the frequency that the
+clients or the computer need to be able to support and use in order to be able to connect to this network, two main frequncies used
+in wifi networks r 2.4 and 5 ghz previously we were only sniffing on 2.4 ghz frequency and that's why u will notice that the wireless
+card of ur system shows more wirless networks discovered then ur wireless adapter
+In some places in world such as in ireland if the network is broadcasting over the 5ghz then the service provider will add 5g as the
+postfix in the name or 'ssid' of the wireless network
+
+cmd -> airodump-ng --band a wlan0 // this will switch and start sniffing on the 5 ghz frequency networks
+cmd -> airodump-ng --band abg wlan0 // this will sniff on both 2.4 and 5 ghz frequencies at the same time, the only problem is it
+                                    // is slow as the sniffing on two bands make the lot channels that has to hop on
+cmd -> airodump-ng --bssid target_network_bssid --channel channel_no --write file_name wlan0 // here we r telling to sniff and gather
+ // more data on particular network and writing that gathered data in a file and after fireing the cmd it will show only one network
+ // and their will be a 2nd section also which will show u the clients connected to that network and their MAC addresses
+ // Here in 2nd section we can see the following parameters also such as
+ // - Rate // it is the speed
+ // - Lost // this is the amount of data lost
+ // - Frames // these the packets which we have captured
+ // - Probe // it shows the devices which r not connected but trying to connect with the network
+ // press ctrl + c // to quit
+ 
+ cmd -> ls // to list the files which contains the captured data of the network, u will see 4 files with the same name but different
+ // extensions with some post fix no. also added to it ex test-01.cap but our file name was only 'test'
+ // the file with extension 'cap' is the file that contains the data which we captured and it should contain the chat msgs, passwords
+ // etc anything which the connected devices to our target network did on the internet but all the data which is sent between the router
+ // and the connected devices is encrypted
+ 
+ cmd -> wireshark // to start the wireshark prgm which helps to analyse the data and then go to the File and open the file with the
+ // extension 'cap' and u will see that the data is encrypted except the device manufacture which was connected to the network so this
+ // way u kind of guess what computers r their and what OS they use
+ 
+ Deauthentication Attack ->
