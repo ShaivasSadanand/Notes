@@ -136,5 +136,26 @@ which means that the ->
 - and so the encryption got break
 
 Hence to crack WEP we need to ->
-- capture a large number of packets/initialization vector
-- analyse the captured initialization vectors and crack the key
+- capture a large number of packets/initialization vector, we can use airodump-ng for this task
+- analyse the captured initialization vectors and crack the key, we can use aircrack-ng for this task
+
+cmd in terminal 1 -> airodump-ng --bssid target_network_bssid --channel channel_no --write file_name wlan0 // choose network of WEP
+// u will notice that under the #Data column the no. of usefull packets that contain a different initialization vector which we can
+// use in order to crack the key and higher the no. is more likely we will be able to crack the key and if the network is very buzy
+// the no. will increase very fast
+cmd in terminal 2 -> aircrack-ng file_name-01.cap // this will say in output as the key is found
+
+now quit the prgm in terminal 1 by ctrl + q
+now we can connect to the target network using the ASCII output in terminal 2 and u can also use the key which is found just remove
+the colons in the key, In some cases we will not see the ASCII password
+
+So now we r able to crack the WEP network and connect to it by using the key we found but still their is one problem which is that
+if the network is not buzy in that case the it would take time to capture enough initialization vector, So the solution to this problem
+is to force the AP to generate new packets with new initialization vectors.
+But before doing this we need to associate to this network, Associate here means we need to tell this network that we want to
+communicate with it bcz by defaults access points ignore any requests they get unless the device has connected to this network or
+associated with it and problem is we r still unable to connect to the network, what we r doing here is just telling the target network
+look i want to communicate with u don't ignore my requests so it is similar to when to click on the network when u wants to connect
+to it and u still haven't put the password u r just telling the target network that I want to communicate with u and don't ignore me
+
+So to Associate to the target network
