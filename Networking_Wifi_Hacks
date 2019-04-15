@@ -301,3 +301,31 @@ Syntax -> crunch min_charters_for_passwrd max_charters_for_passwrd characters_to
 //-t is usefull when u know some of the characters of the password
 Ex -> crunch 6 8 123abc$ -t a@@@@b -o wordlist
 cmd -> man crunch // for the manual
+
+Now to crack the password aircrack-ng is going to unpack the handshake and extract the usefull information, the MIC or Message integrity
+code is used by the accessed point to verify whether a password is correct or not, So it's going to seperate MIC and then use the other
+information combined the first password from the wordlist to generate an MIC which is another MIC and then compare the generated MIC
+to the MIC already in the Handshake, If the MIC using the available information and the password from the wordlist is the same then the
+password used to generate MIC is the password for the network and this will go on through all the passwords in the wordlist and that's
+why the success of the attack really depend on ur wordlist
+
+cmd -> aircrack-ng file_name.cap -w wordlist.txt // here the program will check for the password from the wordlist file and if ur
+// password is in the wordlist it will give the output as the key found
+
+Cracking the key quicker using the rainbow table ->
+In the previous method the aircrack-ng went through the wordlist file, it combined each password in the wordlist with the essid to
+create the PMK using the pbkdf2 algorithm and then compare the PMK to the Handshake, but his takes the most time of the cracking process
+But in many scenerios we will have access points that doesn't have any clients connected to it like in the previous method, hence we
+need to wait untill the client connects and this this case we can save time by converting our wordlist to a PMK list as converting the
+password to a PMK takes the most time and once we capture the handshake we use our ready PMK's to crack the key.
+
+we can do this using airolib-ng
+cmd -> airolib-ng  test-db --import passwd wordlist_file // this will create a database and import our wordlist into the database
+cmd -> echo "target_essid_name" > test-essid
+cmd -> airolib-ng test-db --import essid test-essid // now we r importing essid
+cmd -> airolib-ng test-db --batch // here we compare each password and combine with the essid and create PMK from each password in list
+// after the batch process when all the passwords r converted to PMK's they will be stored in the Database here it is test-db
+cmd -> aircrack-ng -r test-db handshake_file_name.cap // this will list the key as the output
+
+We can speed up the cracking process using a tool called hashcat which uses the GPU instead of CPU for the cracking process
+It's easier to find the grahic card in Windows then linux hence we r going to use Windows for this task
