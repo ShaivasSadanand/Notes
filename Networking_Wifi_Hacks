@@ -329,3 +329,7 @@ cmd -> aircrack-ng -r test-db handshake_file_name.cap // this will list the key 
 
 We can speed up the cracking process using a tool called hashcat which uses the GPU instead of CPU for the cracking process
 It's easier to find the grahic card in Windows then linux hence we r going to use Windows for this task
+Download files from following links->
+https://hashcat.net/hashcat/ - this is the one which do the cracking
+after this we need to convert the handshake file to hccap file so the handshake was captured in a cap file, we have to convert it to
+hccap file so that a hashcat can read this file
