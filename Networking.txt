@@ -1517,7 +1517,17 @@ has an IP of 10.1.1.6, with Port forwarding traffic for wither of these services
 the same DNS name but it would get delivered to entirely different internal servers due to their different destination ports.
 Screenshot(96)
 
-NAT, Non-Routable Address Space and the limits of IPv4 ->
+NAT, Non-Routable Address Space and the limits of IPv4 -> The IANA has been incharged of distributing IP addresses since 1988, For some
+time now the IANA has primaryly been respinsible with assigning address blocks to the 5 Regional internet registries or RIRs
+The 5 RIRs r ->
+- AFRINIC -> It serves the continent of africa
+- ARIN -> It serves the united states, canada and parts of the caribbean
+- APNIC -> It is responsible for most of Asia, Australia, New zealand and pacific island nations
+- LACNIC -> It covers central and south america and any parts of the caribbean not covered by ARIN
+- RIPE -> It servers europe , russia , the middle east and portions of central asia
+These 5 RIRs r responsible for assigning IP address blocks to organizations within their geographic areas and most of already run out
+The IANA assigned the last unallocated slash 8 network blocks to various RIRs on feb 3,2011 then in april 2011 the APNIC run out of 
+addresses
 
 
 
