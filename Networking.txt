@@ -1606,6 +1606,10 @@ web traffic to it and allow the proxy to inspect what data has been requested an
 site has been accessed
 
 Another example of a proxy is the reverse proxy
+Reverse Proxy -> It is a service that might appear to be a single server to external clients, but actually represents many servers
+living behind it
+
+
 
 
 
