@@ -1608,6 +1608,20 @@ site has been accessed
 Another example of a proxy is the reverse proxy
 Reverse Proxy -> It is a service that might appear to be a single server to external clients, but actually represents many servers
 living behind it
+An Ex of this How lots of popular websites r architected today such as twitter which recieves so much traffic that their is no way a 
+single website server can possibly handle all of it so it might need many web servers in order to keep up processing all incoming 
+requests, a reverse proxy in this situation can act as a single front end for many web servers behind it and from the clients 
+perspective it looks like they r all connected to the same server but behind the scenes this reverse proxy server is actually 
+distributing these incoming requests to lots of different physical servers, Screenshot(26)
+much like the concept of DNS round robin this is the form ofload balancing another way the reverse proxies r commonly used by popular 
+websites is to deal with decryption more then half of all traffic on the web is now encrypted and encrypting and ecrypting data is a
+process then can take a lot of processing power, Reverse proxies r implemented in order to use hardware built specifically for 
+crypotography to perform to perform the encryption and decryption work so that the web servers r free to just serve content
+
+Proxies come in many other flavours, but important take away is that the proxies r any server act as an intermediory between the client 
+and the other server
+
+Connecting to the Internet ->
 
 
 
